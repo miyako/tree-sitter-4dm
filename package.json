@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-4dm",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "Tree-sitter parser for 4D",
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
