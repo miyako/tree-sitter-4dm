@@ -1,0 +1,23 @@
+{
+  "name": "tree-sitter-4dm",
+  "version": "3.0.1",
+  "description": "Tree-sitter parser for 4D",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test"
+  },
+  "author": "miyako",
+  "homepage": "https://miyako.github.io/language-4dm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miyako/tree-sitter-4dm.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.14.0",
+    "node-gyp": "^6.0.1"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.15.12"
+  }
+}
