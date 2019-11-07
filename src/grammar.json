@@ -13,21 +13,64 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "while_e"
+          "name": "comment"
         },
         {
           "type": "SYMBOL",
-          "name": "until_e"
+          "name": "while"
         },
         {
           "type": "SYMBOL",
-          "name": "for_each_e"
+          "name": "until"
         },
         {
           "type": "SYMBOL",
-          "name": "end_for_each_e"
+          "name": "for_each"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_for_each"
         }
       ]
+    },
+    "comment": {
+      "type": "PREC",
+      "value": -1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "//"
+              },
+              {
+                "type": "PATTERN",
+                "value": ".*"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "/*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+              },
+              {
+                "type": "STRING",
+                "value": "/"
+              }
+            ]
+          }
+        ]
+      }
     },
     "_each_block_e": {
       "type": "SEQ",
@@ -76,49 +119,121 @@
       ]
     },
     "for_each_e": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][oO][rR] [eE][aA][cC][hH]"
+      }
+    },
+    "for_each_f": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]"
+      }
+    },
+    "for_each": {
       "type": "ALIAS",
       "content": {
-        "type": "PREC_LEFT",
-        "value": 0,
-        "content": {
-          "type": "PATTERN",
-          "value": "[fF][oO][rR] [eE][aA][cC][hH]"
-        }
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "for_each_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "for_each_f"
+          }
+        ]
       },
       "named": false,
       "value": "For each"
     },
     "end_for_each_e": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
+      }
+    },
+    "end_for_each_f": {
+      "type": "PATTERN",
+      "value": "[fF][iI][nN] [dD][eE] [cC][hH][aA][qQ][uU][eE]"
+    },
+    "end_for_each": {
       "type": "ALIAS",
       "content": {
-        "type": "PREC_RIGHT",
-        "value": 0,
-        "content": {
-          "type": "PATTERN",
-          "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
-        }
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "end_for_each_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "end_for_each_f"
+          }
+        ]
       },
       "named": false,
       "value": "End for each"
     },
     "while_e": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[wW][hH][iI][lL][eE]"
+      }
+    },
+    "while_f": {
+      "type": "PATTERN",
+      "value": "[tT][aA][nN][tT] [qQ][uU][eE]"
+    },
+    "while": {
       "type": "ALIAS",
       "content": {
-        "type": "PREC_LEFT",
-        "value": 0,
-        "content": {
-          "type": "PATTERN",
-          "value": "[wW][hH][iI][lL][eE]"
-        }
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "while_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "while_f"
+          }
+        ]
       },
       "named": false,
       "value": "While"
     },
     "until_e": {
+      "type": "PATTERN",
+      "value": "[uU][nN][tT][iI][lL]"
+    },
+    "until_f": {
+      "type": "PATTERN",
+      "value": "[jJ][uU][sS][qQ][uU][eE]"
+    },
+    "until": {
       "type": "ALIAS",
       "content": {
-        "type": "PATTERN",
-        "value": "[uU][nN][tT][iI][lL]"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "until_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "until_f"
+          }
+        ]
       },
       "named": false,
       "value": "Until"
