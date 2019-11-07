@@ -13,11 +13,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "each_block_e"
+          "name": "while_e"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "until_e"
         }
       ]
     },
-    "each_block_e": {
+    "_each_block_e": {
       "type": "SEQ",
       "members": [
         {
@@ -55,11 +59,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_while_e"
+          "name": "while_e"
         },
         {
           "type": "SYMBOL",
-          "name": "_until_e"
+          "name": "until_e"
         }
       ]
     },
@@ -79,13 +83,23 @@
         "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
       }
     },
-    "_while_e": {
-      "type": "PATTERN",
-      "value": "[wW][hH][iI][lL][eE]"
+    "while_e": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[wW][hH][iI][lL][eE]"
+      },
+      "named": false,
+      "value": "While"
     },
-    "_until_e": {
-      "type": "PATTERN",
-      "value": "[uU][nN][tT][iI][lL]"
+    "until_e": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[uU][nN][tT][iI][lL]"
+      },
+      "named": false,
+      "value": "Until"
     }
   },
   "extras": [

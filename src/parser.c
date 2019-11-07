@@ -6,28 +6,26 @@
 #endif
 
 #define LANGUAGE_VERSION 10
-#define STATE_COUNT 12
-#define SYMBOL_COUNT 14
+#define STATE_COUNT 7
+#define SYMBOL_COUNT 12
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 7
 #define EXTERNAL_TOKEN_COUNT 0
 #define FIELD_COUNT 0
-#define MAX_ALIAS_SEQUENCE_LENGTH 7
+#define MAX_ALIAS_SEQUENCE_LENGTH 2
 
 enum {
   anon_sym_LPAREN = 1,
   anon_sym_RPAREN = 2,
   aux_sym__for_each_e_token1 = 3,
   aux_sym__end_for_each_e_token1 = 4,
-  sym__while_e = 5,
-  sym__until_e = 6,
+  aux_sym_while_e_token1 = 5,
+  aux_sym_until_e_token1 = 6,
   sym_source = 7,
   sym__token = 8,
-  sym_each_block_e = 9,
-  sym__each_break_e = 10,
-  sym__for_each_e = 11,
-  sym__end_for_each_e = 12,
-  aux_sym_source_repeat1 = 13,
+  sym_while_e = 9,
+  sym_until_e = 10,
+  aux_sym_source_repeat1 = 11,
 };
 
 static const char *ts_symbol_names[] = {
@@ -36,14 +34,12 @@ static const char *ts_symbol_names[] = {
   [anon_sym_RPAREN] = ")",
   [aux_sym__for_each_e_token1] = "_for_each_e_token1",
   [aux_sym__end_for_each_e_token1] = "_end_for_each_e_token1",
-  [sym__while_e] = "_while_e",
-  [sym__until_e] = "_until_e",
+  [aux_sym_while_e_token1] = "While",
+  [aux_sym_until_e_token1] = "Until",
   [sym_source] = "source",
   [sym__token] = "_token",
-  [sym_each_block_e] = "each_block_e",
-  [sym__each_break_e] = "_each_break_e",
-  [sym__for_each_e] = "_for_each_e",
-  [sym__end_for_each_e] = "_end_for_each_e",
+  [sym_while_e] = "while_e",
+  [sym_until_e] = "until_e",
   [aux_sym_source_repeat1] = "source_repeat1",
 };
 
@@ -68,13 +64,13 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = false,
   },
-  [sym__while_e] = {
-    .visible = false,
-    .named = true,
+  [aux_sym_while_e_token1] = {
+    .visible = true,
+    .named = false,
   },
-  [sym__until_e] = {
-    .visible = false,
-    .named = true,
+  [aux_sym_until_e_token1] = {
+    .visible = true,
+    .named = false,
   },
   [sym_source] = {
     .visible = true,
@@ -84,20 +80,12 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = true,
   },
-  [sym_each_block_e] = {
+  [sym_while_e] = {
     .visible = true,
     .named = true,
   },
-  [sym__each_break_e] = {
-    .visible = false,
-    .named = true,
-  },
-  [sym__for_each_e] = {
-    .visible = false,
-    .named = true,
-  },
-  [sym__end_for_each_e] = {
-    .visible = false,
+  [sym_until_e] = {
+    .visible = true,
     .named = true,
   },
   [aux_sym_source_repeat1] = {
@@ -247,10 +235,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(aux_sym__end_for_each_e_token1);
       END_STATE();
     case 32:
-      ACCEPT_TOKEN(sym__while_e);
+      ACCEPT_TOKEN(aux_sym_while_e_token1);
       END_STATE();
     case 33:
-      ACCEPT_TOKEN(sym__until_e);
+      ACCEPT_TOKEN(aux_sym_until_e_token1);
       END_STATE();
     default:
       return false;
@@ -265,11 +253,6 @@ static TSLexMode ts_lex_modes[STATE_COUNT] = {
   [4] = {.lex_state = 0},
   [5] = {.lex_state = 0},
   [6] = {.lex_state = 0},
-  [7] = {.lex_state = 0},
-  [8] = {.lex_state = 0},
-  [9] = {.lex_state = 0},
-  [10] = {.lex_state = 0},
-  [11] = {.lex_state = 0},
 };
 
 static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
@@ -279,61 +262,49 @@ static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_RPAREN] = ACTIONS(1),
     [aux_sym__for_each_e_token1] = ACTIONS(1),
     [aux_sym__end_for_each_e_token1] = ACTIONS(1),
-    [sym__while_e] = ACTIONS(1),
-    [sym__until_e] = ACTIONS(1),
+    [aux_sym_while_e_token1] = ACTIONS(1),
+    [aux_sym_until_e_token1] = ACTIONS(1),
   },
   [1] = {
-    [sym_source] = STATE(7),
+    [sym_source] = STATE(6),
     [sym__token] = STATE(2),
-    [sym_each_block_e] = STATE(2),
-    [sym__for_each_e] = STATE(8),
+    [sym_while_e] = STATE(2),
+    [sym_until_e] = STATE(2),
     [aux_sym_source_repeat1] = STATE(2),
     [ts_builtin_sym_end] = ACTIONS(3),
-    [aux_sym__for_each_e_token1] = ACTIONS(5),
+    [aux_sym_while_e_token1] = ACTIONS(5),
+    [aux_sym_until_e_token1] = ACTIONS(7),
   },
   [2] = {
     [sym__token] = STATE(3),
-    [sym_each_block_e] = STATE(3),
-    [sym__for_each_e] = STATE(8),
+    [sym_while_e] = STATE(3),
+    [sym_until_e] = STATE(3),
     [aux_sym_source_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(7),
-    [aux_sym__for_each_e_token1] = ACTIONS(5),
+    [ts_builtin_sym_end] = ACTIONS(9),
+    [aux_sym_while_e_token1] = ACTIONS(5),
+    [aux_sym_until_e_token1] = ACTIONS(7),
   },
   [3] = {
     [sym__token] = STATE(3),
-    [sym_each_block_e] = STATE(3),
-    [sym__for_each_e] = STATE(8),
+    [sym_while_e] = STATE(3),
+    [sym_until_e] = STATE(3),
     [aux_sym_source_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(9),
-    [aux_sym__for_each_e_token1] = ACTIONS(11),
+    [ts_builtin_sym_end] = ACTIONS(11),
+    [aux_sym_while_e_token1] = ACTIONS(13),
+    [aux_sym_until_e_token1] = ACTIONS(16),
   },
   [4] = {
-    [sym__each_break_e] = STATE(10),
-    [sym__while_e] = ACTIONS(14),
-    [sym__until_e] = ACTIONS(14),
+    [ts_builtin_sym_end] = ACTIONS(19),
+    [aux_sym_while_e_token1] = ACTIONS(19),
+    [aux_sym_until_e_token1] = ACTIONS(19),
   },
   [5] = {
-    [sym__end_for_each_e] = STATE(6),
-    [aux_sym__end_for_each_e_token1] = ACTIONS(16),
+    [ts_builtin_sym_end] = ACTIONS(21),
+    [aux_sym_while_e_token1] = ACTIONS(21),
+    [aux_sym_until_e_token1] = ACTIONS(21),
   },
   [6] = {
-    [ts_builtin_sym_end] = ACTIONS(18),
-    [aux_sym__for_each_e_token1] = ACTIONS(18),
-  },
-  [7] = {
-    [ts_builtin_sym_end] = ACTIONS(20),
-  },
-  [8] = {
-    [anon_sym_LPAREN] = ACTIONS(22),
-  },
-  [9] = {
-    [anon_sym_RPAREN] = ACTIONS(24),
-  },
-  [10] = {
-    [anon_sym_LPAREN] = ACTIONS(26),
-  },
-  [11] = {
-    [anon_sym_RPAREN] = ACTIONS(28),
+    [ts_builtin_sym_end] = ACTIONS(23),
   },
 };
 
@@ -341,18 +312,15 @@ static TSParseActionEntry ts_parse_actions[] = {
   [0] = {.count = 0, .reusable = false},
   [1] = {.count = 1, .reusable = false}, RECOVER(),
   [3] = {.count = 1, .reusable = true}, REDUCE(sym_source, 0),
-  [5] = {.count = 1, .reusable = true}, SHIFT(8),
-  [7] = {.count = 1, .reusable = true}, REDUCE(sym_source, 1),
-  [9] = {.count = 1, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2),
-  [11] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(8),
-  [14] = {.count = 1, .reusable = true}, SHIFT(10),
-  [16] = {.count = 1, .reusable = true}, SHIFT(6),
-  [18] = {.count = 1, .reusable = true}, REDUCE(sym_each_block_e, 7),
-  [20] = {.count = 1, .reusable = true},  ACCEPT_INPUT(),
-  [22] = {.count = 1, .reusable = true}, SHIFT(9),
-  [24] = {.count = 1, .reusable = true}, SHIFT(4),
-  [26] = {.count = 1, .reusable = true}, SHIFT(11),
-  [28] = {.count = 1, .reusable = true}, SHIFT(5),
+  [5] = {.count = 1, .reusable = true}, SHIFT(4),
+  [7] = {.count = 1, .reusable = true}, SHIFT(5),
+  [9] = {.count = 1, .reusable = true}, REDUCE(sym_source, 1),
+  [11] = {.count = 1, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2),
+  [13] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(4),
+  [16] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(5),
+  [19] = {.count = 1, .reusable = true}, REDUCE(sym_while_e, 1),
+  [21] = {.count = 1, .reusable = true}, REDUCE(sym_until_e, 1),
+  [23] = {.count = 1, .reusable = true},  ACCEPT_INPUT(),
 };
 
 #ifdef _WIN32
