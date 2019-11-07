@@ -6,8 +6,8 @@
 #endif
 
 #define LANGUAGE_VERSION 10
-#define STATE_COUNT 7
-#define SYMBOL_COUNT 12
+#define STATE_COUNT 9
+#define SYMBOL_COUNT 14
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 7
 #define EXTERNAL_TOKEN_COUNT 0
@@ -17,27 +17,31 @@
 enum {
   anon_sym_LPAREN = 1,
   anon_sym_RPAREN = 2,
-  aux_sym__for_each_e_token1 = 3,
-  aux_sym__end_for_each_e_token1 = 4,
+  aux_sym_for_each_e_token1 = 3,
+  aux_sym_end_for_each_e_token1 = 4,
   aux_sym_while_e_token1 = 5,
   aux_sym_until_e_token1 = 6,
   sym_source = 7,
   sym__token = 8,
-  sym_while_e = 9,
-  sym_until_e = 10,
-  aux_sym_source_repeat1 = 11,
+  sym_for_each_e = 9,
+  sym_end_for_each_e = 10,
+  sym_while_e = 11,
+  sym_until_e = 12,
+  aux_sym_source_repeat1 = 13,
 };
 
 static const char *ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
   [anon_sym_LPAREN] = "(",
   [anon_sym_RPAREN] = ")",
-  [aux_sym__for_each_e_token1] = "_for_each_e_token1",
-  [aux_sym__end_for_each_e_token1] = "_end_for_each_e_token1",
+  [aux_sym_for_each_e_token1] = "For each",
+  [aux_sym_end_for_each_e_token1] = "End for each",
   [aux_sym_while_e_token1] = "While",
   [aux_sym_until_e_token1] = "Until",
   [sym_source] = "source",
   [sym__token] = "_token",
+  [sym_for_each_e] = "for_each_e",
+  [sym_end_for_each_e] = "end_for_each_e",
   [sym_while_e] = "while_e",
   [sym_until_e] = "until_e",
   [aux_sym_source_repeat1] = "source_repeat1",
@@ -56,12 +60,12 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = false,
   },
-  [aux_sym__for_each_e_token1] = {
-    .visible = false,
+  [aux_sym_for_each_e_token1] = {
+    .visible = true,
     .named = false,
   },
-  [aux_sym__end_for_each_e_token1] = {
-    .visible = false,
+  [aux_sym_end_for_each_e_token1] = {
+    .visible = true,
     .named = false,
   },
   [aux_sym_while_e_token1] = {
@@ -78,6 +82,14 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   },
   [sym__token] = {
     .visible = false,
+    .named = true,
+  },
+  [sym_for_each_e] = {
+    .visible = true,
+    .named = true,
+  },
+  [sym_end_for_each_e] = {
+    .visible = true,
     .named = true,
   },
   [sym_while_e] = {
@@ -229,10 +241,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_RPAREN);
       END_STATE();
     case 30:
-      ACCEPT_TOKEN(aux_sym__for_each_e_token1);
+      ACCEPT_TOKEN(aux_sym_for_each_e_token1);
       END_STATE();
     case 31:
-      ACCEPT_TOKEN(aux_sym__end_for_each_e_token1);
+      ACCEPT_TOKEN(aux_sym_end_for_each_e_token1);
       END_STATE();
     case 32:
       ACCEPT_TOKEN(aux_sym_while_e_token1);
@@ -253,6 +265,8 @@ static TSLexMode ts_lex_modes[STATE_COUNT] = {
   [4] = {.lex_state = 0},
   [5] = {.lex_state = 0},
   [6] = {.lex_state = 0},
+  [7] = {.lex_state = 0},
+  [8] = {.lex_state = 0},
 };
 
 static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
@@ -260,51 +274,81 @@ static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
     [ts_builtin_sym_end] = ACTIONS(1),
     [anon_sym_LPAREN] = ACTIONS(1),
     [anon_sym_RPAREN] = ACTIONS(1),
-    [aux_sym__for_each_e_token1] = ACTIONS(1),
-    [aux_sym__end_for_each_e_token1] = ACTIONS(1),
+    [aux_sym_for_each_e_token1] = ACTIONS(1),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(1),
     [aux_sym_while_e_token1] = ACTIONS(1),
     [aux_sym_until_e_token1] = ACTIONS(1),
   },
   [1] = {
-    [sym_source] = STATE(6),
+    [sym_source] = STATE(8),
     [sym__token] = STATE(2),
+    [sym_for_each_e] = STATE(2),
+    [sym_end_for_each_e] = STATE(2),
     [sym_while_e] = STATE(2),
     [sym_until_e] = STATE(2),
     [aux_sym_source_repeat1] = STATE(2),
     [ts_builtin_sym_end] = ACTIONS(3),
-    [aux_sym_while_e_token1] = ACTIONS(5),
-    [aux_sym_until_e_token1] = ACTIONS(7),
+    [aux_sym_for_each_e_token1] = ACTIONS(5),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(7),
+    [aux_sym_while_e_token1] = ACTIONS(9),
+    [aux_sym_until_e_token1] = ACTIONS(11),
   },
   [2] = {
     [sym__token] = STATE(3),
+    [sym_for_each_e] = STATE(3),
+    [sym_end_for_each_e] = STATE(3),
     [sym_while_e] = STATE(3),
     [sym_until_e] = STATE(3),
     [aux_sym_source_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(9),
-    [aux_sym_while_e_token1] = ACTIONS(5),
-    [aux_sym_until_e_token1] = ACTIONS(7),
+    [ts_builtin_sym_end] = ACTIONS(13),
+    [aux_sym_for_each_e_token1] = ACTIONS(5),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(7),
+    [aux_sym_while_e_token1] = ACTIONS(9),
+    [aux_sym_until_e_token1] = ACTIONS(11),
   },
   [3] = {
     [sym__token] = STATE(3),
+    [sym_for_each_e] = STATE(3),
+    [sym_end_for_each_e] = STATE(3),
     [sym_while_e] = STATE(3),
     [sym_until_e] = STATE(3),
     [aux_sym_source_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(11),
-    [aux_sym_while_e_token1] = ACTIONS(13),
-    [aux_sym_until_e_token1] = ACTIONS(16),
+    [ts_builtin_sym_end] = ACTIONS(15),
+    [aux_sym_for_each_e_token1] = ACTIONS(17),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(20),
+    [aux_sym_while_e_token1] = ACTIONS(23),
+    [aux_sym_until_e_token1] = ACTIONS(26),
   },
   [4] = {
-    [ts_builtin_sym_end] = ACTIONS(19),
-    [aux_sym_while_e_token1] = ACTIONS(19),
-    [aux_sym_until_e_token1] = ACTIONS(19),
+    [ts_builtin_sym_end] = ACTIONS(29),
+    [aux_sym_for_each_e_token1] = ACTIONS(29),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(29),
+    [aux_sym_while_e_token1] = ACTIONS(29),
+    [aux_sym_until_e_token1] = ACTIONS(29),
   },
   [5] = {
-    [ts_builtin_sym_end] = ACTIONS(21),
-    [aux_sym_while_e_token1] = ACTIONS(21),
-    [aux_sym_until_e_token1] = ACTIONS(21),
+    [ts_builtin_sym_end] = ACTIONS(31),
+    [aux_sym_for_each_e_token1] = ACTIONS(31),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(31),
+    [aux_sym_while_e_token1] = ACTIONS(31),
+    [aux_sym_until_e_token1] = ACTIONS(31),
   },
   [6] = {
-    [ts_builtin_sym_end] = ACTIONS(23),
+    [ts_builtin_sym_end] = ACTIONS(33),
+    [aux_sym_for_each_e_token1] = ACTIONS(33),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(33),
+    [aux_sym_while_e_token1] = ACTIONS(33),
+    [aux_sym_until_e_token1] = ACTIONS(33),
+  },
+  [7] = {
+    [ts_builtin_sym_end] = ACTIONS(35),
+    [aux_sym_for_each_e_token1] = ACTIONS(35),
+    [aux_sym_end_for_each_e_token1] = ACTIONS(35),
+    [aux_sym_while_e_token1] = ACTIONS(35),
+    [aux_sym_until_e_token1] = ACTIONS(35),
+  },
+  [8] = {
+    [ts_builtin_sym_end] = ACTIONS(37),
   },
 };
 
@@ -314,13 +358,19 @@ static TSParseActionEntry ts_parse_actions[] = {
   [3] = {.count = 1, .reusable = true}, REDUCE(sym_source, 0),
   [5] = {.count = 1, .reusable = true}, SHIFT(4),
   [7] = {.count = 1, .reusable = true}, SHIFT(5),
-  [9] = {.count = 1, .reusable = true}, REDUCE(sym_source, 1),
-  [11] = {.count = 1, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2),
-  [13] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(4),
-  [16] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(5),
-  [19] = {.count = 1, .reusable = true}, REDUCE(sym_while_e, 1),
-  [21] = {.count = 1, .reusable = true}, REDUCE(sym_until_e, 1),
-  [23] = {.count = 1, .reusable = true},  ACCEPT_INPUT(),
+  [9] = {.count = 1, .reusable = true}, SHIFT(6),
+  [11] = {.count = 1, .reusable = true}, SHIFT(7),
+  [13] = {.count = 1, .reusable = true}, REDUCE(sym_source, 1),
+  [15] = {.count = 1, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2),
+  [17] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(4),
+  [20] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(5),
+  [23] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(6),
+  [26] = {.count = 2, .reusable = true}, REDUCE(aux_sym_source_repeat1, 2), SHIFT_REPEAT(7),
+  [29] = {.count = 1, .reusable = true}, REDUCE(sym_for_each_e, 1),
+  [31] = {.count = 1, .reusable = true}, REDUCE(sym_end_for_each_e, 1),
+  [33] = {.count = 1, .reusable = true}, REDUCE(sym_while_e, 1),
+  [35] = {.count = 1, .reusable = true}, REDUCE(sym_until_e, 1),
+  [37] = {.count = 1, .reusable = true},  ACCEPT_INPUT(),
 };
 
 #ifdef _WIN32

@@ -1,5 +1,15 @@
 [
   {
+    "type": "end_for_each_e",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "for_each_e",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source",
     "named": true,
     "fields": {},
@@ -7,6 +17,14 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "end_for_each_e",
+          "named": true
+        },
+        {
+          "type": "for_each_e",
+          "named": true
+        },
         {
           "type": "until_e",
           "named": true

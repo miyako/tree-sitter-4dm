@@ -18,6 +18,14 @@
         {
           "type": "SYMBOL",
           "name": "until_e"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_each_e"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_for_each_e"
         }
       ]
     },
@@ -26,7 +34,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_for_each_e"
+          "name": "for_each_e"
         },
         {
           "type": "STRING",
@@ -50,7 +58,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_end_for_each_e"
+          "name": "end_for_each_e"
         }
       ]
     },
@@ -67,27 +75,41 @@
         }
       ]
     },
-    "_for_each_e": {
-      "type": "PREC_LEFT",
-      "value": 0,
+    "for_each_e": {
+      "type": "ALIAS",
       "content": {
-        "type": "PATTERN",
-        "value": "[fF][oO][rR] [eE][aA][cC][hH]"
-      }
+        "type": "PREC_LEFT",
+        "value": 0,
+        "content": {
+          "type": "PATTERN",
+          "value": "[fF][oO][rR] [eE][aA][cC][hH]"
+        }
+      },
+      "named": false,
+      "value": "For each"
     },
-    "_end_for_each_e": {
-      "type": "PREC_RIGHT",
-      "value": 0,
+    "end_for_each_e": {
+      "type": "ALIAS",
       "content": {
-        "type": "PATTERN",
-        "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
-      }
+        "type": "PREC_RIGHT",
+        "value": 0,
+        "content": {
+          "type": "PATTERN",
+          "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
+        }
+      },
+      "named": false,
+      "value": "End for each"
     },
     "while_e": {
       "type": "ALIAS",
       "content": {
-        "type": "PATTERN",
-        "value": "[wW][hH][iI][lL][eE]"
+        "type": "PREC_LEFT",
+        "value": 0,
+        "content": {
+          "type": "PATTERN",
+          "value": "[wW][hH][iI][lL][eE]"
+        }
       },
       "named": false,
       "value": "While"
