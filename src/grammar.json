@@ -17,23 +17,35 @@
         },
         {
           "type": "SYMBOL",
-          "name": "while"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "until"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "for_each"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "end_for_each"
-        },
-        {
-          "type": "SYMBOL",
           "name": "for_each_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "while_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "use_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sql_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "case_block"
         },
         {
           "type": "SYMBOL",
@@ -137,6 +149,157 @@
         {
           "type": "SYMBOL",
           "name": "end_for_each"
+        }
+      ]
+    },
+    "while_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "while"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_arguments"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_while"
+        }
+      ]
+    },
+    "repeat_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "repeat"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "until"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_arguments"
+        }
+      ]
+    },
+    "if_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "if"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_arguments"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "else"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_if"
+        }
+      ]
+    },
+    "for_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "for"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_arguments"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_for"
+        }
+      ]
+    },
+    "use_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "use"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_arguments"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_use"
+        }
+      ]
+    },
+    "sql_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "begin_sql"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_sql"
+        }
+      ]
+    },
+    "case_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "case_of"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ":"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_arguments"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "else"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_case"
         }
       ]
     },
@@ -259,6 +422,388 @@
       },
       "named": false,
       "value": "Until"
+    },
+    "_for_e": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][oO][rR]"
+      }
+    },
+    "_for_f": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[bB][oO][uU][cC][lL][eE]"
+      }
+    },
+    "for": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_for_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_for_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "For"
+    },
+    "_end_for_e": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[eE][nN][dD] [fF][oO][rR]"
+      }
+    },
+    "_end_for_f": {
+      "type": "PATTERN",
+      "value": "[fF][iI][nN] [dD][eE] [bB][oO][uU][cC][lL][eE]"
+    },
+    "end_for": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_end_for_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_end_for_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "End for"
+    },
+    "_use_e": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[uU][sS][eE]"
+      }
+    },
+    "_use_f": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[uU][tT][iI][lL][iI][sS][eE][rR]"
+      }
+    },
+    "use": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_use_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_use_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "Use"
+    },
+    "_end_use_e": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[eE][nN][dD] [uU][sS][eE]"
+      }
+    },
+    "_end_use_f": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]"
+      }
+    },
+    "end_use": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_end_use_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_end_use_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "End use"
+    },
+    "_repeat_e": {
+      "type": "PATTERN",
+      "value": "[rR][eE][pP][eE][aA][tT]"
+    },
+    "_repeat_f": {
+      "type": "PATTERN",
+      "value": "[rR][eE][pP][eE][tT][eE][rR]"
+    },
+    "repeat": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_repeat_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_repeat_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "Repeat"
+    },
+    "_end_while_e": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[eE][nN][dD] [wW][hH][iI][lL][eE]"
+      }
+    },
+    "_end_while_f": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]"
+      }
+    },
+    "end_while": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_end_while_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_end_while_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "End while"
+    },
+    "_if_e": {
+      "type": "PATTERN",
+      "value": "[iI][fF]"
+    },
+    "_if_f": {
+      "type": "PATTERN",
+      "value": "[sS][iI]"
+    },
+    "if": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_if_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_if_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "If"
+    },
+    "_else_e": {
+      "type": "PATTERN",
+      "value": "[eE][lL][sS][eE]"
+    },
+    "_else_f": {
+      "type": "PATTERN",
+      "value": "[sS][iI][nN][oO][nN]"
+    },
+    "else": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_else_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_else_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "Else"
+    },
+    "_end_if_e": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[eE][nN][dD] [iI][fF]"
+      }
+    },
+    "_end_if_f": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][iI][nN] [dD][eE] [sS][iI]"
+      }
+    },
+    "end_if": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_end_if_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_end_if_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "End if"
+    },
+    "_case_of_e": {
+      "type": "PATTERN",
+      "value": "[cC][aA][sS][eE] [oO][fF]"
+    },
+    "_case_of_f": {
+      "type": "PATTERN",
+      "value": "[aA][uU] [cC][aA][sS] [oO][uU]"
+    },
+    "case_of": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_case_of_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_case_of_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "Case of"
+    },
+    "_end_case_e": {
+      "type": "PATTERN",
+      "value": "[eE][nN][dD] [cC][aA][sS][eE]"
+    },
+    "_end_case_f": {
+      "type": "PATTERN",
+      "value": "[fF][iI][nN] [dD][eE] [cC][aA][sS]"
+    },
+    "end_case": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_end_case_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_end_case_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "End case"
+    },
+    "_begin_sql_e": {
+      "type": "PATTERN",
+      "value": "[bB][eE][gG][iI][nN] [sS][qQ][lL]"
+    },
+    "_begin_sql_f": {
+      "type": "PATTERN",
+      "value": "[dD][eE][bB][uU][tT] [sS][qQ][lL]"
+    },
+    "begin_sql": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_begin_sql_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_begin_sql_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "Begin SQL"
+    },
+    "_end_sql_e": {
+      "type": "PATTERN",
+      "value": "[fF][iI][nN] [sS][qQ][lL]"
+    },
+    "_end_sql_f": {
+      "type": "PATTERN",
+      "value": "[eE][nN][dD] [sS][qQ][lL]"
+    },
+    "end_sql": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_end_sql_e"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_end_sql_f"
+          }
+        ]
+      },
+      "named": false,
+      "value": "End SQL"
     },
     "_hex_literal": {
       "type": "TOKEN",
