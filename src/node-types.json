@@ -5,6 +5,11 @@
     "fields": {}
   },
   {
+    "type": "constant_numeric",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "end_for_each",
     "named": true,
     "fields": {}
@@ -42,11 +47,6 @@
     }
   },
   {
-    "type": "number",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "source",
     "named": true,
     "fields": {},
@@ -59,6 +59,10 @@
           "named": true
         },
         {
+          "type": "constant_numeric",
+          "named": true
+        },
+        {
           "type": "end_for_each",
           "named": true
         },
@@ -68,10 +72,6 @@
         },
         {
           "type": "for_each_block",
-          "named": true
-        },
-        {
-          "type": "number",
           "named": true
         },
         {

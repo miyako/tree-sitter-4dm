@@ -37,7 +37,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "number"
+          "name": "constant_numeric"
         }
       ]
     },
@@ -277,21 +277,8 @@
       }
     },
     "_dec_literal": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[+-]?"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[0-9]+[^.xXeE]"
-          }
-        ]
-      }
+      "type": "PATTERN",
+      "value": "[+-]?[0-9]+"
     },
     "_num_literal": {
       "type": "PREC_RIGHT",
@@ -357,26 +344,31 @@
         }
       }
     },
-    "number": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_hex_literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_dec_literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_num_literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_exp_literal"
-        }
-      ]
+    "constant_numeric": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_dec_literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_hex_literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_exp_literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_num_literal"
+          }
+        ]
+      },
+      "named": false,
+      "value": "Number"
     }
   },
   "extras": [
