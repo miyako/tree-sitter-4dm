@@ -42,6 +42,11 @@
     }
   },
   {
+    "type": "number",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source",
     "named": true,
     "fields": {},
@@ -63,6 +68,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {

@@ -6,7 +6,8 @@ module.exports = grammar({
   rules: {
     source: $ => repeat($._token),
     _token: $ => choice($.comment,
-      $.while, $.until, $.for_each, $.end_for_each, $.for_each_block),
+      $.while, $.until, $.for_each, $.end_for_each, $.for_each_block,
+      $.number),
     comment: $ => prec(PREC.comment, choice(
       seq('//', /.*/),
       seq(
@@ -31,5 +32,11 @@ module.exports = grammar({
     _until_e: $ => /[uU][nN][tT][iI][lL]/,
     _until_f: $ => /[jJ][uU][sS][qQ][uU][eE]/,
     until  : $ => alias(choice($._until_e, $._until_f), 'Until'),
+
+    _hex_literal: $ => token(seq(/[0][xX]/, /[0-9a-fA-F]+/)),
+    _dec_literal: $ => prec.left(seq(/[+-]?/, /[0-9]+[^.xXeE]/)),
+    _num_literal: $ => prec.right(token(seq(/[+-]?/, /[0-9]+/, '.', /[0-9]+/))),
+    _exp_literal: $ => prec.right(token(seq(/[0-9]+/, '.', /[0-9]+/, /[eE]/, /[+-]?/, /[0-9]+/))),
+    number: $ => choice($._hex_literal, $._dec_literal, $._num_literal, $._exp_literal)
   }
 });

@@ -34,6 +34,10 @@
         {
           "type": "SYMBOL",
           "name": "for_each_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
         }
       ]
     },
@@ -255,6 +259,124 @@
       },
       "named": false,
       "value": "Until"
+    },
+    "_hex_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[0][xX]"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[0-9a-fA-F]+"
+          }
+        ]
+      }
+    },
+    "_dec_literal": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[+-]?"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[0-9]+[^.xXeE]"
+          }
+        ]
+      }
+    },
+    "_num_literal": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "TOKEN",
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[+-]?"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            }
+          ]
+        }
+      }
+    },
+    "_exp_literal": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "TOKEN",
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[eE]"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[+-]?"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            }
+          ]
+        }
+      }
+    },
+    "number": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_hex_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_dec_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_num_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_exp_literal"
+        }
+      ]
     }
   },
   "extras": [
