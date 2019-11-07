@@ -1,20 +1,5 @@
 [
   {
-    "type": "End for each",
-    "named": false,
-    "fields": {}
-  },
-  {
-    "type": "For each",
-    "named": false,
-    "fields": {}
-  },
-  {
-    "type": "While",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "comment",
     "named": true,
     "fields": {}
@@ -22,42 +7,39 @@
   {
     "type": "end_for_each",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "End for each",
-          "named": false
-        }
-      ]
-    }
-  },
-  {
-    "type": "end_for_each_e",
-    "named": true,
     "fields": {}
   },
   {
     "type": "for_each",
     "named": true,
+    "fields": {}
+  },
+  {
+    "type": "for_each_block",
+    "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
-          "type": "For each",
-          "named": false
+          "type": "end_for_each",
+          "named": true
+        },
+        {
+          "type": "for_each",
+          "named": true
+        },
+        {
+          "type": "until",
+          "named": true
+        },
+        {
+          "type": "while",
+          "named": true
         }
       ]
     }
-  },
-  {
-    "type": "for_each_e",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "source",
@@ -80,6 +62,10 @@
           "named": true
         },
         {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
           "type": "until",
           "named": true
         },
@@ -93,35 +79,10 @@
   {
     "type": "until",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "Until",
-          "named": false
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "while",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "While",
-          "named": false
-        }
-      ]
-    }
-  },
-  {
-    "type": "while_e",
     "named": true,
     "fields": {}
   },
@@ -144,21 +105,5 @@
   {
     "type": "//",
     "named": false
-  },
-  {
-    "type": "End for each",
-    "named": false
-  },
-  {
-    "type": "Until",
-    "named": false
-  },
-  {
-    "type": "While",
-    "named": false
-  },
-  {
-    "type": "until_e",
-    "named": true
   }
 ]

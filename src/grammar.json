@@ -30,6 +30,10 @@
         {
           "type": "SYMBOL",
           "name": "end_for_each"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_each_block"
         }
       ]
     },
@@ -72,53 +76,67 @@
         ]
       }
     },
-    "_each_block_e": {
+    "_arguments": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "for_each_block": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "for_each_e"
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "STRING",
-          "value": ")"
+          "name": "for_each"
         },
         {
           "type": "SYMBOL",
-          "name": "_each_break_e"
+          "name": "_arguments"
         },
         {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "STRING",
-          "value": ")"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "until"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "while"
+                    }
+                  ]
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_arguments"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
-          "name": "end_for_each_e"
+          "name": "end_for_each"
         }
       ]
     },
-    "_each_break_e": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "while_e"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "until_e"
-        }
-      ]
-    },
-    "for_each_e": {
+    "_for_each_e": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -126,7 +144,7 @@
         "value": "[fF][oO][rR] [eE][aA][cC][hH]"
       }
     },
-    "for_each_f": {
+    "_for_each_f": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -141,18 +159,18 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "for_each_e"
+            "name": "_for_each_e"
           },
           {
             "type": "SYMBOL",
-            "name": "for_each_f"
+            "name": "_for_each_f"
           }
         ]
       },
       "named": false,
       "value": "For each"
     },
-    "end_for_each_e": {
+    "_end_for_each_e": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -160,7 +178,7 @@
         "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
       }
     },
-    "end_for_each_f": {
+    "_end_for_each_f": {
       "type": "PATTERN",
       "value": "[fF][iI][nN] [dD][eE] [cC][hH][aA][qQ][uU][eE]"
     },
@@ -171,18 +189,18 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "end_for_each_e"
+            "name": "_end_for_each_e"
           },
           {
             "type": "SYMBOL",
-            "name": "end_for_each_f"
+            "name": "_end_for_each_f"
           }
         ]
       },
       "named": false,
       "value": "End for each"
     },
-    "while_e": {
+    "_while_e": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -190,7 +208,7 @@
         "value": "[wW][hH][iI][lL][eE]"
       }
     },
-    "while_f": {
+    "_while_f": {
       "type": "PATTERN",
       "value": "[tT][aA][nN][tT] [qQ][uU][eE]"
     },
@@ -201,22 +219,22 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "while_e"
+            "name": "_while_e"
           },
           {
             "type": "SYMBOL",
-            "name": "while_f"
+            "name": "_while_f"
           }
         ]
       },
       "named": false,
       "value": "While"
     },
-    "until_e": {
+    "_until_e": {
       "type": "PATTERN",
       "value": "[uU][nN][tT][iI][lL]"
     },
-    "until_f": {
+    "_until_f": {
       "type": "PATTERN",
       "value": "[jJ][uU][sS][qQ][uU][eE]"
     },
@@ -227,11 +245,11 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "until_e"
+            "name": "_until_e"
           },
           {
             "type": "SYMBOL",
-            "name": "until_f"
+            "name": "_until_f"
           }
         ]
       },
