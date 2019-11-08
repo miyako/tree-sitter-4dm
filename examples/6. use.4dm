@@ -1,7 +1,7 @@
-use ()
+use ($object)
 
 end use
 
-utiliser ()
+utiliser ($object)
 
 fin utiliser

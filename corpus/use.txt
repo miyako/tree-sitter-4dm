@@ -1,0 +1,15 @@
+==================
+Use block
+==================
+
+use ($object)
+
+end use
+
+utiliser ($object)
+
+fin utiliser
+
+---
+
+(source   (use_block     (use )    (end_use ))  (use_block     (use )    (end_use )))

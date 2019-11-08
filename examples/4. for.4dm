@@ -1,7 +1,7 @@
-for ()
+for ($counter;$start;$end;$step)
 
 end for
 
-boucle ()
+boucle ($counter;$start;$end;$step)
 
 fin de boucle

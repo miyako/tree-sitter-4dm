@@ -1,0 +1,31 @@
+==================
+For each block
+==================
+
+for each ($item;$items;$start;$end) while ($condition)
+
+end for each
+
+for each ($item;$items;$start;$end) until ($condition)
+
+end for each
+
+pour chaque ($item;$items;$start;$end) tant que ($condition)
+
+fin de chaque
+
+pour chaque ($item;$items;$start;$end) jusque ($condition)
+
+fin de chaque
+
+for each ($item;$items;$start;$end)
+
+end for each
+
+pour chaque ($item;$items;$start;$end)
+
+fin de chaque
+
+---
+
+(source   (for_each_block     (for_each )    (while )    (end_for_each ))  (for_each_block     (for_each )    (until )    (end_for_each ))  (for_each_block     (for_each )    (while )    (end_for_each ))  (for_each_block     (for_each )    (until )    (end_for_each ))  (for_each_block     (for_each )    (end_for_each ))  (for_each_block     (for_each )    (end_for_each )))

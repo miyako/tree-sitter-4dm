@@ -1,23 +1,23 @@
-for each () while ()
+for each ($item;$items;$start;$end) while ($condition)
 
 end for each
 
-for each () until ()
+for each ($item;$items;$start;$end) until ($condition)
 
 end for each
 
-pour chaque () tant que ()
+pour chaque ($item;$items;$start;$end) tant que ($condition)
 
 fin de chaque
 
-pour chaque () jusque ()
+pour chaque ($item;$items;$start;$end) jusque ($condition)
 
 fin de chaque
 
-for each ()
+for each ($item;$items;$start;$end)
 
 end for each
 
-pour chaque ()
+pour chaque ($item;$items;$start;$end)
 
 fin de chaque

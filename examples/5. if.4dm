@@ -1,18 +1,18 @@
-if ()
+if ($condition)
 
 end if
 
-if ()
+if ($condition)
 
 else
 
 end if
 
-si ()
+si ($condition)
 
 fin de si
 
-si ()
+si ($condition)
 
 sinon
 

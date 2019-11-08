@@ -1,5 +1,35 @@
 [
   {
+    "type": "Value",
+    "named": false,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "Variable",
+          "named": false
+        }
+      ]
+    }
+  },
+  {
+    "type": "assignment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "Variable",
+          "named": false
+        }
+      ]
+    }
+  },
+  {
     "type": "begin_sql",
     "named": true,
     "fields": {}
@@ -12,6 +42,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "Variable",
+          "named": false
+        },
         {
           "type": "case_of",
           "named": true
@@ -34,11 +68,6 @@
   },
   {
     "type": "comment",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "constant_numeric",
     "named": true,
     "fields": {}
   },
@@ -96,6 +125,10 @@
       "required": true,
       "types": [
         {
+          "type": "Variable",
+          "named": false
+        },
+        {
           "type": "end_for",
           "named": true
         },
@@ -119,6 +152,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "Variable",
+          "named": false
+        },
         {
           "type": "end_for_each",
           "named": true
@@ -152,6 +189,10 @@
       "required": true,
       "types": [
         {
+          "type": "Variable",
+          "named": false
+        },
+        {
           "type": "else",
           "named": true
         },
@@ -180,6 +221,10 @@
       "required": true,
       "types": [
         {
+          "type": "Variable",
+          "named": false
+        },
+        {
           "type": "repeat",
           "named": true
         },
@@ -199,15 +244,15 @@
       "required": false,
       "types": [
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "case_block",
           "named": true
         },
         {
           "type": "comment",
-          "named": true
-        },
-        {
-          "type": "constant_numeric",
           "named": true
         },
         {
@@ -228,6 +273,10 @@
         },
         {
           "type": "sql_block",
+          "named": true
+        },
+        {
+          "type": "statement",
           "named": true
         },
         {
@@ -261,6 +310,21 @@
     }
   },
   {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "Variable",
+          "named": false
+        }
+      ]
+    }
+  },
+  {
     "type": "until",
     "named": true,
     "fields": {}
@@ -278,6 +342,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "Variable",
+          "named": false
+        },
         {
           "type": "end_use",
           "named": true
@@ -303,6 +371,10 @@
       "required": true,
       "types": [
         {
+          "type": "Variable",
+          "named": false
+        },
+        {
           "type": "end_while",
           "named": true
         },
@@ -314,11 +386,47 @@
     }
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": ".",
     "named": false
   },
   {
@@ -335,6 +443,102 @@
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": ":=",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<>",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
+    "named": false
+  },
+  {
+    "type": "?+",
+    "named": false
+  },
+  {
+    "type": "?-",
+    "named": false
+  },
+  {
+    "type": "??",
+    "named": false
+  },
+  {
+    "type": "Date",
+    "named": false
+  },
+  {
+    "type": "Field",
+    "named": false
+  },
+  {
+    "type": "Table",
+    "named": false
+  },
+  {
+    "type": "Time",
+    "named": false
+  },
+  {
+    "type": "Variable",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "^|",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   }
 ]

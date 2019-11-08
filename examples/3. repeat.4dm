@@ -1,7 +1,7 @@
 repeat
 
-Until ()
+Until ($condition)
 
 repeter
 
-Jusque ()
+Jusque ($condition)

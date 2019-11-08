@@ -1,7 +1,7 @@
-while ()
+while ($condition)
 
 end while
 
-tant que ()
+tant que ($condition)
 
 fin tant que
