@@ -415,20 +415,12 @@
       }
     },
     "_end_if_e": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[eE][nN][dD] [iI][fF]"
-      }
+      "type": "PATTERN",
+      "value": "[eE][nN][dD] [iI][fF]"
     },
     "_end_if_f": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[fF][iI][nN] [dD][eE] [sS][iI]"
-      }
+      "type": "PATTERN",
+      "value": "[fF][iI][nN] [dD][eE] [sS][iI]"
     },
     "end_if": {
       "type": "PREC",
@@ -448,20 +440,12 @@
       }
     },
     "_for_each_e": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[fF][oO][rR] [eE][aA][cC][hH]"
-      }
+      "type": "PATTERN",
+      "value": "[fF][oO][rR] [eE][aA][cC][hH]"
     },
     "_for_each_f": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]"
-      }
+      "type": "PATTERN",
+      "value": "[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]"
     },
     "for_each": {
       "type": "PREC",
@@ -481,12 +465,8 @@
       }
     },
     "_end_for_each_e": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
-      }
+      "type": "PATTERN",
+      "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
     },
     "_end_for_each_f": {
       "type": "PATTERN",
@@ -510,12 +490,8 @@
       }
     },
     "_while_e": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[wW][hH][iI][lL][eE]"
-      }
+      "type": "PATTERN",
+      "value": "[wW][hH][iI][lL][eE]"
     },
     "_while_f": {
       "type": "PATTERN",
@@ -564,20 +540,12 @@
       }
     },
     "_for_e": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[fF][oO][rR]"
-      }
+      "type": "PATTERN",
+      "value": "[fF][oO][rR]"
     },
     "_for_f": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[bB][oO][uU][cC][lL][eE]"
-      }
+      "type": "PATTERN",
+      "value": "[bB][oO][uU][cC][lL][eE]"
     },
     "for": {
       "type": "PREC",
@@ -597,12 +565,8 @@
       }
     },
     "_end_for_e": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[eE][nN][dD] [fF][oO][rR]"
-      }
+      "type": "PATTERN",
+      "value": "[eE][nN][dD] [fF][oO][rR]"
     },
     "_end_for_f": {
       "type": "PATTERN",
@@ -626,20 +590,12 @@
       }
     },
     "_use_e": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[uU][sS][eE]"
-      }
+      "type": "PATTERN",
+      "value": "[uU][sS][eE]"
     },
     "_use_f": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[uU][tT][iI][lL][iI][sS][eE][rR]"
-      }
+      "type": "PATTERN",
+      "value": "[uU][tT][iI][lL][iI][sS][eE][rR]"
     },
     "use": {
       "type": "PREC",
@@ -659,20 +615,12 @@
       }
     },
     "_end_use_e": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[eE][nN][dD] [uU][sS][eE]"
-      }
+      "type": "PATTERN",
+      "value": "[eE][nN][dD] [uU][sS][eE]"
     },
     "_end_use_f": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]"
-      }
+      "type": "PATTERN",
+      "value": "[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]"
     },
     "end_use": {
       "type": "PREC",
@@ -717,20 +665,12 @@
       }
     },
     "_end_while_e": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[eE][nN][dD] [wW][hH][iI][lL][eE]"
-      }
+      "type": "PATTERN",
+      "value": "[eE][nN][dD] [wW][hH][iI][lL][eE]"
     },
     "_end_while_f": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "PATTERN",
-        "value": "[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]"
-      }
+      "type": "PATTERN",
+      "value": "[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]"
     },
     "end_while": {
       "type": "PREC",
