@@ -44,12 +44,15 @@ module.exports = grammar({
 
     comment: $ => prec(PREC.comment,
       choice(
-        seq('//', /.*/),
-        seq(
-          '/*',
-          /[^*]*\*+([^/*][^*]*\*+)*/,
-          '/'
-        ))
+        token(
+          seq('//', /.*/),
+          seq(
+            '/*',
+            /[^*]*\*+([^/*][^*]*\*+)*/,
+            '/'
+          )
+        )
+      )
     ),
 
     if_block: $ => seq(
