@@ -2,7 +2,7 @@ const PREC = {
   comment: -3,
   key: -2,
   operator: -1,
-  formula: 4,
+  formula: 4, assignment: 4,
 
   value: 6, parameter: 6,
   command: 7, constant: 7, structure: 7,
@@ -17,6 +17,7 @@ module.exports = grammar({
     _token: $ => choice(
       $.comment,
       $.function,
+      $.command,
       $.assignment,
       $.for_each_block,
       $.while_block,
@@ -29,6 +30,7 @@ module.exports = grammar({
 
     _block: $=> choice(
       $.comment,
+      $.command,
       $.function,
       $.assignment,
       $.for_each_block,

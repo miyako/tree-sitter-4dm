@@ -1,0 +1,13 @@
+==================
+Function
+==================
+
+function
+function()
+function($param;param;<>param)
+command:C100
+command:C100($param;param;<>param)
+
+---
+
+(source   (function )  (function     (arguments ))  (function     (arguments       (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (process_variable )))))      (argument         (value           (reference             (variable               (interprocess_variable )))))))  (command )  (command     (arguments       (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (process_variable )))))      (argument         (value           (reference             (variable               (interprocess_variable ))))))))

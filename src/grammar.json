@@ -21,6 +21,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "command"
+        },
+        {
+          "type": "SYMBOL",
           "name": "assignment"
         },
         {
@@ -63,6 +67,10 @@
         {
           "type": "SYMBOL",
           "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "command"
         },
         {
           "type": "SYMBOL",
