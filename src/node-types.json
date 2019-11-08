@@ -70,6 +70,14 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
+          "named": true
+        },
+        {
           "type": "case_of",
           "named": true
         },
@@ -79,6 +87,34 @@
         },
         {
           "type": "end_case",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -90,7 +126,27 @@
     "fields": {}
   },
   {
+    "type": "command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "constant",
     "named": true,
     "fields": {}
   },
@@ -172,11 +228,47 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
+          "named": true
+        },
+        {
           "type": "end_for",
           "named": true
         },
         {
           "type": "for",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -200,7 +292,19 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
+          "named": true
+        },
+        {
           "type": "end_for_each",
+          "named": true
+        },
+        {
+          "type": "for_block",
           "named": true
         },
         {
@@ -208,11 +312,54 @@
           "named": true
         },
         {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
           "type": "until",
           "named": true
         },
         {
+          "type": "use_block",
+          "named": true
+        },
+        {
           "type": "while",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         }
       ]
@@ -236,7 +383,17 @@
   {
     "type": "if",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arguments",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "if_block",
@@ -247,7 +404,11 @@
       "required": true,
       "types": [
         {
-          "type": "arguments",
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
@@ -259,7 +420,35 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
           "type": "if",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -277,6 +466,11 @@
   },
   {
     "type": "number",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "operator",
     "named": true,
     "fields": {}
   },
@@ -317,11 +511,47 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
           "type": "repeat",
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
           "type": "until",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -368,10 +598,6 @@
           "named": true
         },
         {
-          "type": "statement",
-          "named": true
-        },
-        {
           "type": "use_block",
           "named": true
         },
@@ -391,34 +617,47 @@
       "required": true,
       "types": [
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "begin_sql",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
           "type": "end_sql",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
+        },
         {
-          "type": "arguments",
+          "type": "for_block",
           "named": true
         },
         {
-          "type": "function",
+          "type": "for_each_block",
           "named": true
         },
         {
-          "type": "reference",
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -457,11 +696,47 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
+          "named": true
+        },
+        {
           "type": "end_use",
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
           "type": "use",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -472,11 +747,27 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
           "type": "date",
+          "named": true
+        },
+        {
+          "type": "formula",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -488,19 +779,11 @@
           "named": true
         },
         {
-          "type": "statement",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
         {
           "type": "time",
-          "named": true
-        },
-        {
-          "type": "value",
           "named": true
         },
         {
@@ -555,11 +838,47 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
+          "named": true
+        },
+        {
           "type": "end_while",
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
           "type": "while",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
