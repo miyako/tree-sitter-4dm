@@ -34,6 +34,11 @@
     }
   },
   {
+    "type": "assign",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "assignment",
     "named": true,
     "fields": {},
@@ -41,6 +46,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "assign",
+          "named": true
+        },
         {
           "type": "reference",
           "named": true
@@ -475,6 +484,11 @@
     "fields": {}
   },
   {
+    "type": "process_variable",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "reference",
     "named": true,
     "fields": {},
@@ -811,6 +825,10 @@
         },
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "process_variable",
           "named": true
         },
         {
