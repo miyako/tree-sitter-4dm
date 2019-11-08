@@ -1,0 +1,15 @@
+==================
+While block
+==================
+
+while ($condition)
+
+end while
+
+tant que ($condition)
+
+fin tant que
+
+---
+
+(source   (while_block     (while )    (arguments       (argument         (value           (reference             (variable               (local_variable ))))))    (end_while ))  (while_block     (while )    (arguments       (argument         (value           (reference             (variable               (local_variable ))))))    (end_while )))

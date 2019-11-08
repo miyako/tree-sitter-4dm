@@ -1,15 +1,0 @@
-==================
-While block
-==================
-
-while ($condition)
-
-end while
-
-tant que ($condition)
-
-fin tant que
-
----
-
-(source   (while_block     (while )    (end_while ))  (while_block     (while )    (end_while )))

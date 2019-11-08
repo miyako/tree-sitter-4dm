@@ -1,0 +1,15 @@
+==================
+SQL block
+==================
+
+begin SQL
+
+end SQL
+
+debut SQL
+
+fin SQL
+
+---
+
+(source   (sql_block     (begin_sql )    (end_sql ))  (sql_block     (begin_sql )    (end_sql )))

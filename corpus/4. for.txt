@@ -1,0 +1,15 @@
+==================
+For block
+==================
+
+for ($counter;$start;$end;$step)
+
+end for
+
+boucle ($counter;$start;$end;$step)
+
+fin de boucle
+
+---
+
+(source   (for_block     (for )    (arguments       (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (local_variable ))))))    (end_for ))  (for_block     (for )    (arguments       (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (local_variable )))))      (argument         (value           (reference             (variable               (local_variable ))))))    (end_for )))

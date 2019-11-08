@@ -1,0 +1,27 @@
+==================
+If block
+==================
+
+if ($condition)
+
+end if
+
+if ($condition)
+
+else
+
+end if
+
+si ($condition)
+
+fin de si
+
+si ($condition)
+
+sinon
+
+fin de si
+
+---
+
+(source   (if_block     (if )    (arguments       (argument         (value           (reference             (variable               (local_variable ))))))    (end_if ))  (if_block     (if )    (arguments       (argument         (value           (reference             (variable               (local_variable ))))))    (else )    (end_if ))  (if_block     (if )    (arguments       (argument         (value           (reference             (variable               (local_variable ))))))    (end_if ))  (if_block     (if )    (arguments       (argument         (value           (reference             (variable               (local_variable ))))))    (else )    (end_if )))
