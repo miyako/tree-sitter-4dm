@@ -16,6 +16,7 @@ module.exports = grammar({
     source: $ => repeat($._token),
     _token: $ => choice(
       $.comment,
+      $.function,
       $.assignment,
       $.for_each_block,
       $.while_block,
@@ -27,6 +28,8 @@ module.exports = grammar({
       $.case_block),
 
     _block: $=> choice(
+      $.comment,
+      $.function,
       $.assignment,
       $.for_each_block,
       $.while_block,

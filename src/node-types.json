@@ -91,6 +91,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "else",
           "named": true
         },
@@ -104,6 +108,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -245,6 +253,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "end_for",
           "named": true
         },
@@ -258,6 +270,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -309,6 +325,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "end_for_each",
           "named": true
         },
@@ -322,6 +342,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -421,6 +445,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "else",
           "named": true
         },
@@ -434,6 +462,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -533,11 +565,19 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "for_block",
           "named": true
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -600,6 +640,10 @@
           "named": true
         },
         {
+          "type": "function",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -643,6 +687,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "end_sql",
           "named": true
         },
@@ -652,6 +700,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -718,6 +770,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "end_use",
           "named": true
         },
@@ -727,6 +783,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -864,6 +924,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "end_while",
           "named": true
         },
@@ -873,6 +937,10 @@
         },
         {
           "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {

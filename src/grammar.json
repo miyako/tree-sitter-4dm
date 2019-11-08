@@ -17,6 +17,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "function"
+        },
+        {
+          "type": "SYMBOL",
           "name": "assignment"
         },
         {
@@ -56,6 +60,14 @@
     "_block": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function"
+        },
         {
           "type": "SYMBOL",
           "name": "assignment"
