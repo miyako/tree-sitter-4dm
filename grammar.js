@@ -1,5 +1,7 @@
 const PREC = {
-  comment: -1,
+  comment: -2,
+  notation: 4,
+  reference: 5,
   suffix: 7,
   value: 8,
   parameter: 9,
@@ -9,16 +11,12 @@ const PREC = {
 }
 module.exports = grammar({
   name: 'fourd',
-  // word: $ => $.identifier,
   rules: {
     source: $ => repeat($._token),
     _token: $ => choice(
       $.comment,
-      // $.while, $.until, $.for_each, $.end_for_each,
-      // $.table, $.field, $.parameter, $.variable,
       $.statement,
       $.assignment,
-      // $.expression,
       $.for_each_block,
       $.while_block,
       $.repeat_block,
@@ -39,29 +37,29 @@ module.exports = grammar({
     ),
 
     for_each_block: $ => seq(
-        seq($.for_each, $._arguments),
-        optional(seq(choice($.until, $.while), $._arguments)),
+        seq($.for_each, $.arguments),
+        optional(seq(choice($.until, $.while), $.arguments)),
         $.end_for_each),
 
     while_block: $ => seq(
-        $.while, $._arguments,
+        $.while, $.arguments,
         $.end_while),
 
     repeat_block: $ => seq(
         $.repeat,
-        $.until, $._arguments),
+        $.until, $.arguments),
 
     if_block: $ => seq(
-      $.if, $._arguments,
+      $.if, $.arguments,
       optional($.else),
       $.end_if),
 
     for_block: $ => seq(
-        $.for, $._arguments,
+        $.for, $.arguments,
         $.end_for),
 
     use_block: $ => seq(
-      $.use, $._arguments,
+      $.use, $.arguments,
       $.end_use),
 
     sql_block: $ => seq(
@@ -69,77 +67,77 @@ module.exports = grammar({
       $.end_sql),
 
     case_block: $ => seq(
-      $.case_of, repeat1(seq(':', $._arguments)),
+      $.case_of, repeat1(seq(':', $.arguments)),
       optional($.else),
       $.end_case),
 
     _for_each_e: $ => prec.left(/[fF][oO][rR] [eE][aA][cC][hH]/),
     _for_each_f: $ => prec.left(/[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]/),
-    for_each   : $ => alias(choice($._for_each_e, $._for_each_f), 'For each'),
+    for_each   : $ => choice($._for_each_e, $._for_each_f),
 
     _end_for_each_e: $ => prec.right(/[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]/),
     _end_for_each_f: $ => /[fF][iI][nN] [dD][eE] [cC][hH][aA][qQ][uU][eE]/,
-    end_for_each   : $ => alias(choice($._end_for_each_e, $._end_for_each_f), 'End for each'),
+    end_for_each   : $ => choice($._end_for_each_e, $._end_for_each_f),
 
     _while_e: $ => prec.left(/[wW][hH][iI][lL][eE]/),
     _while_f: $ => /[tT][aA][nN][tT] [qQ][uU][eE]/,
-    while   : $ => alias(choice($._while_e, $._while_f), 'While'),
+    while   : $ => choice($._while_e, $._while_f),
 
     _until_e: $ => /[uU][nN][tT][iI][lL]/,
     _until_f: $ => /[jJ][uU][sS][qQ][uU][eE]/,
-    until   : $ => alias(choice($._until_e, $._until_f), 'Until'),
+    until   : $ => choice($._until_e, $._until_f),
 
     _for_e: $ => prec.left(/[fF][oO][rR]/),
     _for_f: $ => prec.right(/[bB][oO][uU][cC][lL][eE]/),
-    for   : $ => alias(choice($._for_e, $._for_f), 'For'),
+    for   : $ => choice($._for_e, $._for_f),
 
     _end_for_e: $ => prec.left(/[eE][nN][dD] [fF][oO][rR]/),
     _end_for_f: $ => /[fF][iI][nN] [dD][eE] [bB][oO][uU][cC][lL][eE]/,
-    end_for  : $ => alias(choice($._end_for_e, $._end_for_f), 'End for'),
+    end_for  : $ => choice($._end_for_e, $._end_for_f),
 
     _use_e: $ => prec.left(/[uU][sS][eE]/),
     _use_f: $ => prec.left(/[uU][tT][iI][lL][iI][sS][eE][rR]/),
-    use   : $ => alias(choice($._use_e, $._use_f), 'Use'),
+    use   : $ => choice($._use_e, $._use_f),
 
     _end_use_e: $ => prec.right(/[eE][nN][dD] [uU][sS][eE]/),
     _end_use_f: $ => prec.right(/[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]/),
-    end_use   : $ => alias(choice($._end_use_e, $._end_use_f), 'End use'),
+    end_use   : $ => choice($._end_use_e, $._end_use_f),
 
     _repeat_e: $ => /[rR][eE][pP][eE][aA][tT]/,
     _repeat_f: $ => /[rR][eE][pP][eE][tT][eE][rR]/,
-    repeat   : $ => alias(choice($._repeat_e, $._repeat_f), 'Repeat'),
+    repeat   : $ => choice($._repeat_e, $._repeat_f),
 
     _end_while_e: $ => prec.right(/[eE][nN][dD] [wW][hH][iI][lL][eE]/),
     _end_while_f: $ => prec.right(/[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]/),
-    end_while   : $ => alias(choice($._end_while_e, $._end_while_f), 'End while'),
+    end_while   : $ => choice($._end_while_e, $._end_while_f),
 
     _if_e: $ => /[iI][fF]/,
     _if_f: $ => /[sS][iI]/,
-    if   : $ => alias(choice($._if_e, $._if_f), 'If'),
+    if   : $ => choice($._if_e, $._if_f),
 
     _else_e: $ => /[eE][lL][sS][eE]/,
     _else_f: $ => /[sS][iI][nN][oO][nN]/,
-    else   : $ => alias(choice($._else_e, $._else_f), 'Else'),
+    else   : $ => choice($._else_e, $._else_f),
 
     _end_if_e: $ => prec.right(/[eE][nN][dD] [iI][fF]/),
     _end_if_f: $ => prec.right(/[fF][iI][nN] [dD][eE] [sS][iI]/),
-    end_if   : $ => alias(choice($._end_if_e, $._end_if_f), 'End if'),
+    end_if   : $ => choice($._end_if_e, $._end_if_f),
 
     _case_of_e: $ => /[cC][aA][sS][eE] [oO][fF]/,
     _case_of_f: $ => /[aA][uU] [cC][aA][sS] [oO][uU]/,
-    case_of   : $ => alias(choice($._case_of_e, $._case_of_f), 'Case of'),
+    case_of   : $ => choice($._case_of_e, $._case_of_f),
 
     _end_case_e: $ => /[eE][nN][dD] [cC][aA][sS][eE]/,
     _end_case_f: $ => /[fF][iI][nN] [dD][eE] [cC][aA][sS]/,
-    end_case   : $ => alias(choice($._end_case_e, $._end_case_f), 'End case'),
+    end_case   : $ => choice($._end_case_e, $._end_case_f),
 
     _begin_sql_e: $ => /[bB][eE][gG][iI][nN] [sS][qQ][lL]/,
     _begin_sql_f: $ => /[dD][eE][bB][uU][tT] [sS][qQ][lL]/,
-    begin_sql   : $ => alias(choice($._begin_sql_e, $._begin_sql_f), 'Begin SQL'),
+    begin_sql   : $ => choice($._begin_sql_e, $._begin_sql_f),
 
     _end_sql_e: $ => /[fF][iI][nN] [sS][qQ][lL]/,
     _end_sql_f: $ => /[eE][nN][dD] [sS][qQ][lL]/,
-    end_sql   : $ => alias(choice($._end_sql_e, $._end_sql_f), 'End SQL'),
+    end_sql   : $ => choice($._end_sql_e, $._end_sql_f),
 
     /* constants */
 
@@ -147,21 +145,21 @@ module.exports = grammar({
     _dec_literal: $ => /[+-]?[0-9]+/,
     _num_literal: $ => prec.right(token(seq(/[+-]?/, /[0-9]+/, '.', /[0-9]+/))),
     _exp_literal: $ => prec.right(token(seq(/[0-9]+/, '.', /[0-9]+/, /[eE]/, /[+-]?/, /[0-9]+/))),
-    _number : $ => prec(PREC.constant,
-      alias(choice($._dec_literal, $._hex_literal, $._exp_literal, $._num_literal), 'Number')),
+    number : $ => prec(PREC.constant,
+      choice($._dec_literal, $._hex_literal, $._exp_literal, $._num_literal)),
 
-    _time: $ => prec(PREC.constant,
-      alias(seq('?', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, '?'), 'Time')),
+    time: $ => prec(PREC.constant,
+      seq('?', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, '?')),
 
-    _date: $ => prec(PREC.constant,
-      alias(choice(
+    date: $ => prec(PREC.constant,
+      choice(
       seq('!', /[0-9]{1,2}/, '-', /[0-9]{1,2}/, '-', /[0-9]{1,2}/, '!'),
       seq('!', /[0-9]{1,2}/, '/', /[0-9]{1,2}/, '/', /[0-9]{1,2}/, '!'),
-      seq('!', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '!')), 'Date')),
+      seq('!', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '!'))),
 
-    _string: $ => prec(PREC.constant,
-      alias(token(seq('"',
-      repeat(choice('\\r', '\\n', '\\"', '\\t', '\\\\', /[^"]/)), '"')), 'String')),
+    string: $ => prec(PREC.constant,
+      token(seq('"',
+      repeat(choice('\\r', '\\n', '\\"', '\\t', '\\\\', /[^"]/)), '"'))),
 
     _name: $ => token(choice(
       /[A-Za-z_]/,
@@ -171,44 +169,44 @@ module.exports = grammar({
 
     /* structure */
     _storage_suffix: $ => prec(PREC.suffix, /:[0-9]+/),
-    _table: $ => alias(prec.left(seq('[', $._name, optional($._storage_suffix), ']')), 'Table'),
-    _field: $ => alias(prec.right(seq('[', $._table, $._name, optional($._storage_suffix))), 'Field'),
+    table: $ => prec.left(seq('[', $._name, optional($._storage_suffix), ']')),
+    field: $ => prec.right(seq('[', $.table, $._name, optional($._storage_suffix))),
 
     /* variable */
-    _local_variable: $ => prec(PREC.variable, seq('<>', $._name)),
-    _interprocess_variable: $ => prec(PREC.variable, seq('$', $._name)),
+    local_variable: $ => prec(PREC.variable, seq('$', $._name)),
+    interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
 
-    parameter: $ => prec(PREC.variable, alias(token(seq('$', /[0-9]+/)), 'Parameter')),
+    parameter: $ => prec(PREC.variable, token(seq('$', /[0-9]+/))),
 
     /* default token: process variable, method, command, function */
-    _variable: $ => alias(prec(PREC.identifier, choice(
+    variable: $ => prec(PREC.identifier, choice(
       $.parameter,
-      $._local_variable,
-      $._interprocess_variable,
-      seq($._name, '[', $._reference, ']'),
-      seq($._name, '{', $._reference, '}'),
-      seq($._name, '[[', $._reference, ']]', optional(seq('[[', $._reference, ']]'))),
-      )), 'Variable'),
+      $.local_variable,
+      $.interprocess_variable,
+      seq($._name, '[', $.reference, ']'),
+      seq($._name, '{', $.reference, '}'),
+      seq($._name, '[[', $.reference, ']]', optional(seq('[[', $.reference, ']]'))),
+      )),
 
-    _dereference: $ => seq($._variable, '->'),
-    _pointer: $ => seq('->', $._variable),
-    _reference: $ =>
-      alias(choice(
-      $._variable,
-      $._field,
-      $._dereference), 'Reference'),
+    _dereference: $ => seq($.variable, '->'),
+    _pointer: $ => seq('->', $.variable),
+    reference: $ =>
+      choice(
+      $.variable,
+      $.field,
+      $._dereference),
 
-    /* _value > _notation */
-    _value: $ => prec(PREC.value,
-      alias(choice(
-      $._number,
-      $._time,
-      $._date,
-      $._string,
+    /* value > _notation */
+    value: $ => prec(PREC.value,
+      choice(
+      $.number,
+      $.time,
+      $.date,
+      $.string,
       $._formula,
-      $._reference,
+      $.reference,
       $._pointer,
-      $.statement), 'Value')),
+      $.statement)),
 
     _operator: $ => choice(
       '*', '/', '+', '-',
@@ -218,21 +216,21 @@ module.exports = grammar({
       '<', '>', '<=', '>=', '=', '#',
       '??', '?-', '?+'
     ),
-    _formula: $ => seq($._reference, $._operator, $._value),
-    _argument: $ => choice($._table, '*', '>', $._value),
+    _formula: $ => seq($.reference, $._operator, $.value),
+    argument: $ => choice($.table, '*', '>', $.value),
 
-    _arguments: $ => seq('(', optional(choice($._value, seq($._value, repeat(seq(';', $._value))))), ')'),
-    statement: $ => choice($._function, $._notation),
-    _function: $ => seq($._name, optional($._arguments)),
-    assignment: $ => seq($._reference, ':=', $._value),
+    arguments: $ => seq('(', optional(choice($.argument, seq($.argument, repeat(seq(';', $.argument))))), ')'),
+    statement: $ => choice($.function, $._notation),
+    function: $ => seq($._name, optional($.arguments)),
+    assignment: $ => seq($.reference, ':=', $.value),
 
-    /* _notation > _reference */
-    _notation: $ => prec.right(
+    /* _notation > reference */
+    _notation: $ => prec(PREC.notation, prec.right(
       seq(
-      $._reference,
+      $.reference,
       repeat(
-        choice(seq('.', $._name), seq('[', $._reference ,']'))),
-        optional($._arguments)))
+        choice(seq('.', $._name), seq('[', $.reference ,']'))),
+        optional($.arguments))))
 
   }
 });
