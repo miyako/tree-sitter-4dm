@@ -89,19 +89,19 @@ module.exports = grammar({
     _else_f: $ => /[sS][iI][nN][oO][nN]/,
     else   : $ => prec(PREC.key, choice($._else_e, $._else_f)),
 
-    _end_if_e: $ => prec.right(/[eE][nN][dD] [iI][fF]/),
-    _end_if_f: $ => prec.right(/[fF][iI][nN] [dD][eE] [sS][iI]/),
+    _end_if_e: $ => /[eE][nN][dD] [iI][fF]/,
+    _end_if_f: $ => /[fF][iI][nN] [dD][eE] [sS][iI]/,
     end_if   : $ => prec(PREC.key, choice($._end_if_e, $._end_if_f)),
 
-    _for_each_e: $ => prec.left(/[fF][oO][rR] [eE][aA][cC][hH]/),
-    _for_each_f: $ => prec.left(/[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]/),
+    _for_each_e: $ => /[fF][oO][rR] [eE][aA][cC][hH]/,
+    _for_each_f: $ => /[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]/,
     for_each   : $ => prec(PREC.key, choice($._for_each_e, $._for_each_f)),
 
-    _end_for_each_e: $ => prec.right(/[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]/),
+    _end_for_each_e: $ => /[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]/,
     _end_for_each_f: $ => /[fF][iI][nN] [dD][eE] [cC][hH][aA][qQ][uU][eE]/,
     end_for_each   : $ => prec(PREC.key, choice($._end_for_each_e, $._end_for_each_f)),
 
-    _while_e: $ => prec.left(/[wW][hH][iI][lL][eE]/),
+    _while_e: $ => /[wW][hH][iI][lL][eE]/,
     _while_f: $ => /[tT][aA][nN][tT] [qQ][uU][eE]/,
     while   : $ => prec(PREC.key, choice($._while_e, $._while_f)),
 
@@ -109,28 +109,28 @@ module.exports = grammar({
     _until_f: $ => /[jJ][uU][sS][qQ][uU][eE]/,
     until   : $ => prec(PREC.key, choice($._until_e, $._until_f)),
 
-    _for_e: $ => prec.left(/[fF][oO][rR]/),
-    _for_f: $ => prec.right(/[bB][oO][uU][cC][lL][eE]/),
+    _for_e: $ => /[fF][oO][rR]/,
+    _for_f: $ => /[bB][oO][uU][cC][lL][eE]/,
     for   : $ => prec(PREC.key, choice($._for_e, $._for_f)),
 
-    _end_for_e: $ => prec.left(/[eE][nN][dD] [fF][oO][rR]/),
+    _end_for_e: $ => /[eE][nN][dD] [fF][oO][rR]/,
     _end_for_f: $ => /[fF][iI][nN] [dD][eE] [bB][oO][uU][cC][lL][eE]/,
     end_for  : $ => prec(PREC.key, choice($._end_for_e, $._end_for_f)),
 
-    _use_e: $ => prec.left(/[uU][sS][eE]/),
-    _use_f: $ => prec.left(/[uU][tT][iI][lL][iI][sS][eE][rR]/),
+    _use_e: $ => /[uU][sS][eE]/,
+    _use_f: $ => /[uU][tT][iI][lL][iI][sS][eE][rR]/,
     use   : $ => prec(PREC.key, choice($._use_e, $._use_f)),
 
-    _end_use_e: $ => prec.right(/[eE][nN][dD] [uU][sS][eE]/),
-    _end_use_f: $ => prec.right(/[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]/),
+    _end_use_e: $ => /[eE][nN][dD] [uU][sS][eE]/,
+    _end_use_f: $ => /[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]/,
     end_use   : $ => prec(PREC.key, choice($._end_use_e, $._end_use_f)),
 
     _repeat_e: $ => /[rR][eE][pP][eE][aA][tT]/,
     _repeat_f: $ => /[rR][eE][pP][eE][tT][eE][rR]/,
     repeat   : $ => prec(PREC.key, choice($._repeat_e, $._repeat_f)),
 
-    _end_while_e: $ => prec.right(/[eE][nN][dD] [wW][hH][iI][lL][eE]/),
-    _end_while_f: $ => prec.right(/[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]/),
+    _end_while_e: $ => /[eE][nN][dD] [wW][hH][iI][lL][eE]/,
+    _end_while_f: $ => /[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]/,
     end_while   : $ => prec(PREC.key, choice($._end_while_e, $._end_while_f)),
 
     _case_of_e: $ => /[cC][aA][sS][eE] [oO][fF]/,
