@@ -28,20 +28,6 @@ module.exports = grammar({
       $.sql_block,
       $.case_block),
 
-    _block: $=> choice(
-      $.comment,
-      $.command,
-      $.function,
-      $.assignment,
-      $.for_each_block,
-      $.while_block,
-      $.repeat_block,
-      $.if_block,
-      $.for_block,
-      $.use_block,
-      $.sql_block,
-      $.case_block),
-
     comment: $ => prec(PREC.comment,
       choice(
         token(
@@ -57,47 +43,42 @@ module.exports = grammar({
 
     if_block: $ => seq(
       $.if,
-      optional($._block),
-      optional($.else),
-      optional($._block),
+      repeat(choice($._token, $.else)),
       $.end_if),
 
     for_each_block: $ => seq(
         seq($.for_each, $.arguments),
-        optional($._block),
         optional(seq(choice($.until, $.while), $.arguments)),
-        optional($._block),
+        repeat($._token),
         $.end_for_each),
 
     while_block: $ => seq(
         seq($.while, $.arguments),
-        optional($._block),
+        repeat($._token),
         $.end_while),
 
     repeat_block: $ => seq(
         $.repeat,
-        optional($._block),
+        repeat($._token),
         seq($.until, $.arguments)),
 
     for_block: $ => seq(
         seq($.for, $.arguments),
-        optional($._block),
+        repeat($._token),
         $.end_for),
 
     use_block: $ => seq(
       seq($.use, $.arguments),
-      optional($._block),
+      repeat($._token),
       $.end_use),
 
     sql_block: $ => seq(
       $.begin_sql,
-      optional($._block),
+      repeat($._token),
       $.end_sql),
 
     case_block: $ => seq(
-      $.case_of, repeat1(seq(':', $.arguments, optional($._block))),
-      optional($.else),
-      optional($._block),
+      $.case_of, repeat1(seq(':', $.arguments, repeat(choice($.else, $._token)))),
       $.end_case),
 
     _if_e: $ => /[iI][fF]/,
