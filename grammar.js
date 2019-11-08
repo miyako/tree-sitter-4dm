@@ -92,23 +92,17 @@ module.exports = grammar({
       optional($._block),
       $.end_case),
 
-      _if_e: $ => /[iI][fF]/,
-      _if_f: $ => /[sS][iI]/,
-      if   : $ => prec(PREC.key, seq(choice($._if_e, $._if_f), $.arguments)),
+    _if_e: $ => /[iI][fF]/,
+    _if_f: $ => /[sS][iI]/,
+    if   : $ => prec(PREC.key, seq(choice($._if_e, $._if_f), $.arguments)),
 
-      _else_e: $ => /[eE][lL][sS][eE]/,
-      _else_f: $ => /[sS][iI][nN][oO][nN]/,
-      else   : $ => prec(PREC.key, choice($._else_e, $._else_f)),
+    _else_e: $ => /[eE][lL][sS][eE]/,
+    _else_f: $ => /[sS][iI][nN][oO][nN]/,
+    else   : $ => prec(PREC.key, choice($._else_e, $._else_f)),
 
-      _end_if_e: $ => prec.right(/[eE][nN][dD] [iI][fF]/),
-      _end_if_f: $ => prec.right(/[fF][iI][nN] [dD][eE] [sS][iI]/),
-      end_if   : $ => prec(PREC.key, choice($._end_if_e, $._end_if_f)),
-
-
-
-      //todo: do this for all blocks
-
-
+    _end_if_e: $ => prec.right(/[eE][nN][dD] [iI][fF]/),
+    _end_if_f: $ => prec.right(/[fF][iI][nN] [dD][eE] [sS][iI]/),
+    end_if   : $ => prec(PREC.key, choice($._end_if_e, $._end_if_f)),
 
     _for_each_e: $ => prec.left(/[fF][oO][rR] [eE][aA][cC][hH]/),
     _for_each_f: $ => prec.left(/[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]/),
@@ -242,8 +236,8 @@ module.exports = grammar({
     _constant_suffix: $ => /:[kK][0-9]+:[0-9]+/,
     constant: $ => prec(PREC.constant, prec.right(seq($._name, $._constant_suffix))),
 
-    /* value */
-    value: $ => prec(PREC.value,
+    /* value (respect prec of each) */
+    value: $ =>
       choice(
       $.number,
       $.time,
@@ -254,8 +248,7 @@ module.exports = grammar({
       $.function,
       $.reference,
       $._pointer,
-      $.constant)
-    ),
+      $.constant),
 
     /* reference is same as function */
     reference: $ => prec(PREC.reference,
