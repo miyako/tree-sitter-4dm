@@ -29,6 +29,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "notation"
+        },
+        {
+          "type": "SYMBOL",
           "name": "for_each_block"
         },
         {
@@ -893,7 +897,7 @@
     },
     "number": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -918,7 +922,7 @@
     },
     "time": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "SEQ",
         "members": [
@@ -955,7 +959,7 @@
     },
     "date": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -1063,7 +1067,7 @@
     },
     "string": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "TOKEN",
         "content": {
@@ -1377,7 +1381,7 @@
     },
     "parameter": {
       "type": "PREC",
-      "value": 6,
+      "value": 5,
       "content": {
         "type": "TOKEN",
         "content": {
@@ -1401,7 +1405,7 @@
     },
     "table": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1434,7 +1438,7 @@
     },
     "field": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1471,7 +1475,7 @@
     },
     "command": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1504,7 +1508,7 @@
     },
     "constant": {
       "type": "PREC",
-      "value": 7,
+      "value": 6,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1576,6 +1580,10 @@
             {
               "type": "SYMBOL",
               "name": "variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "notation"
             },
             {
               "type": "SYMBOL",
@@ -1843,6 +1851,66 @@
           "name": "value"
         }
       ]
+    },
+    "notation": {
+      "type": "PREC",
+      "value": 7,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "reference"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_name"
+                  }
+                ]
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "["
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "value"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "]"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "arguments"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "extras": [

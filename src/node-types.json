@@ -123,6 +123,10 @@
           "named": true
         },
         {
+          "type": "notation",
+          "named": true
+        },
+        {
           "type": "repeat_block",
           "named": true
         },
@@ -289,6 +293,10 @@
           "named": true
         },
         {
+          "type": "notation",
+          "named": true
+        },
+        {
           "type": "repeat_block",
           "named": true
         },
@@ -362,6 +370,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "notation",
           "named": true
         },
         {
@@ -493,6 +505,10 @@
           "named": true
         },
         {
+          "type": "notation",
+          "named": true
+        },
+        {
           "type": "repeat_block",
           "named": true
         },
@@ -522,6 +538,29 @@
     "fields": {}
   },
   {
+    "type": "notation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "reference",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "number",
     "named": true,
     "fields": {}
@@ -546,6 +585,10 @@
       "types": [
         {
           "type": "field",
+          "named": true
+        },
+        {
+          "type": "notation",
           "named": true
         },
         {
@@ -602,6 +645,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "notation",
           "named": true
         },
         {
@@ -672,6 +719,10 @@
           "named": true
         },
         {
+          "type": "notation",
+          "named": true
+        },
+        {
           "type": "repeat_block",
           "named": true
         },
@@ -736,6 +787,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "notation",
           "named": true
         },
         {
@@ -823,6 +878,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "notation",
           "named": true
         },
         {
@@ -981,6 +1040,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "notation",
           "named": true
         },
         {

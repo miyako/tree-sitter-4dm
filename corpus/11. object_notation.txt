@@ -1,0 +1,15 @@
+===
+Object Notation
+===
+
+$params.RequestUUID:=Substring:C12($info;$pos{1};$len{1})
+
+If ($status.success)
+
+End if
+
+escape_param($params.primaryBundleId)
+
+---
+
+(source   (assignment     (reference       (notation         (reference           (variable             (local_variable )))))    (assign )    (value       (command         (arguments           (argument             (value               (reference                 (variable                   (local_variable )))))          (argument             (value               (reference                 (variable                   (local_variable )                  (ERROR )                  (reference                     (variable                       (local_variable )))                  (ERROR )))))))))  (if_block     (if       (arguments         (argument           (value             (reference               (notation                 (reference                   (variable                     (local_variable )))))))))    (end_if ))  (function     (arguments       (argument         (value           (reference             (notation               (reference                 (variable                   (local_variable ))))))))))

@@ -3,9 +3,9 @@ const PREC = {
   key: -2,
   operator: -1,
   formula: 4, assignment: 4,
-
-  value: 6, parameter: 6,
-  command: 7, constant: 7, structure: 7,
+  value: 5, parameter: 5,
+  command: 6, constant: 6, structure: 6,
+  notation: 7,
   reference: 8, function: 8,
   variable: 9,
   identifier: 10
@@ -19,6 +19,7 @@ module.exports = grammar({
       $.function,
       $.command,
       $.assignment,
+      $.notation,
       $.for_each_block,
       $.while_block,
       $.repeat_block,
@@ -237,6 +238,7 @@ module.exports = grammar({
       prec.left(
         choice(
         $.variable,
+        $.notation,
         $.field,
         $._dereference)
       )
@@ -261,9 +263,15 @@ module.exports = grammar({
     /* assignment should need no priorty */
     assignment: $ => seq($.reference, $.assign, $.value),
 
+    notation: $ => prec(PREC.notation,
+      seq(
+      $.reference,
+      choice(seq('.', $._name), seq('[', $.value, ']')),
+      optional($.arguments)
+      )
+    )
     /*
     TODO:
-    object notation
     wrapping (anti-slash)
     folding of case_of
     colon node in case_of
