@@ -28,17 +28,13 @@ module.exports = grammar({
       $.sql_block,
       $.case_block),
 
-    comment: $ => prec(PREC.comment,
-      choice(
-        token(
-          seq('//', /.*/),
-          seq(
-            '/*',
-            /[^*]*\*+([^/*][^*]*\*+)*/,
-            '/'
-          )
-        )
-      )
+    comment: $ => choice(
+        prec(PREC.comment,seq('//', /.*/)),
+        prec(PREC.comment,seq(
+          '/*',
+          /[^*]*\*+([^/*][^*]*\*+)*/,
+          '/'
+        ))
     ),
 
     if_block: $ => seq(
@@ -267,12 +263,12 @@ module.exports = grammar({
 
     /*
     TODO:
+    object notation
     wrapping (anti-slash)
     folding of case_of
     colon node in case_of
-    sql if_block
+    sql block
     injection
-    nested function css
     */
 
   }
