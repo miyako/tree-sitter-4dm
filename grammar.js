@@ -203,7 +203,7 @@ module.exports = grammar({
     arguments: $ => seq('(', optional(choice($.argument, seq($.argument, repeat(seq(';', $.argument))))), ')'),
 
     /* higher than reference, function, value, command, constant, parameter */
-    formula: $ => prec(PREC.formula, prec.right(seq($.value, $.operator, $.value))),
+    formula: $ => prec(PREC.formula, prec.left(seq($.value, $.operator, $.value))),
 
     /* parameter is same as value */
     parameter: $ => prec(PREC.parameter, token(seq('$', /[0-9]+/))),
@@ -211,19 +211,19 @@ module.exports = grammar({
     /* structure */
     _storage_suffix: $ => /:[0-9]+/,
     table: $ => prec(PREC.structure,
-      prec.left(seq('[', $._name, optional($._storage_suffix), ']'))
+      seq('[', $._name, optional($._storage_suffix), ']')
     ),
     field: $ => prec(PREC.structure,
-      prec.right(seq('[', $.table, $._name, optional($._storage_suffix)))
+      seq('[', $.table, $._name, optional($._storage_suffix))
     ),
 
     /* command is same as constant */
     _command_suffix: $ => /:[cC][0-9]+/,
-    command: $ => prec(PREC.command, prec.right(seq($._name, $._command_suffix, optional($.arguments)))),
+    command: $ => prec(PREC.command, seq($._name, $._command_suffix, optional($.arguments))),
 
     /* constant */
     _constant_suffix: $ => /:[kK][0-9]+:[0-9]+/,
-    constant: $ => prec(PREC.constant, prec.right(seq($._name, $._constant_suffix))),
+    constant: $ => prec(PREC.constant, seq($._name, $._constant_suffix)),
 
     /* value (respect prec of each) */
     value: $ =>
@@ -257,7 +257,7 @@ module.exports = grammar({
     process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
-    variable: $ => prec(PREC.variable, prec.right(choice(
+    variable: $ => prec(PREC.variable, prec.left(choice(
       choice($._variable, $.parameter),
       seq(choice($._variable, $.parameter), '[', $.reference, ']'),
       seq(choice($._variable, $.parameter), '{', $.reference, '}'),
@@ -267,14 +267,6 @@ module.exports = grammar({
 
     /* assignment should need no priorty */
     assignment: $ => seq($.reference, $.assign, $.value),
-
-    /* _notation > reference */
-    // _notation: $ => prec(PREC.notation, prec.right(
-    //   seq(
-    //   $.reference,
-    //   repeat(
-    //     choice(seq('.', $._name), seq('[', $.reference ,']'))),
-    //     optional($.arguments))))
 
   }
 });
