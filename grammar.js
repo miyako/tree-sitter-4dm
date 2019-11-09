@@ -272,10 +272,8 @@ module.exports = grammar({
     )
     /*
     TODO:
-    array element index
+    else block folding
     wrapping (anti-slash)
-    folding of case_of
-    colon node in case_of
     sql block
     injection
     */
