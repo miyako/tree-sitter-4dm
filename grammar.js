@@ -268,5 +268,11 @@ module.exports = grammar({
     /* assignment should need no priorty */
     assignment: $ => seq($.reference, $.assign, $.value),
 
+    /*
+    TODO: wrapping (anti-slash)
+    sql if_block
+    injection
+    */
+
   }
 });
