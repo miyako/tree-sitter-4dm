@@ -81,72 +81,72 @@ module.exports = grammar({
       $.case_of, repeat1(seq(':', $.arguments, repeat(choice($.else, $._token)))),
       $.end_case),
 
-    _if_e: $ => /[iI][fF]/,
-    _if_f: $ => /[sS][iI]/,
+    _if_e: $ => /i|If|F/,
+    _if_f: $ => /s|Si|I/,
     if   : $ => prec(PREC.key, seq(choice($._if_e, $._if_f), $.arguments)),
 
-    _else_e: $ => /[eE][lL][sS][eE]/,
-    _else_f: $ => /[sS][iI][nN][oO][nN]/,
+    _else_e: $ => /e|El|Ls|Se|E/,
+    _else_f: $ => /s|Si|In|No|On|N/,
     else   : $ => prec(PREC.key, choice($._else_e, $._else_f)),
 
-    _end_if_e: $ => /[eE][nN][dD] [iI][fF]/,
-    _end_if_f: $ => /[fF][iI][nN] [dD][eE] [sS][iI]/,
+    _end_if_e: $ => /e|En|Nd|D i|If|F/,
+    _end_if_f: $ => /f|Fi|In|N d|De|E s|Si|I/,
     end_if   : $ => prec(PREC.key, choice($._end_if_e, $._end_if_f)),
 
-    _for_each_e: $ => /[fF][oO][rR] [eE][aA][cC][hH]/,
-    _for_each_f: $ => /[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]/,
+    _for_each_e: $ => /f|Fo|Or|R e|Ea|Ac|Ch|H/,
+    _for_each_f: $ => /p|Po|Ou|Ur|R c|Ch|Ha|Aq|Qu|Ue|E/,
     for_each   : $ => prec(PREC.key, choice($._for_each_e, $._for_each_f)),
 
-    _end_for_each_e: $ => /[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]/,
-    _end_for_each_f: $ => /[fF][iI][nN] [dD][eE] [cC][hH][aA][qQ][uU][eE]/,
+    _end_for_each_e: $ => /e|En|Nd|D f|Fo|Or|R e|Ea|Ac|Ch|H/,
+    _end_for_each_f: $ => /f|Fi|In|N d|De|E c|Ch|Ha|Aq|Qu|Ue|E/,
     end_for_each   : $ => prec(PREC.key, choice($._end_for_each_e, $._end_for_each_f)),
 
-    _while_e: $ => /[wW][hH][iI][lL][eE]/,
-    _while_f: $ => /[tT][aA][nN][tT] [qQ][uU][eE]/,
+    _while_e: $ => /w|Wh|Hi|Il|Le|E/,
+    _while_f: $ => /t|Ta|An|Nt|T q|Qu|Ue|E/,
     while   : $ => prec(PREC.key, choice($._while_e, $._while_f)),
 
-    _until_e: $ => /[uU][nN][tT][iI][lL]/,
-    _until_f: $ => /[jJ][uU][sS][qQ][uU][eE]/,
+    _until_e: $ => /u|Un|Nt|Ti|Il|L/,
+    _until_f: $ => /j|Ju|Us|Sq|Qu|Ue|E/,
     until   : $ => prec(PREC.key, choice($._until_e, $._until_f)),
 
-    _for_e: $ => /[fF][oO][rR]/,
-    _for_f: $ => /[bB][oO][uU][cC][lL][eE]/,
+    _for_e: $ => /f|Fo|Or|R/,
+    _for_f: $ => /b|Bo|Ou|Uc|Cl|Le|E/,
     for   : $ => prec(PREC.key, choice($._for_e, $._for_f)),
 
-    _end_for_e: $ => /[eE][nN][dD] [fF][oO][rR]/,
-    _end_for_f: $ => /[fF][iI][nN] [dD][eE] [bB][oO][uU][cC][lL][eE]/,
+    _end_for_e: $ => /e|En|Nd|D f|Fo|Or|R/,
+    _end_for_f: $ => /f|Fi|In|N d|De|E b|Bo|Ou|Uc|Cl|Le|E/,
     end_for  : $ => prec(PREC.key, choice($._end_for_e, $._end_for_f)),
 
-    _use_e: $ => /[uU][sS][eE]/,
-    _use_f: $ => /[uU][tT][iI][lL][iI][sS][eE][rR]/,
+    _use_e: $ => /u|Us|Se|E/,
+    _use_f: $ => /u|Ut|Ti|Il|Li|Is|Se|Er|R/,
     use   : $ => prec(PREC.key, choice($._use_e, $._use_f)),
 
-    _end_use_e: $ => /[eE][nN][dD] [uU][sS][eE]/,
-    _end_use_f: $ => /[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]/,
+    _end_use_e: $ => /e|En|Nd|D u|Us|Se|E/,
+    _end_use_f: $ => /f|Fi|In|N u|Ut|Ti|Il|Li|Is|Se|Er|R/,
     end_use   : $ => prec(PREC.key, choice($._end_use_e, $._end_use_f)),
 
-    _repeat_e: $ => /[rR][eE][pP][eE][aA][tT]/,
-    _repeat_f: $ => /[rR][eE][pP][eE][tT][eE][rR]/,
+    _repeat_e: $ => /r|Re|Ep|Pe|Ea|At|T/,
+    _repeat_f: $ => /r|Re|Ep|Pe|Et|Te|Er|R/,
     repeat   : $ => prec(PREC.key, choice($._repeat_e, $._repeat_f)),
 
-    _end_while_e: $ => /[eE][nN][dD] [wW][hH][iI][lL][eE]/,
-    _end_while_f: $ => /[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]/,
+    _end_while_e: $ => /e|En|Nd|D w|Wh|Hi|Il|Le|E/,
+    _end_while_f: $ => /f|Fi|In|N t|Ta|An|Nt|T q|Qu|Ue|E/,
     end_while   : $ => prec(PREC.key, choice($._end_while_e, $._end_while_f)),
 
-    _case_of_e: $ => /[cC][aA][sS][eE] [oO][fF]/,
-    _case_of_f: $ => /[aA][uU] [cC][aA][sS] [oO][uU]/,
+    _case_of_e: $ => /c|Ca|As|Se|E o|Of|F/,
+    _case_of_f: $ => /a|Au|U c|Ca|As|S o|Ou|U/,
     case_of   : $ => prec(PREC.key, choice($._case_of_e, $._case_of_f)),
 
-    _end_case_e: $ => /[eE][nN][dD] [cC][aA][sS][eE]/,
-    _end_case_f: $ => /[fF][iI][nN] [dD][eE] [cC][aA][sS]/,
+    _end_case_e: $ => /e|En|Nd|D c|Ca|As|Se|E/,
+    _end_case_f: $ => /f|Fi|In|N d|De|E c|Ca|As|S/,
     end_case   : $ => prec(PREC.key, choice($._end_case_e, $._end_case_f)),
 
-    _begin_sql_e: $ => /[bB][eE][gG][iI][nN] [sS][qQ][lL]/,
-    _begin_sql_f: $ => /[dD][eE][bB][uU][tT] [sS][qQ][lL]/,
+    _begin_sql_e: $ => /b|Be|Eg|Gi|In|N s|Sq|Ql|L/,
+    _begin_sql_f: $ => /d|De|Eb|Bu|Ut|T s|Sq|Ql|L/,
     begin_sql   : $ => prec(PREC.key, choice($._begin_sql_e, $._begin_sql_f)),
 
-    _end_sql_e: $ => /[fF][iI][nN] [sS][qQ][lL]/,
-    _end_sql_f: $ => /[eE][nN][dD] [sS][qQ][lL]/,
+    _end_sql_e: $ => /f|Fi|In|N s|Sq|Ql|L/,
+    _end_sql_f: $ => /e|En|Nd|D s|Sq|Ql|L/,
     end_sql   : $ => prec(PREC.key, choice($._end_sql_e, $._end_sql_f)),
 
     /* constants */
@@ -196,9 +196,6 @@ module.exports = grammar({
 
     /* arguments */
     argument: $ => choice($.table, '*', '>', $.value),
-
-    //todo: $.formula does not match $e=1
-
 
     arguments: $ => seq('(', optional(choice($.argument, seq($.argument, repeat(seq(';', $.argument))))), ')'),
 
@@ -269,9 +266,13 @@ module.exports = grammar({
     assignment: $ => seq($.reference, $.assign, $.value),
 
     /*
-    TODO: wrapping (anti-slash)
+    TODO:
+    wrapping (anti-slash)
+    folding of case_of
+    colon node in case_of
     sql if_block
     injection
+    nested function css
     */
 
   }
