@@ -357,11 +357,11 @@
     },
     "_if_e": {
       "type": "PATTERN",
-      "value": "[iI][fF]"
+      "value": "(i|I)(f|F)"
     },
     "_if_f": {
       "type": "PATTERN",
-      "value": "[sS][iI]"
+      "value": "(s|S)(i|I)"
     },
     "if": {
       "type": "PREC",
@@ -391,11 +391,11 @@
     },
     "_else_e": {
       "type": "PATTERN",
-      "value": "[eE][lL][sS][eE]"
+      "value": "(e|E)(l|L)(s|S)(e|E)"
     },
     "_else_f": {
       "type": "PATTERN",
-      "value": "[sS][iI][nN][oO][nN]"
+      "value": "(s|S)(i|I)(n|N)(o|O)(n|N)"
     },
     "else": {
       "type": "PREC",
@@ -416,11 +416,11 @@
     },
     "_end_if_e": {
       "type": "PATTERN",
-      "value": "[eE][nN][dD] [iI][fF]"
+      "value": "(e|E)(n|N)(d|D) (i|I)(f|F)"
     },
     "_end_if_f": {
       "type": "PATTERN",
-      "value": "[fF][iI][nN] [dD][eE] [sS][iI]"
+      "value": "(f|F)(i|I)(n|N) (d|D)(e|E) (s|S)(i|I)"
     },
     "end_if": {
       "type": "PREC",
@@ -441,11 +441,11 @@
     },
     "_for_each_e": {
       "type": "PATTERN",
-      "value": "[fF][oO][rR] [eE][aA][cC][hH]"
+      "value": "(f|F)(o|O)(r|R) (e|E)(a|A)(c|C)(h|H)"
     },
     "_for_each_f": {
       "type": "PATTERN",
-      "value": "[pP][oO][uU][rR] [cC][hH][aA][qQ][uU][eE]"
+      "value": "(p|P)(o|O)(u|U)(r|R) (c|C)(h|H)(a|A)(q|Q)(u|U)(e|E)"
     },
     "for_each": {
       "type": "PREC",
@@ -466,11 +466,11 @@
     },
     "_end_for_each_e": {
       "type": "PATTERN",
-      "value": "[eE][nN][dD] [fF][oO][rR] [eE][aA][cC][hH]"
+      "value": "(e|E)(n|N)(d|D) (f|F)(o|O)(r|R) (e|E)(a|A)(c|C)(h|H)"
     },
     "_end_for_each_f": {
       "type": "PATTERN",
-      "value": "[fF][iI][nN] [dD][eE] [cC][hH][aA][qQ][uU][eE]"
+      "value": "(f|F)(i|I)(n|N) (d|D)(e|E) (c|C)(h|H)(a|A)(q|Q)(u|U)(e|E)"
     },
     "end_for_each": {
       "type": "PREC",
@@ -491,11 +491,11 @@
     },
     "_while_e": {
       "type": "PATTERN",
-      "value": "[wW][hH][iI][lL][eE]"
+      "value": "(w|W)(h|H)(i|I)(l|L)(e|E)"
     },
     "_while_f": {
       "type": "PATTERN",
-      "value": "[tT][aA][nN][tT] [qQ][uU][eE]"
+      "value": "(t|T)(a|A)(n|N)(t|T) (q|Q)(u|U)(e|E)"
     },
     "while": {
       "type": "PREC",
@@ -516,11 +516,11 @@
     },
     "_until_e": {
       "type": "PATTERN",
-      "value": "[uU][nN][tT][iI][lL]"
+      "value": "(u|U)(n|N)(t|T)(i|I)(l|L)"
     },
     "_until_f": {
       "type": "PATTERN",
-      "value": "[jJ][uU][sS][qQ][uU][eE]"
+      "value": "(j|J)(u|U)(s|S)(q|Q)(u|U)(e|E)"
     },
     "until": {
       "type": "PREC",
@@ -541,11 +541,11 @@
     },
     "_for_e": {
       "type": "PATTERN",
-      "value": "[fF][oO][rR]"
+      "value": "(f|F)(o|O)(r|R)"
     },
     "_for_f": {
       "type": "PATTERN",
-      "value": "[bB][oO][uU][cC][lL][eE]"
+      "value": "(b|B)(o|O)(u|U)(c|C)(l|L)(e|E)"
     },
     "for": {
       "type": "PREC",
@@ -566,11 +566,11 @@
     },
     "_end_for_e": {
       "type": "PATTERN",
-      "value": "[eE][nN][dD] [fF][oO][rR]"
+      "value": "(e|E)(n|N)(d|D) (f|F)(o|O)(r|R)"
     },
     "_end_for_f": {
       "type": "PATTERN",
-      "value": "[fF][iI][nN] [dD][eE] [bB][oO][uU][cC][lL][eE]"
+      "value": "(f|F)(i|I)(n|N) (d|D)(e|E) (b|B)(o|O)(u|U)(c|C)(l|L)(e|E)"
     },
     "end_for": {
       "type": "PREC",
@@ -591,11 +591,11 @@
     },
     "_use_e": {
       "type": "PATTERN",
-      "value": "[uU][sS][eE]"
+      "value": "(u|U)(s|S)(e|E)"
     },
     "_use_f": {
       "type": "PATTERN",
-      "value": "[uU][tT][iI][lL][iI][sS][eE][rR]"
+      "value": "(u|U)(t|T)(i|I)(l|L)(i|I)(s|S)(e|E)(r|R)"
     },
     "use": {
       "type": "PREC",
@@ -616,11 +616,11 @@
     },
     "_end_use_e": {
       "type": "PATTERN",
-      "value": "[eE][nN][dD] [uU][sS][eE]"
+      "value": "(e|E)(n|N)(d|D) (u|U)(s|S)(e|E)"
     },
     "_end_use_f": {
       "type": "PATTERN",
-      "value": "[fF][iI][nN] [uU][tT][iI][lL][iI][sS][eE][rR]"
+      "value": "(f|F)(i|I)(n|N) (u|U)(t|T)(i|I)(l|L)(i|I)(s|S)(e|E)(r|R)"
     },
     "end_use": {
       "type": "PREC",
@@ -641,11 +641,11 @@
     },
     "_repeat_e": {
       "type": "PATTERN",
-      "value": "[rR][eE][pP][eE][aA][tT]"
+      "value": "(r|R)(e|E)(p|P)(e|E)(a|A)(t|T)"
     },
     "_repeat_f": {
       "type": "PATTERN",
-      "value": "[rR][eE][pP][eE][tT][eE][rR]"
+      "value": "(r|R)(e|E)(p|P)(e|E)(t|T)(e|E)(r|R)"
     },
     "repeat": {
       "type": "PREC",
@@ -666,11 +666,11 @@
     },
     "_end_while_e": {
       "type": "PATTERN",
-      "value": "[eE][nN][dD] [wW][hH][iI][lL][eE]"
+      "value": "(e|E)(n|N)(d|D) (w|W)(h|H)(i|I)(l|L)(e|E)"
     },
     "_end_while_f": {
       "type": "PATTERN",
-      "value": "[fF][iI][nN] [tT][aA][nN][tT] [qQ][uU][eE]"
+      "value": "(f|F)(i|I)(n|N) (t|T)(a|A)(n|N)(t|T) (q|Q)(u|U)(e|E)"
     },
     "end_while": {
       "type": "PREC",
@@ -691,11 +691,11 @@
     },
     "_case_of_e": {
       "type": "PATTERN",
-      "value": "[cC][aA][sS][eE] [oO][fF]"
+      "value": "(c|C)(a|A)(s|S)(e|E) (o|O)(f|F)"
     },
     "_case_of_f": {
       "type": "PATTERN",
-      "value": "[aA][uU] [cC][aA][sS] [oO][uU]"
+      "value": "(a|A)(u|U) (c|C)(a|A)(s|S) (o|O)(u|U)"
     },
     "case_of": {
       "type": "PREC",
@@ -716,11 +716,11 @@
     },
     "_end_case_e": {
       "type": "PATTERN",
-      "value": "[eE][nN][dD] [cC][aA][sS][eE]"
+      "value": "(e|E)(n|N)(d|D) (c|C)(a|A)(s|S)(e|E)"
     },
     "_end_case_f": {
       "type": "PATTERN",
-      "value": "[fF][iI][nN] [dD][eE] [cC][aA][sS]"
+      "value": "(f|F)(i|I)(n|N) (d|D)(e|E) (c|C)(a|A)(s|S)"
     },
     "end_case": {
       "type": "PREC",
@@ -741,11 +741,11 @@
     },
     "_begin_sql_e": {
       "type": "PATTERN",
-      "value": "[bB][eE][gG][iI][nN] [sS][qQ][lL]"
+      "value": "(b|B)(e|E)(g|G)(i|I)(n|N) (s|S)(q|Q)(l|L)"
     },
     "_begin_sql_f": {
       "type": "PATTERN",
-      "value": "[dD][eE][bB][uU][tT] [sS][qQ][lL]"
+      "value": "(d|D)(e|E)(b|B)(u|U)(t|T) (s|S)(q|Q)(l|L)"
     },
     "begin_sql": {
       "type": "PREC",
@@ -766,11 +766,11 @@
     },
     "_end_sql_e": {
       "type": "PATTERN",
-      "value": "[fF][iI][nN] [sS][qQ][lL]"
+      "value": "(e|E)(n|N)(d|D) (s|S)(q|Q)(l|L)"
     },
     "_end_sql_f": {
       "type": "PATTERN",
-      "value": "[eE][nN][dD] [sS][qQ][lL]"
+      "value": "(f|F)(i|I)(n|N) (s|S)(q|Q)(l|L)"
     },
     "end_sql": {
       "type": "PREC",
@@ -1449,7 +1449,7 @@
     },
     "_command_suffix": {
       "type": "PATTERN",
-      "value": ":[cC][0-9]+"
+      "value": ":(c|C)[0-9]+"
     },
     "command": {
       "type": "PREC",
@@ -1482,7 +1482,7 @@
     },
     "_constant_suffix": {
       "type": "PATTERN",
-      "value": ":[kK][0-9]+:[0-9]+"
+      "value": ":(k|K)[0-9]+:[0-9]+"
     },
     "constant": {
       "type": "PREC",
