@@ -250,7 +250,7 @@ module.exports = grammar({
     ),
 
     /* function */
-    function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments)))),
+    function: $ => prec(PREC.function, seq($._name, optional($.arguments))),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
