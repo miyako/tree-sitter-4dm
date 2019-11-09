@@ -1730,7 +1730,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "reference"
+                  "name": "value"
                 },
                 {
                   "type": "STRING",
@@ -1760,7 +1760,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "reference"
+                  "name": "value"
                 },
                 {
                   "type": "STRING",
@@ -1790,7 +1790,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "reference"
+                  "name": "value"
                 },
                 {
                   "type": "STRING",
@@ -1808,7 +1808,7 @@
                         },
                         {
                           "type": "SYMBOL",
-                          "name": "reference"
+                          "name": "value"
                         },
                         {
                           "type": "STRING",

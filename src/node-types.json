@@ -983,7 +983,7 @@
           "named": true
         },
         {
-          "type": "reference",
+          "type": "value",
           "named": true
         }
       ]

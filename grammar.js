@@ -254,9 +254,9 @@ module.exports = grammar({
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
     variable: $ => prec(PREC.variable, prec.left(choice(
       choice($._variable, $.parameter),
-      seq(choice($._variable, $.parameter), '[', $.reference, ']'),
-      seq(choice($._variable, $.parameter), '{', $.reference, '}'),
-      seq(choice($._variable, $.parameter), '[[', $.reference, ']]', optional(seq('[[', $.reference, ']]')))))),
+      seq(choice($._variable, $.parameter), '[', $.value, ']'),
+      seq(choice($._variable, $.parameter), '{', $.value, '}'),
+      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))))),
 
     assign: $ => prec(PREC.operator, ':='),
 
@@ -272,6 +272,7 @@ module.exports = grammar({
     )
     /*
     TODO:
+    array element index
     wrapping (anti-slash)
     folding of case_of
     colon node in case_of
