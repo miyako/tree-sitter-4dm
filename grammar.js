@@ -40,7 +40,12 @@ module.exports = grammar({
 
     if_block: $ => seq(
       $.if,
-      repeat(choice($._token, $.else)),
+      repeat($._token),
+      choice($.else_if_block, $.end_if)),
+
+    else_if_block: $ => seq(
+      $.else,
+      repeat($._token),
       $.end_if),
 
     for_each_block: $ => seq(
@@ -75,7 +80,15 @@ module.exports = grammar({
       $.end_sql),
 
     case_block: $ => seq(
-      $.case_of, repeat1(seq(':', $.arguments, repeat(choice($.else, $._token)))),
+      $.case_of,
+      repeat1($.case)),
+
+    case: $ => seq(':', $.arguments, repeat($._token),
+      choice($.else_case_block, $.end_case)),
+
+    else_case_block: $ => seq(
+      $.else,
+      repeat($._token),
       $.end_case),
 
     _if_e: $ => /(i|I)(f|F)/,
