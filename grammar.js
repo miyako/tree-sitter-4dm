@@ -81,10 +81,10 @@ module.exports = grammar({
 
     case_block: $ => seq(
       $.case_of,
-      repeat1($.case)),
-
-    case: $ => seq(':', $.arguments, repeat($._token),
+      repeat1($.case),
       choice($.else_case_block, $.end_case)),
+
+    case: $ => seq(':', $.arguments, repeat($._token)),
 
     else_case_block: $ => seq(
       $.else,

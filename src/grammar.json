@@ -365,6 +365,19 @@
             "type": "SYMBOL",
             "name": "case"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "else_case_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "end_case"
+            }
+          ]
         }
       ]
     },
@@ -385,19 +398,6 @@
             "type": "SYMBOL",
             "name": "_token"
           }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "else_case_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "end_case"
-            }
-          ]
         }
       ]
     },

@@ -95,14 +95,6 @@
           "named": true
         },
         {
-          "type": "else_case_block",
-          "named": true
-        },
-        {
-          "type": "end_case",
-          "named": true
-        },
-        {
           "type": "for_block",
           "named": true
         },
@@ -155,6 +147,14 @@
         },
         {
           "type": "case_of",
+          "named": true
+        },
+        {
+          "type": "else_case_block",
+          "named": true
+        },
+        {
+          "type": "end_case",
           "named": true
         }
       ]
