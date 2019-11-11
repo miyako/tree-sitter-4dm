@@ -79,12 +79,19 @@ module.exports = grammar({
       repeat($._token),
       $.end_sql),
 
-    case_block: $ => seq(
-      $.case_of,
-      repeat1($.case),
-      choice($.else_case_block, $.end_case)),
+/*
+case_block: $ => seq(
+  $.case_of,
+  repeat1($.case),
+  choice($.else_case_block, $.end_case)),
 
-    case: $ => seq(':', $.arguments, repeat($._token)),
+case: $ => seq(':', $.arguments, repeat($._token)),
+*/
+    case_block: $ => prec.right(seq(
+      $.case_of,
+      repeat1($.case))),
+
+    case: $ => seq(':', $.arguments, repeat($._token), choice($.case, $.else_case_block, $.end_case)),
 
     else_case_block: $ => seq(
       $.else,
