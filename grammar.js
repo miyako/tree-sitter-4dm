@@ -264,6 +264,17 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       )
     ),
 
+    object: $ => prec(PREC.reference,
+      prec.left(
+        choice(
+        $.reference,
+        $.command,
+        $.formula,
+        $.function,
+        $._pointer)
+      )
+    ),
+
     /* function */
     function: $ => prec(PREC.function, seq($._name, optional($.arguments))),
 
@@ -285,11 +296,12 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     notation: $ => prec(PREC.notation,
       seq(
-      $.reference,
+      $.object,
       choice(seq('.', $._name), seq('[', $.value, ']')),
       optional($.arguments)
       )
     )
+    
     /*
     TODO:
     else block folding

@@ -1649,6 +1649,39 @@
         }
       }
     },
+    "object": {
+      "type": "PREC",
+      "value": 8,
+      "content": {
+        "type": "PREC_LEFT",
+        "value": 0,
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "reference"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "command"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "formula"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_pointer"
+            }
+          ]
+        }
+      }
+    },
     "function": {
       "type": "PREC",
       "value": 8,
@@ -1912,7 +1945,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "reference"
+            "name": "object"
           },
           {
             "type": "CHOICE",
