@@ -711,30 +711,6 @@
           "named": true
         },
         {
-          "type": "object",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "number",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "object",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
           "type": "command",
           "named": true
         },
@@ -751,11 +727,20 @@
           "named": true
         },
         {
+          "type": "value",
+          "named": true
+        },
+        {
           "type": "variable",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "number",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "operator",
@@ -772,19 +757,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
-        {
-          "type": "arguments",
-          "named": true
-        },
         {
           "type": "field",
           "named": true
         },
         {
-          "type": "value",
+          "type": "notation",
           "named": true
         },
         {

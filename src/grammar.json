@@ -70,7 +70,7 @@
       "members": [
         {
           "type": "PREC",
-          "value": -3,
+          "value": -4,
           "content": {
             "type": "SEQ",
             "members": [
@@ -87,7 +87,7 @@
         },
         {
           "type": "PREC",
-          "value": -3,
+          "value": -4,
           "content": {
             "type": "SEQ",
             "members": [
@@ -439,7 +439,7 @@
     },
     "if": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "SEQ",
         "members": [
@@ -473,7 +473,7 @@
     },
     "else": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -498,7 +498,7 @@
     },
     "end_if": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -523,7 +523,7 @@
     },
     "for_each": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -548,7 +548,7 @@
     },
     "end_for_each": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -573,7 +573,7 @@
     },
     "while": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -598,7 +598,7 @@
     },
     "until": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -623,7 +623,7 @@
     },
     "for": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -648,7 +648,7 @@
     },
     "end_for": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -673,7 +673,7 @@
     },
     "use": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -698,7 +698,7 @@
     },
     "end_use": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -723,7 +723,7 @@
     },
     "repeat": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -748,7 +748,7 @@
     },
     "end_while": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -773,7 +773,7 @@
     },
     "case_of": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -798,7 +798,7 @@
     },
     "end_case": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -823,7 +823,7 @@
     },
     "begin_sql": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -848,7 +848,7 @@
     },
     "end_sql": {
       "type": "PREC",
-      "value": -2,
+      "value": -3,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -1239,7 +1239,7 @@
     },
     "operator": {
       "type": "PREC",
-      "value": -1,
+      "value": -2,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -1643,7 +1643,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_notation"
+              "name": "notation"
             },
             {
               "type": "SYMBOL",
@@ -1658,41 +1658,13 @@
       }
     },
     "object": {
-      "type": "PREC",
-      "value": 6,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "command"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "formula"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "function"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "variable"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "field"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_dereference"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_pointer"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "command"
+        }
+      ]
     },
     "function": {
       "type": "PREC",
@@ -1926,7 +1898,7 @@
     },
     "assign": {
       "type": "PREC",
-      "value": -1,
+      "value": -2,
       "content": {
         "type": "STRING",
         "value": ":="
@@ -1949,7 +1921,7 @@
         }
       ]
     },
-    "_notation": {
+    "_path": {
       "type": "SEQ",
       "members": [
         {
@@ -2002,17 +1974,53 @@
       ]
     },
     "notation": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "object"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_notation"
+      "type": "PREC",
+      "value": -1,
+      "content": {
+        "type": "PREC_RIGHT",
+        "value": 0,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "command"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "formula"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "function"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "field"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_dereference"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_pointer"
+                }
+              ]
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_path"
+              }
+            }
+          ]
         }
-      ]
+      }
     }
   },
   "extras": [
