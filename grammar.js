@@ -5,11 +5,11 @@ const PREC = {
 
   formula: 1, assignment: 1,
   value: 2, parameter: 2,
-  notation: 3,
-  object: 4,
+
+
   command: 5, constant: 5, structure: 5,
   function: 6,
-  method: 7,
+
   path: 8,
   reference: 9,
   variable: 10,
@@ -24,7 +24,6 @@ module.exports = grammar({
       $.function,
       $.command,
       $.assignment,
-      $.notation_method,
       $.for_each_block,
       $.while_block,
       $.repeat_block,
@@ -202,7 +201,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     )),
 
     _dereference: $ => seq($.variable, '->'),
-    _pointer: $ => seq('->', $.variable),
+    _pointer: $ => prec.right(seq('->', $.variable, repeat($.path))),
 
     /* expose, to tokenise formula */
     operator: $ => prec(PREC.operator,
@@ -225,7 +224,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     formula: $ => prec(PREC.formula, prec.left(seq($.value, $.operator, $.value))),
 
     /* parameter is same as value */
-    parameter: $ => prec(PREC.parameter, token(seq('$', /[0-9]+/))),
+    parameter: $ => prec(PREC.parameter, prec.right(seq('$', /[0-9]+/, repeat($.path)))),
 
     /* structure */
     _storage_suffix: $ => /:[0-9]+/,
@@ -233,12 +232,12 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       seq('[', $._name, optional($._storage_suffix), ']')
     ),
     field: $ => prec(PREC.structure,
-      seq('[', $.table, $._name, optional($._storage_suffix))
+      prec.right(seq('[', $.table, $._name, optional($._storage_suffix), repeat($.path)))
     ),
 
     /* command is same as constant */
     _command_suffix: $ => /:(c|C)[0-9]+/,
-    command: $ => prec(PREC.command, prec.right(seq($._name, $._command_suffix, optional($.arguments)))),
+    command: $ => prec(PREC.command, prec.right(seq($._name, $._command_suffix, optional($.arguments), repeat($.path)))),
 
     /* constant */
     _constant_suffix: $ => /:(k|K)[0-9]+:[0-9]+/,
@@ -256,61 +255,38 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.function,
       $.reference,
       $._pointer,
-      $.constant,
-      $.notation_method),
+      $.constant),
 
     /* reference is same as function */
     reference: $ => prec(PREC.reference,
         choice(
         $.variable,
         $.field,
-        $._dereference,
-        $.notation_path)
+        $._dereference)
       ),
 
-    object: $ => prec(PREC.object,
-      choice(
-      $.command,
-      $.function,
-      $.variable,
-      $.field,
-      $._pointer,
-      $._dereference)
-    ),
-
     /* function */
-    function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments)))),
+    function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments), repeat($.path)))),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
     process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
-    variable: $ => prec(PREC.variable, prec.left(choice(
+
+    variable: $ => prec(PREC.variable, prec.left(seq(choice(
       choice($._variable, $.parameter),
       seq(choice($._variable, $.parameter), '[', $.value, ']'),
       seq(choice($._variable, $.parameter), '{', $.value, '}'),
-      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))))),
+      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))), repeat($.path)))
+      ),
 
     assign: $ => prec(PREC.operator, ':='),
 
     /* assignment should need no priorty */
     assignment: $ => seq($.reference, $.assign, $.value),
 
-    method: $ => prec(PREC.method,
-      seq(choice(seq('.', $._name), seq('[', $.value, ']')), $.arguments)),
-
-    path: $ => prec(PREC.path,
-      seq(choice(seq('.', $._name), seq('[', $.value, ']')))),
-
-    notation_path: $ => prec(PREC.notation,
-      seq($.object,
-      repeat(choice($.method, $.path)),
-      $.path)),
-
-    notation_method: $ => prec(PREC.notation,
-      seq($.object,
-      repeat1(choice($.method, $.path)))),
+    path: $ => prec(PREC.path, seq(choice(seq('.', $._name), seq('[', $.value, ']')), optional($.arguments))),
 
     /*
     TODO:

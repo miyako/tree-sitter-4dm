@@ -123,10 +123,6 @@
           "named": true
         },
         {
-          "type": "notation_method",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -174,11 +170,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "path",
           "named": true
         }
       ]
@@ -253,10 +253,6 @@
           "named": true
         },
         {
-          "type": "notation_method",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -324,10 +320,6 @@
           "named": true
         },
         {
-          "type": "notation_method",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -386,9 +378,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "path",
+          "named": true
+        },
         {
           "type": "table",
           "named": true
@@ -451,10 +447,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation_method",
           "named": true
         },
         {
@@ -534,10 +526,6 @@
           "named": true
         },
         {
-          "type": "notation_method",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -588,11 +576,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "path",
           "named": true
         }
       ]
@@ -666,10 +658,6 @@
           "named": true
         },
         {
-          "type": "notation_method",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -699,101 +687,9 @@
     "fields": {}
   },
   {
-    "type": "method",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arguments",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "notation_method",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "method",
-          "named": true
-        },
-        {
-          "type": "object",
-          "named": true
-        },
-        {
-          "type": "path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "notation_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "method",
-          "named": true
-        },
-        {
-          "type": "object",
-          "named": true
-        },
-        {
-          "type": "path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "number",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "object",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "command",
-          "named": true
-        },
-        {
-          "type": "field",
-          "named": true
-        },
-        {
-          "type": "function",
-          "named": true
-        },
-        {
-          "type": "variable",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "operator",
@@ -801,13 +697,32 @@
     "fields": {}
   },
   {
+    "type": "parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "path",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "arguments",
+          "named": true
+        },
         {
           "type": "value",
           "named": true
@@ -830,10 +745,6 @@
       "types": [
         {
           "type": "field",
-          "named": true
-        },
-        {
-          "type": "notation_path",
           "named": true
         },
         {
@@ -890,10 +801,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation_method",
           "named": true
         },
         {
@@ -964,10 +871,6 @@
           "named": true
         },
         {
-          "type": "notation_method",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -1032,10 +935,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation_method",
           "named": true
         },
         {
@@ -1126,10 +1025,6 @@
           "named": true
         },
         {
-          "type": "notation_method",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -1157,7 +1052,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -1181,11 +1076,11 @@
           "named": true
         },
         {
-          "type": "notation_method",
+          "type": "number",
           "named": true
         },
         {
-          "type": "number",
+          "type": "path",
           "named": true
         },
         {
@@ -1225,6 +1120,10 @@
         },
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "path",
           "named": true
         },
         {
@@ -1289,10 +1188,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation_method",
           "named": true
         },
         {
@@ -1465,10 +1360,6 @@
   {
     "type": "^|",
     "named": false
-  },
-  {
-    "type": "parameter",
-    "named": true
   },
   {
     "type": "string",
