@@ -233,11 +233,11 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* command is same as constant */
     _command_suffix: $ => /:(c|C)[0-9]+/,
-    command: $ => prec(PREC.command, seq($._name, $._command_suffix, optional($.arguments))),
+    command: $ => prec.right(prec(PREC.command, seq($._name, $._command_suffix, optional($.arguments)))),
 
     /* constant */
     _constant_suffix: $ => /:(k|K)[0-9]+:[0-9]+/,
-    constant: $ => prec(PREC.constant, seq($._name, $._constant_suffix)),
+    constant: $ => prec.right(prec(PREC.constant, seq($._name, $._constant_suffix))),
 
     /* value (respect prec of each) */
     value: $ =>
@@ -270,9 +270,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
         $.command,
         $.formula,
         $.function,
-        $.variable,
-        $.field,
-        $._dereference,
+        $.reference,
         $._pointer)
       )
     ),
