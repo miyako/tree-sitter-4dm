@@ -1735,19 +1735,6 @@
         ]
       }
     },
-    "process_variable": {
-      "type": "PREC",
-      "value": 10,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_name"
-          }
-        ]
-      }
-    },
     "interprocess_variable": {
       "type": "PREC",
       "value": 10,
@@ -1771,10 +1758,6 @@
         {
           "type": "SYMBOL",
           "name": "local_variable"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "process_variable"
         },
         {
           "type": "SYMBOL",
