@@ -17,15 +17,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "function"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "command"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assignment"
+          "name": "value"
         },
         {
           "type": "SYMBOL",

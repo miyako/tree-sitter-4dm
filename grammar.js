@@ -21,9 +21,7 @@ module.exports = grammar({
     source: $ => repeat($._token),
     _token: $ => choice(
       $.comment,
-      $.function,
-      $.command,
-      $.assignment,
+      $.value,
       $.for_each_block,
       $.while_block,
       $.repeat_block,

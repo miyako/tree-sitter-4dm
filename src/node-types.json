@@ -39,25 +39,6 @@
     "fields": {}
   },
   {
-    "type": "assignment",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "assign",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "begin_sql",
     "named": true,
     "fields": {}
@@ -75,19 +56,11 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case",
           "named": true
         },
         {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -111,10 +84,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
@@ -128,6 +97,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -205,15 +178,7 @@
       "required": true,
       "types": [
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -237,10 +202,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
@@ -254,6 +215,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -272,15 +237,7 @@
       "required": true,
       "types": [
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -304,10 +261,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
@@ -321,6 +274,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -406,15 +363,7 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -438,10 +387,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
@@ -455,6 +400,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -482,15 +431,7 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -514,10 +455,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
@@ -535,6 +472,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -600,15 +541,7 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -632,10 +565,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if",
           "named": true
         },
@@ -653,6 +582,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -753,15 +686,7 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -774,10 +699,6 @@
         },
         {
           "type": "for_each_block",
-          "named": true
-        },
-        {
-          "type": "function",
           "named": true
         },
         {
@@ -805,6 +726,10 @@
           "named": true
         },
         {
+          "type": "value",
+          "named": true
+        },
+        {
           "type": "while_block",
           "named": true
         }
@@ -820,15 +745,7 @@
       "required": false,
       "types": [
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -841,10 +758,6 @@
         },
         {
           "type": "for_each_block",
-          "named": true
-        },
-        {
-          "type": "function",
           "named": true
         },
         {
@@ -864,6 +777,10 @@
           "named": true
         },
         {
+          "type": "value",
+          "named": true
+        },
+        {
           "type": "while_block",
           "named": true
         }
@@ -879,19 +796,11 @@
       "required": true,
       "types": [
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "begin_sql",
           "named": true
         },
         {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -911,10 +820,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
@@ -928,6 +833,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -970,15 +879,7 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -995,10 +896,6 @@
         },
         {
           "type": "for_each_block",
-          "named": true
-        },
-        {
-          "type": "function",
           "named": true
         },
         {
@@ -1019,6 +916,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
@@ -1140,15 +1041,7 @@
           "named": true
         },
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "case_block",
-          "named": true
-        },
-        {
-          "type": "command",
           "named": true
         },
         {
@@ -1168,10 +1061,6 @@
           "named": true
         },
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "if_block",
           "named": true
         },
@@ -1185,6 +1074,10 @@
         },
         {
           "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         },
         {
