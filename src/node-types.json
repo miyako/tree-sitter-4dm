@@ -170,15 +170,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
           "type": "arguments",
-          "named": true
-        },
-        {
-          "type": "path",
           "named": true
         }
       ]
@@ -576,15 +572,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
           "type": "arguments",
-          "named": true
-        },
-        {
-          "type": "path",
           "named": true
         }
       ]

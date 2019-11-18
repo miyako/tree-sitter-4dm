@@ -1579,13 +1579,6 @@
                   "type": "BLANK"
                 }
               ]
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "path"
-              }
             }
           ]
         }
@@ -1706,17 +1699,35 @@
                   "type": "BLANK"
                 }
               ]
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "path"
-              }
             }
           ]
         }
       }
+    },
+    "notation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "command"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "path"
+          }
+        }
+      ]
     },
     "local_variable": {
       "type": "PREC",

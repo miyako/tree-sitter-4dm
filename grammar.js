@@ -237,7 +237,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* command is same as constant */
     _command_suffix: $ => /:(c|C)[0-9]+/,
-    command: $ => prec(PREC.command, prec.right(seq($._name, $._command_suffix, optional($.arguments), repeat($.path)))),
+    command: $ => prec(PREC.command, prec.right(seq($._name, $._command_suffix, optional($.arguments)))),
 
     /* constant */
     _constant_suffix: $ => /:(k|K)[0-9]+:[0-9]+/,
@@ -266,7 +266,9 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       ),
 
     /* function */
-    function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments), repeat($.path)))),
+    function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments)))),
+
+    notation: /*test*/ $ => seq(choice($.command, $.function), repeat($.path)),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
