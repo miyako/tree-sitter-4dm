@@ -297,7 +297,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.field,
       $._pointer,
       $._dereference),
-      repeat1(choice($.method, $.path)))
+      repeat1(choice($.method, $.path))))
 
     /*
     TODO:

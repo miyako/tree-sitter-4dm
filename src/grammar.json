@@ -29,6 +29,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "notation"
+        },
+        {
+          "type": "SYMBOL",
           "name": "for_each_block"
         },
         {
@@ -1996,6 +2000,60 @@
                 ]
               }
             ]
+          }
+        ]
+      }
+    },
+    "notation": {
+      "type": "PREC",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "function"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "variable"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "field"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_pointer"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_dereference"
+              }
+            ]
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "method"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "path"
+                }
+              ]
+            }
           }
         ]
       }
