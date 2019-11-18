@@ -2,9 +2,9 @@ const PREC = {
   comment: -3,
   key: -2,
   operator: -1,
-  formula: 4, assignment: 4,
-  value: 5, parameter: 5,
-  command: 6, constant: 6, structure: 6,
+  formula: 3, assignment: 3,
+  value: 4, parameter: 4,
+  command: 6, constant: 6, structure: 6, object: 6,
   notation: 7,
   reference: 8, function: 8,
   variable: 9,
@@ -264,13 +264,15 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       )
     ),
 
-    object: $ => prec(PREC.reference,
+    object: $ => prec(PREC.object,
       prec.right(
         choice(
         $.command,
         $.formula,
         $.function,
-        $.reference,
+        $.variable,
+        $.field,
+        $._dereference,
         $._pointer)
       )
     ),

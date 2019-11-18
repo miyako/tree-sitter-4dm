@@ -739,15 +739,15 @@
           "named": true
         },
         {
+          "type": "field",
+          "named": true
+        },
+        {
           "type": "formula",
           "named": true
         },
         {
           "type": "function",
-          "named": true
-        },
-        {
-          "type": "reference",
           "named": true
         },
         {
