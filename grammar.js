@@ -11,7 +11,7 @@ const PREC = {
   function: 6,
 
   path: 8,
-  reference: 9,
+  dereference: 9,
   variable: 10,
   identifier: 11
 }
@@ -200,8 +200,9 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       seq(/[A-Za-z_]/, /[A-Za-z_ 0-9]+/, /[A-Za-z_0-9]/)
     )),
 
-    _dereference: $ => seq($.variable, '->'),
-    _pointer: $ => prec.right(seq('->', $.variable, repeat($.path))),
+    _dereference: $ => prec(PREC.dereference, seq($.variable, '->')),
+    _pointer: $ => prec.right(seq('->', $.variable,
+    repeat(seq(choice($.property, $.method))))),
 
     /* expose, to tokenise formula */
     operator: $ => prec(PREC.operator,
@@ -224,7 +225,8 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     formula: $ => prec(PREC.formula, prec.left(seq($.value, $.operator, $.value))),
 
     /* parameter is same as value */
-    parameter: $ => prec(PREC.parameter, prec.right(seq('$', /[0-9]+/, repeat($.path)))),
+    parameter: $ => prec(PREC.parameter, prec.right(seq('$', /[0-9]+/,
+    repeat(seq(choice($.property, $.method)))))),
 
     /* structure */
     _storage_suffix: $ => /:[0-9]+/,
@@ -232,7 +234,8 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       seq('[', $._name, optional($._storage_suffix), ']')
     ),
     field: $ => prec(PREC.structure,
-      prec.right(seq('[', $.table, $._name, optional($._storage_suffix), repeat($.path)))
+      prec.right(seq('[', $.table, $._name, optional($._storage_suffix),
+      repeat(seq(choice($.property, $.method)))))
     ),
 
     /* command is same as constant */
@@ -253,22 +256,23 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.command,
       $.formula,
       $.function,
-      $.reference,
+      // $.reference,
+      $.variable,
+      $.field,
+      $._dereference,
       $._pointer,
       $.constant),
 
     /* reference is same as function */
-    reference: $ => prec(PREC.reference,
-        choice(
-        $.variable,
-        $.field,
-        $._dereference)
-      ),
+    // reference: $ => prec(PREC.reference,
+    //     choice(
+    //     $.variable,
+    //     $.field,
+    //     $._dereference)
+    //   ),
 
     /* function */
     function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments)))),
-
-    notation: /*test*/ $ => seq(choice($.command, $.function), repeat($.path)),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
@@ -280,15 +284,16 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       choice($._variable, $.parameter),
       seq(choice($._variable, $.parameter), '[', $.value, ']'),
       seq(choice($._variable, $.parameter), '{', $.value, '}'),
-      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))), repeat($.path)))
+      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))),
+      repeat(seq(choice($.property, $.method)))))
       ),
 
-    assign: $ => prec(PREC.operator, ':='),
-
     /* assignment should need no priorty */
-    assignment: $ => seq($.reference, $.assign, $.value),
+    assign: $ => prec(PREC.operator, ':='),
+    assignment: $ => seq($.value, $.assign, $.value),
 
-    path: $ => prec(PREC.path, seq(choice(seq('.', $._name), seq('[', $.value, ']')), optional($.arguments))),
+    property: $ => prec(PREC.path, seq(choice(seq('.', $._name), seq('[', $.value, ']')))),
+    method: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']')), $.arguments))),
 
     /*
     TODO:
