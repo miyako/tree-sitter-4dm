@@ -292,7 +292,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     assign: $ => prec(PREC.operator, ':='),
     assignment: $ => seq($.value, $.assign, $.value),
 
-    property: $ => prec(PREC.path, seq(choice(seq('.', $._name), seq('[', $.value, ']')))),
+    property: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']'))))),
     method: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']')), $.arguments))),
 
     /*
