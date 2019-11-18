@@ -2,7 +2,7 @@ const PREC = {
   comment: -4,
   key: -3,
   operator: -2,
-  notation: 3,
+  notation: 1,
   formula: 3, assignment: 3,
   value: 4, parameter: 4,
   command: 5, constant: 5, structure: 5,
