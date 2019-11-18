@@ -266,11 +266,11 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     ),
 
     /* function */
-    function: $ => prec(PREC.function, seq($._name, optional($.arguments))),
+    function: $ => prec.left(prec(PREC.function, seq($._name, optional($.arguments)))),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
-    process_variable: $ => prec(PREC.variable, seq($._name)),
+    process_variable: $ => prec.left(prec(PREC.variable, seq($._name))),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
     variable: $ => prec(PREC.variable, prec.left(choice(

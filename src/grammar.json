@@ -1700,16 +1700,20 @@
       }
     },
     "process_variable": {
-      "type": "PREC",
-      "value": 9,
+      "type": "PREC_LEFT",
+      "value": 0,
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_name"
-          }
-        ]
+        "type": "PREC",
+        "value": 9,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_name"
+            }
+          ]
+        }
       }
     },
     "interprocess_variable": {
