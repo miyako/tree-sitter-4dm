@@ -29,6 +29,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "notation_method"
+        },
+        {
+          "type": "SYMBOL",
           "name": "for_each_block"
         },
         {
@@ -1404,7 +1408,7 @@
     },
     "formula": {
       "type": "PREC",
-      "value": 3,
+      "value": 1,
       "content": {
         "type": "PREC_LEFT",
         "value": 0,
@@ -1429,7 +1433,7 @@
     },
     "parameter": {
       "type": "PREC",
-      "value": 4,
+      "value": 2,
       "content": {
         "type": "TOKEN",
         "content": {
@@ -1613,6 +1617,10 @@
         {
           "type": "SYMBOL",
           "name": "constant"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "notation_method"
         }
       ]
     },
@@ -1631,18 +1639,51 @@
             },
             {
               "type": "SYMBOL",
-              "name": "path"
-            },
-            {
-              "type": "SYMBOL",
               "name": "field"
             },
             {
               "type": "SYMBOL",
               "name": "_dereference"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "notation_path"
             }
           ]
         }
+      }
+    },
+    "object": {
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "command"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "function"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "variable"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "field"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_pointer"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_dereference"
+          }
+        ]
       }
     },
     "function": {
@@ -1988,6 +2029,68 @@
                 ]
               }
             ]
+          }
+        ]
+      }
+    },
+    "notation_path": {
+      "type": "PREC",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "object"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "method"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "path"
+                }
+              ]
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "path"
+          }
+        ]
+      }
+    },
+    "notation_method": {
+      "type": "PREC",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "object"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "method"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "path"
+                }
+              ]
+            }
           }
         ]
       }

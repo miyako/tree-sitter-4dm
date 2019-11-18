@@ -2,9 +2,11 @@ const PREC = {
   comment: -4,
   key: -3,
   operator: -2,
-  notation: 1,
-  formula: 3, assignment: 3,
-  value: 4, parameter: 4,
+
+  formula: 1, assignment: 1,
+  value: 2, parameter: 2,
+  notation: 3,
+  object: 4,
   command: 5, constant: 5, structure: 5,
   method: 6,
   path: 7,
@@ -21,7 +23,7 @@ module.exports = grammar({
       $.function,
       $.command,
       $.assignment,
-      // $.notation,
+      $.notation_method,
       $.for_each_block,
       $.while_block,
       $.repeat_block,
@@ -253,16 +255,27 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.function,
       $.reference,
       $._pointer,
-      $.constant),
+      $.constant,
+      $.notation_method),
 
     /* reference is same as function */
     reference: $ => prec.left(prec(PREC.reference,
         choice(
         $.variable,
-        $.path,
         $.field,
-        $._dereference)
+        $._dereference,
+        $.notation_path)
       )
+    ),
+
+    object: $ => prec(PREC.object,
+      choice(
+      $.command,
+      $.function,
+      $.variable,
+      $.field,
+      $._pointer,
+      $._dereference)
     ),
 
     /* function */
@@ -290,14 +303,14 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     path: $ => prec(PREC.path,
       seq(choice(seq('.', $._name), seq('[', $.value, ']')))),
 
-    // notation: $ => prec(PREC.notation, seq(choice(
-    //   $.command,
-    //   $.function,
-    //   $.variable,
-    //   $.field,
-    //   $._pointer,
-    //   $._dereference),
-    //   repeat1(choice($.method, $.path))))
+    notation_path: $ => prec(PREC.notation,
+      seq($.object,
+      repeat(choice($.method, $.path)),
+      $.path)),
+
+    notation_method: $ => prec(PREC.notation,
+      seq($.object,
+      repeat1(choice($.method, $.path)))),
 
     /*
     TODO:
