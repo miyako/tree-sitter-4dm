@@ -265,12 +265,12 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     ),
 
     object: $ => prec(PREC.reference,
-      prec.left(
+      prec.right(
         choice(
-        $.reference,
         $.command,
         $.formula,
         $.function,
+        $.reference,
         $._pointer)
       )
     ),
@@ -301,7 +301,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       optional($.arguments)
       )
     )
-    
+
     /*
     TODO:
     else block folding

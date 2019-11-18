@@ -1653,15 +1653,11 @@
       "type": "PREC",
       "value": 8,
       "content": {
-        "type": "PREC_LEFT",
+        "type": "PREC_RIGHT",
         "value": 0,
         "content": {
           "type": "CHOICE",
           "members": [
-            {
-              "type": "SYMBOL",
-              "name": "reference"
-            },
             {
               "type": "SYMBOL",
               "name": "command"
@@ -1673,6 +1669,10 @@
             {
               "type": "SYMBOL",
               "name": "function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "reference"
             },
             {
               "type": "SYMBOL",
