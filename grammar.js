@@ -2,6 +2,7 @@ const PREC = {
   comment: -4,
   key: -3,
   operator: -2,
+  notation: 3,
   formula: 3, assignment: 3,
   value: 4, parameter: 4,
   command: 5, constant: 5, structure: 5,
@@ -20,6 +21,7 @@ module.exports = grammar({
       $.function,
       $.command,
       $.assignment,
+      $.notation,
       $.for_each_block,
       $.while_block,
       $.repeat_block,
@@ -287,6 +289,15 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     path: $ => prec(PREC.path,
       seq(choice(seq('.', $._name), seq('[', $.value, ']')))),
+
+    notation: $ => prec(PREC.notation, seq(choice(
+      $.command,
+      $.function,
+      $.variable,
+      $.field,
+      $._pointer,
+      $._dereference),
+      repeat1(choice($.method, $.path)))
 
     /*
     TODO:
