@@ -8,11 +8,12 @@ const PREC = {
   notation: 3,
   object: 4,
   command: 5, constant: 5, structure: 5,
-  method: 6,
-  path: 7,
-  reference: 8, function: 8,
-  variable: 9,
-  identifier: 10
+  function: 6,
+  method: 7,
+  path: 8,
+  reference: 9,
+  variable: 10,
+  identifier: 11
 }
 module.exports = grammar({
   name: 'fourd',
@@ -237,11 +238,11 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* command is same as constant */
     _command_suffix: $ => /:(c|C)[0-9]+/,
-    command: $ => prec.right(prec(PREC.command, seq($._name, $._command_suffix, optional($.arguments)))),
+    command: $ => prec(PREC.command, prec.right(seq($._name, $._command_suffix, optional($.arguments)))),
 
     /* constant */
     _constant_suffix: $ => /:(k|K)[0-9]+:[0-9]+/,
-    constant: $ => prec.right(prec(PREC.constant, seq($._name, $._constant_suffix))),
+    constant: $ => prec(PREC.constant, prec.right(seq($._name, $._constant_suffix))),
 
     /* value (respect prec of each) */
     value: $ =>
@@ -259,14 +260,13 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.notation_method),
 
     /* reference is same as function */
-    reference: $ => prec.left(prec(PREC.reference,
+    reference: $ => prec(PREC.reference,
         choice(
         $.variable,
         $.field,
         $._dereference,
         $.notation_path)
-      )
-    ),
+      ),
 
     object: $ => prec(PREC.object,
       choice(
@@ -279,11 +279,11 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     ),
 
     /* function */
-    function: $ => prec.right(prec(PREC.function, seq($._name, $.arguments))),
+    function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments)))),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
-    process_variable: $ => prec.left(prec(PREC.variable, seq($._name))),
+    process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
     variable: $ => prec(PREC.variable, prec.left(choice(

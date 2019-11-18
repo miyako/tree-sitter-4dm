@@ -1526,11 +1526,11 @@
       "value": ":(c|C)[0-9]+"
     },
     "command": {
-      "type": "PREC_RIGHT",
-      "value": 0,
+      "type": "PREC",
+      "value": 5,
       "content": {
-        "type": "PREC",
-        "value": 5,
+        "type": "PREC_RIGHT",
+        "value": 0,
         "content": {
           "type": "SEQ",
           "members": [
@@ -1563,11 +1563,11 @@
       "value": ":(k|K)[0-9]+:[0-9]+"
     },
     "constant": {
-      "type": "PREC_RIGHT",
-      "value": 0,
+      "type": "PREC",
+      "value": 5,
       "content": {
-        "type": "PREC",
-        "value": 5,
+        "type": "PREC_RIGHT",
+        "value": 0,
         "content": {
           "type": "SEQ",
           "members": [
@@ -1633,32 +1633,28 @@
       ]
     },
     "reference": {
-      "type": "PREC_LEFT",
-      "value": 0,
+      "type": "PREC",
+      "value": 9,
       "content": {
-        "type": "PREC",
-        "value": 8,
-        "content": {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "variable"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "field"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_dereference"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "notation_path"
-            }
-          ]
-        }
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "variable"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "field"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_dereference"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "notation_path"
+          }
+        ]
       }
     },
     "object": {
@@ -1695,11 +1691,11 @@
       }
     },
     "function": {
-      "type": "PREC_RIGHT",
-      "value": 0,
+      "type": "PREC",
+      "value": 6,
       "content": {
-        "type": "PREC",
-        "value": 8,
+        "type": "PREC_RIGHT",
+        "value": 0,
         "content": {
           "type": "SEQ",
           "members": [
@@ -1708,8 +1704,16 @@
               "name": "_name"
             },
             {
-              "type": "SYMBOL",
-              "name": "arguments"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "arguments"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         }
@@ -1717,7 +1721,7 @@
     },
     "local_variable": {
       "type": "PREC",
-      "value": 9,
+      "value": 10,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1733,25 +1737,21 @@
       }
     },
     "process_variable": {
-      "type": "PREC_LEFT",
-      "value": 0,
+      "type": "PREC",
+      "value": 10,
       "content": {
-        "type": "PREC",
-        "value": 9,
-        "content": {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_name"
-            }
-          ]
-        }
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_name"
+          }
+        ]
       }
     },
     "interprocess_variable": {
       "type": "PREC",
-      "value": 9,
+      "value": 10,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1785,7 +1785,7 @@
     },
     "variable": {
       "type": "PREC",
-      "value": 9,
+      "value": 10,
       "content": {
         "type": "PREC_LEFT",
         "value": 0,
@@ -1951,7 +1951,7 @@
     },
     "method": {
       "type": "PREC",
-      "value": 6,
+      "value": 7,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1999,7 +1999,7 @@
     },
     "path": {
       "type": "PREC",
-      "value": 7,
+      "value": 8,
       "content": {
         "type": "SEQ",
         "members": [
