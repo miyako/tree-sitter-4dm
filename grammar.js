@@ -270,7 +270,9 @@ case: $ => seq(':', $.arguments, repeat($._token)),
         $.command,
         $.formula,
         $.function,
-        $.reference,
+        $.variable,
+        $.field,
+        $._dereference,
         $._pointer)
       )
     ),
