@@ -21,6 +21,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "assignment"
+        },
+        {
+          "type": "SYMBOL",
           "name": "for_each_block"
         },
         {

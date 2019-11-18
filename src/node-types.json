@@ -39,6 +39,25 @@
     "fields": {}
   },
   {
+    "type": "assignment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assign",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "begin_sql",
     "named": true,
     "fields": {}
@@ -53,6 +72,10 @@
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         },
         {
@@ -178,6 +201,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "case_block",
           "named": true
         },
@@ -236,6 +263,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
         {
           "type": "case_block",
           "named": true
@@ -363,6 +394,10 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "case_block",
           "named": true
         },
@@ -428,6 +463,10 @@
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         },
         {
@@ -538,6 +577,10 @@
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         },
         {
@@ -686,6 +729,10 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "case_block",
           "named": true
         },
@@ -745,6 +792,10 @@
       "required": false,
       "types": [
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "case_block",
           "named": true
         },
@@ -795,6 +846,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
         {
           "type": "begin_sql",
           "named": true
@@ -876,6 +931,10 @@
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         },
         {
@@ -1038,6 +1097,10 @@
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         },
         {

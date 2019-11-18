@@ -22,6 +22,7 @@ module.exports = grammar({
     _token: $ => choice(
       $.comment,
       $.value,
+      $.assignment,
       $.for_each_block,
       $.while_block,
       $.repeat_block,
@@ -254,20 +255,11 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.command,
       $.formula,
       $.function,
-      // $.reference,
       $.variable,
       $.field,
       $._dereference,
       $._pointer,
       $.constant),
-
-    /* reference is same as function */
-    // reference: $ => prec(PREC.reference,
-    //     choice(
-    //     $.variable,
-    //     $.field,
-    //     $._dereference)
-    //   ),
 
     /* function */
     function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments)))),
