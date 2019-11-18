@@ -1626,6 +1626,27 @@
                   "type": "BLANK"
                 }
               ]
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "property"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "method"
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           ]
         }
@@ -1733,6 +1754,27 @@
                   "type": "BLANK"
                 }
               ]
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "property"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "method"
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           ]
         }
@@ -1748,6 +1790,19 @@
             "type": "STRING",
             "value": "$"
           },
+          {
+            "type": "SYMBOL",
+            "name": "_name"
+          }
+        ]
+      }
+    },
+    "process_variable": {
+      "type": "PREC",
+      "value": 10,
+      "content": {
+        "type": "SEQ",
+        "members": [
           {
             "type": "SYMBOL",
             "name": "_name"
@@ -1778,6 +1833,10 @@
         {
           "type": "SYMBOL",
           "name": "local_variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "process_variable"
         },
         {
           "type": "SYMBOL",

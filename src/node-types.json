@@ -162,11 +162,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "method",
+          "named": true
+        },
+        {
+          "type": "property",
           "named": true
         }
       ]
@@ -552,11 +560,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "method",
+          "named": true
+        },
+        {
+          "type": "property",
           "named": true
         }
       ]
@@ -695,6 +711,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "process_variable",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "property",
@@ -1069,6 +1090,10 @@
         },
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "process_variable",
           "named": true
         },
         {

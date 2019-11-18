@@ -239,7 +239,12 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* command is same as constant */
     _command_suffix: $ => /:(c|C)[0-9]+/,
-    command: $ => prec(PREC.command, prec.right(seq($._name, $._command_suffix, optional($.arguments)))),
+    command: $ => prec(PREC.command, prec.right(seq(
+      $._name,
+      $._command_suffix,
+      optional($.arguments),
+      repeat(seq(choice($.property, $.method)))))
+    ),
 
     /* constant */
     _constant_suffix: $ => /:(k|K)[0-9]+:[0-9]+/,
@@ -259,16 +264,21 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.field,
       $._dereference,
       $._pointer,
-      $.constant),
+      $.constant
+    ),
 
     /* function */
-    function: $ => prec(PREC.function, prec.right(seq($._name, optional($.arguments)))),
+    function: $ => prec(PREC.function, prec.right(seq(
+      $._name,
+      optional($.arguments),
+      repeat(seq(choice($.property, $.method)))))
+    ),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
-    /*process_variable: $ => prec(PREC.variable, seq($._name)),*/
+    process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
-    _variable: $ => choice($.local_variable, /*$.process_variable,*/ $.interprocess_variable),
+    _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
 
     variable: $ => prec(PREC.variable, prec.left(seq(choice(
       choice($._variable, $.parameter),
@@ -276,7 +286,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       seq(choice($._variable, $.parameter), '{', $.value, '}'),
       seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))),
       repeat(seq(choice($.property, $.method)))))
-      ),
+    ),
 
     /* assignment should need no priorty */
     assign: $ => prec(PREC.operator, ':='),
