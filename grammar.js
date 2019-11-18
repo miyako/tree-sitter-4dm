@@ -214,13 +214,15 @@ module.exports = grammar({
 
     /* expose, to tokenise formula */
     _operator: $ => prec(PREC.operator,
-      choice(
-        '*', '/', '+', '-',
-        '%', '\\', '&', '|',
-        '^', '^|',
-        '<<', '>>',
-        '<', '>', '<=', '>=', '=', '#',
-        '??', '?-', '?+'
+      prec.right(
+        choice(
+          '*', '/', '+', '-',
+          '%', '\\', '&', '|',
+          '^', '^|',
+          '<<', '>>',
+          '<', '>', '<=', '>=', '=', '#',
+          '??', '?-', '?+'
+        )
       )
     ),
 
@@ -234,7 +236,7 @@ module.exports = grammar({
 
     /* parameter is same as value */
     parameter: $ => prec(PREC.parameter, prec.right(seq('$', /[0-9]+/,
-    repeat(seq(choice($.property, $.method)))))),
+    prec.right(repeat(seq(choice($.property, $.method))))))),
 
     /* structure */
     _storage_suffix: $ => /:[0-9]+/,
@@ -252,7 +254,7 @@ module.exports = grammar({
       $._name,
       $._command_suffix,
       optional($.arguments),
-      repeat(seq(choice($.property, $.method)))))
+      prec.right(repeat(seq(choice($.property, $.method))))))
     ),
 
     /* constant */
@@ -282,7 +284,7 @@ module.exports = grammar({
     function: $ => prec(PREC.function, prec.right(seq(
       $._name,
       optional($.arguments),
-      repeat(seq(choice($.property, $.method)))))
+      prec.right(repeat(seq(choice($.property, $.method))))))
     ),
 
     /* variable */
@@ -292,13 +294,13 @@ module.exports = grammar({
 
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
 
-    variable: $ => prec(PREC.variable, prec.left(seq(choice(
+    variable: $ => prec(PREC.variable, prec.right(seq(choice(
       choice($._variable, $.parameter),
-      /*seq(choice($._variable, $.parameter), '[', $.value, ']'),*/
-      // seq(choice($._variable, $.parameter), '{', $.value, '}'),
-      // seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))
+      seq(choice($._variable, $.parameter), '[', $.value, ']'),
+      seq(choice($._variable, $.parameter), '{', $.value, '}'),
+      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))
     ),
-      repeat(seq(choice($.property, $.method)))))
+      prec.right(repeat(seq(choice($.property, $.method))))))
     ),
 
     /* assignment should need no priorty */

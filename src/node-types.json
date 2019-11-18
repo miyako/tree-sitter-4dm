@@ -1081,6 +1081,10 @@
         {
           "type": "property",
           "named": true
+        },
+        {
+          "type": "value",
+          "named": true
         }
       ]
     }
@@ -1282,11 +1286,19 @@
     "named": false
   },
   {
+    "type": "[[",
+    "named": false
+  },
+  {
     "type": "\\",
     "named": false
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "]]",
     "named": false
   },
   {
@@ -1302,7 +1314,15 @@
     "named": true
   },
   {
+    "type": "{",
+    "named": false
+  },
+  {
     "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   }
 ]
