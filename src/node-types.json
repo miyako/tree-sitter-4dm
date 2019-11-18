@@ -772,15 +772,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
+        {
+          "type": "arguments",
+          "named": true
+        },
         {
           "type": "field",
           "named": true
         },
         {
-          "type": "notation",
+          "type": "value",
           "named": true
         },
         {

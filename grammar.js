@@ -4,7 +4,8 @@ const PREC = {
   operator: -1,
   formula: 3, assignment: 3,
   value: 4, parameter: 4,
-  command: 6, constant: 6, structure: 6, object: 6,
+  command: 5, constant: 5, structure: 5,
+  object: 6,
   notation: 7,
   reference: 8, function: 8,
   variable: 9,
@@ -254,18 +255,16 @@ case: $ => seq(':', $.arguments, repeat($._token)),
       $.constant),
 
     /* reference is same as function */
-    reference: $ => prec(PREC.reference,
-      prec.left(
+    reference: $ => prec.left(prec(PREC.reference,
         choice(
         $.variable,
-        $.notation,
+        $._notation,
         $.field,
         $._dereference)
       )
     ),
 
     object: $ => prec(PREC.object,
-      prec.right(
         choice(
         $.command,
         $.formula,
@@ -274,7 +273,6 @@ case: $ => seq(':', $.arguments, repeat($._token)),
         $.field,
         $._dereference,
         $._pointer)
-      )
     ),
 
     /* function */
@@ -296,12 +294,11 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     /* assignment should need no priorty */
     assignment: $ => seq($.reference, $.assign, $.value),
 
-    _notation: $ => prec(PREC.notation,
+    _notation: $ =>
       seq(choice(seq('.', $._name), seq('[', $.value, ']')),
-      optional($.arguments))),
+      optional($.arguments)),
 
-    notation: $ =>
-      seq($.object, $._notation)
+    notation: $ => seq($.object, $._notation)
 
     /*
     TODO:
