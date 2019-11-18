@@ -270,18 +270,16 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
-    // process_variable: $ => prec(PREC.variable, seq($._name)),
+    process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
-    _variable: $ => choice($.local_variable, /*$.process_variable,*/ $.interprocess_variable),
+    _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
 
-    variable: $ => prec(PREC.variable, $.parameter),
-
-    // variable: $ => prec(PREC.variable, prec.left(seq(choice(
-    //   choice($._variable, $.parameter),
-    //   seq(choice($._variable, $.parameter), '[', $.value, ']'),
-    //   seq(choice($._variable, $.parameter), '{', $.value, '}'),
-    //   seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))), repeat($.path)))
-    //   ),
+    variable: $ => prec(PREC.variable, prec.left(seq(choice(
+      choice($._variable, $.parameter),
+      seq(choice($._variable, $.parameter), '[', $.value, ']'),
+      seq(choice($._variable, $.parameter), '{', $.value, '}'),
+      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))), repeat($.path)))
+      ),
 
     assign: $ => prec(PREC.operator, ':='),
 
