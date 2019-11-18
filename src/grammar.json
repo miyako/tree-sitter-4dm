@@ -1953,16 +1953,12 @@
         }
       ]
     },
-    "notation": {
+    "_notation": {
       "type": "PREC",
       "value": 7,
       "content": {
         "type": "SEQ",
         "members": [
-          {
-            "type": "SYMBOL",
-            "name": "object"
-          },
           {
             "type": "CHOICE",
             "members": [
@@ -2012,6 +2008,19 @@
           }
         ]
       }
+    },
+    "notation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "object"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_notation"
+        }
+      ]
     }
   },
   "extras": [

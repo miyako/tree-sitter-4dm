@@ -296,13 +296,12 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     /* assignment should need no priorty */
     assignment: $ => seq($.reference, $.assign, $.value),
 
-    notation: $ => prec(PREC.notation,
-      seq(
-      $.object,
-      choice(seq('.', $._name), seq('[', $.value, ']')),
-      optional($.arguments)
-      )
-    )
+    _notation: $ => prec(PREC.notation,
+      seq(choice(seq('.', $._name), seq('[', $.value, ']')),
+      optional($.arguments))),
+
+    notation: $ =>
+      seq($.object, $._notation)
 
     /*
     TODO:
