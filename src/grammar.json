@@ -1657,15 +1657,6 @@
         }
       }
     },
-    "object": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "command"
-        }
-      ]
-    },
     "function": {
       "type": "PREC",
       "value": 8,
@@ -1988,26 +1979,6 @@
                 {
                   "type": "SYMBOL",
                   "name": "command"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "formula"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "function"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "field"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_dereference"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_pointer"
                 }
               ]
             },

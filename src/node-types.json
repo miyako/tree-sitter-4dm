@@ -715,23 +715,7 @@
           "named": true
         },
         {
-          "type": "field",
-          "named": true
-        },
-        {
-          "type": "formula",
-          "named": true
-        },
-        {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "value",
-          "named": true
-        },
-        {
-          "type": "variable",
           "named": true
         }
       ]
