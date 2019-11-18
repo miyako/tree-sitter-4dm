@@ -108,8 +108,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "if"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "if"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "arguments"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -451,10 +460,6 @@
                 "name": "_if_f"
               }
             ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "arguments"
           }
         ]
       }

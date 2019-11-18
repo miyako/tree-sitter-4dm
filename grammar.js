@@ -43,7 +43,7 @@ module.exports = grammar({
     ),
 
     if_block: $ => seq(
-      $.if,
+      seq($.if, $.arguments),
       repeat($._token),
       choice($.else_if_block, $.end_if)),
 
@@ -104,7 +104,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     _if_e: $ => /(i|I)(f|F)/,
     _if_f: $ => /(s|S)(i|I)/,
-    if   : $ => prec(PREC.key, seq(choice($._if_e, $._if_f), $.arguments)),
+    if   : $ => prec(PREC.key, seq(choice($._if_e, $._if_f))),
 
     _else_e: $ => /(e|E)(l|L)(s|S)(e|E)/,
     _else_f: $ => /(s|S)(i|I)(n|N)(o|O)(n|N)/,
