@@ -1334,6 +1334,10 @@
     "named": false
   },
   {
+    "type": "seq($._name)",
+    "named": false
+  },
+  {
     "type": "string",
     "named": true
   },

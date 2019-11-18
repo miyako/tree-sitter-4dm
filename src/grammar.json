@@ -1739,13 +1739,8 @@
       "type": "PREC",
       "value": 10,
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_name"
-          }
-        ]
+        "type": "STRING",
+        "value": "seq($._name)"
       }
     },
     "interprocess_variable": {
