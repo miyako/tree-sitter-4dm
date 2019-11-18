@@ -29,10 +29,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "notation"
-        },
-        {
-          "type": "SYMBOL",
           "name": "for_each_block"
         },
         {
@@ -1543,16 +1539,8 @@
               "name": "_command_suffix"
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "arguments"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "arguments"
             }
           ]
         }
@@ -1658,28 +1646,24 @@
       }
     },
     "function": {
-      "type": "PREC",
-      "value": 8,
+      "type": "PREC_RIGHT",
+      "value": 0,
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_name"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "arguments"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
+        "type": "PREC",
+        "value": 8,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "arguments"
+            }
+          ]
+        }
       }
     },
     "local_variable": {
@@ -2004,60 +1988,6 @@
                 ]
               }
             ]
-          }
-        ]
-      }
-    },
-    "notation": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "function"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "variable"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "field"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_pointer"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_dereference"
-              }
-            ]
-          },
-          {
-            "type": "REPEAT1",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "method"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "path"
-                }
-              ]
-            }
           }
         ]
       }

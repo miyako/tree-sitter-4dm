@@ -123,10 +123,6 @@
           "named": true
         },
         {
-          "type": "notation",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -175,7 +171,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "arguments",
@@ -253,10 +249,6 @@
           "named": true
         },
         {
-          "type": "notation",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -321,10 +313,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation",
           "named": true
         },
         {
@@ -454,10 +442,6 @@
           "named": true
         },
         {
-          "type": "notation",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -534,10 +518,6 @@
           "named": true
         },
         {
-          "type": "notation",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -589,7 +569,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "arguments",
@@ -666,10 +646,6 @@
           "named": true
         },
         {
-          "type": "notation",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -697,60 +673,6 @@
     "type": "local_variable",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "method",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arguments",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "notation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "command",
-          "named": true
-        },
-        {
-          "type": "field",
-          "named": true
-        },
-        {
-          "type": "function",
-          "named": true
-        },
-        {
-          "type": "method",
-          "named": true
-        },
-        {
-          "type": "path",
-          "named": true
-        },
-        {
-          "type": "variable",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "number",
@@ -855,10 +777,6 @@
           "named": true
         },
         {
-          "type": "notation",
-          "named": true
-        },
-        {
           "type": "repeat",
           "named": true
         },
@@ -926,10 +844,6 @@
           "named": true
         },
         {
-          "type": "notation",
-          "named": true
-        },
-        {
           "type": "repeat_block",
           "named": true
         },
@@ -994,10 +908,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation",
           "named": true
         },
         {
@@ -1085,10 +995,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation",
           "named": true
         },
         {
@@ -1247,10 +1153,6 @@
         },
         {
           "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "notation",
           "named": true
         },
         {

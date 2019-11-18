@@ -21,7 +21,7 @@ module.exports = grammar({
       $.function,
       $.command,
       $.assignment,
-      $.notation,
+      // $.notation,
       $.for_each_block,
       $.while_block,
       $.repeat_block,
@@ -235,7 +235,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* command is same as constant */
     _command_suffix: $ => /:(c|C)[0-9]+/,
-    command: $ => prec.right(prec(PREC.command, seq($._name, $._command_suffix, optional($.arguments)))),
+    command: $ => prec.right(prec(PREC.command, seq($._name, $._command_suffix, $.arguments))),
 
     /* constant */
     _constant_suffix: $ => /:(k|K)[0-9]+:[0-9]+/,
@@ -266,7 +266,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     ),
 
     /* function */
-    function: $ => prec.left(prec(PREC.function, seq($._name, optional($.arguments)))),
+    function: $ => prec.right(prec(PREC.function, seq($._name, $.arguments))),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
@@ -290,14 +290,14 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     path: $ => prec(PREC.path,
       seq(choice(seq('.', $._name), seq('[', $.value, ']')))),
 
-    notation: $ => prec(PREC.notation, seq(choice(
-      $.command,
-      $.function,
-      $.variable,
-      $.field,
-      $._pointer,
-      $._dereference),
-      repeat1(choice($.method, $.path))))
+    // notation: $ => prec(PREC.notation, seq(choice(
+    //   $.command,
+    //   $.function,
+    //   $.variable,
+    //   $.field,
+    //   $._pointer,
+    //   $._dereference),
+    //   repeat1(choice($.method, $.path))))
 
     /*
     TODO:
