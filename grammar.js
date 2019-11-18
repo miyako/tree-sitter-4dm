@@ -282,7 +282,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     variable: $ => prec(PREC.variable, prec.left(seq(choice(
       choice($._variable, $.parameter),
-      seq(choice($._variable, $.parameter), '[', $.value, ']'),
+      /*seq(choice($._variable, $.parameter), '[', $.value, ']'),*/
       seq(choice($._variable, $.parameter), '{', $.value, '}'),
       seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))),
       repeat(seq(choice($.property, $.method)))))
