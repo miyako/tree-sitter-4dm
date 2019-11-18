@@ -34,11 +34,6 @@
     }
   },
   {
-    "type": "assign",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "assignment",
     "named": true,
     "fields": {},
@@ -46,10 +41,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "assign",
-          "named": true
-        },
         {
           "type": "value",
           "named": true
@@ -545,10 +536,6 @@
       "required": true,
       "types": [
         {
-          "type": "operator",
-          "named": true
-        },
-        {
           "type": "value",
           "named": true
         }
@@ -685,11 +672,6 @@
   },
   {
     "type": "number",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "operator",
     "named": true,
     "fields": {}
   },
@@ -1099,10 +1081,6 @@
         {
           "type": "property",
           "named": true
-        },
-        {
-          "type": "value",
-          "named": true
         }
       ]
     }
@@ -1304,19 +1282,11 @@
     "named": false
   },
   {
-    "type": "[[",
-    "named": false
-  },
-  {
     "type": "\\",
     "named": false
   },
   {
     "type": "]",
-    "named": false
-  },
-  {
-    "type": "]]",
     "named": false
   },
   {
@@ -1332,15 +1302,7 @@
     "named": true
   },
   {
-    "type": "{",
-    "named": false
-  },
-  {
     "type": "|",
-    "named": false
-  },
-  {
-    "type": "}",
     "named": false
   }
 ]

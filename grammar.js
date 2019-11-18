@@ -5,10 +5,10 @@ const PREC = {
 
   formula: 1, assignment: 1,
   value: 2, parameter: 2,
-
-  path: 4,
-  command: 5, constant: 5, structure: 5,
-  function: 6,
+  path: 3,
+  function: 4,
+  command: 5, constant: 5,
+  structure: 6,
 
 
   dereference: 9,
@@ -30,7 +30,8 @@ module.exports = grammar({
       $.for_block,
       $.use_block,
       $.sql_block,
-      $.case_block),
+      $.case_block
+    ),
 
     comment: $ => choice(
         prec(PREC.comment,seq('//', /.*/)),
@@ -44,62 +45,64 @@ module.exports = grammar({
     if_block: $ => seq(
       seq($.if, $.arguments),
       repeat($._token),
-      choice($.else_if_block, $.end_if)),
+      choice($.else_if_block, $.end_if)
+    ),
 
     else_if_block: $ => seq(
       $.else,
       repeat($._token),
-      $.end_if),
+      $.end_if
+    ),
 
     for_each_block: $ => seq(
         seq($.for_each, $.arguments),
         optional(seq(choice($.until, $.while), $.arguments)),
         repeat($._token),
-        $.end_for_each),
+        $.end_for_each
+      ),
 
     while_block: $ => seq(
         seq($.while, $.arguments),
         repeat($._token),
-        $.end_while),
+        $.end_while
+      ),
 
     repeat_block: $ => seq(
         $.repeat,
         repeat($._token),
-        seq($.until, $.arguments)),
+        seq($.until, $.arguments)
+      ),
 
     for_block: $ => seq(
         seq($.for, $.arguments),
         repeat($._token),
-        $.end_for),
+        $.end_for
+      ),
 
     use_block: $ => seq(
       seq($.use, $.arguments),
       repeat($._token),
-      $.end_use),
+      $.end_use
+    ),
 
     sql_block: $ => seq(
       $.begin_sql,
       repeat($._token),
-      $.end_sql),
+      $.end_sql
+    ),
 
-/*
-case_block: $ => seq(
-  $.case_of,
-  repeat1($.case),
-  choice($.else_case_block, $.end_case)),
-
-case: $ => seq(':', $.arguments, repeat($._token)),
-*/
     case_block: $ => prec.right(seq(
       $.case_of,
-      repeat1($.case))),
+      repeat1($.case))
+    ),
 
     case: $ => seq(':', $.arguments, repeat($._token), choice($.case, $.else_case_block, $.end_case)),
 
     else_case_block: $ => seq(
       $.else,
       repeat($._token),
-      $.end_case),
+      $.end_case
+    ),
 
     _if_e: $ => /(i|I)(f|F)/,
     _if_f: $ => /(s|S)(i|I)/,
@@ -175,36 +178,42 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     _dec_literal: $ => /[+-]?[0-9]+/,
     _num_literal: $ => prec.right(token(seq(/[+-]?/, /[0-9]+/, '.', /[0-9]+/))),
     _exp_literal: $ => prec.right(token(seq(/[0-9]+/, '.', /[0-9]+/, /[eE]/, /[+-]?/, /[0-9]+/))),
+
     number : $ => prec(PREC.constant,
-      choice($._dec_literal, $._hex_literal, $._exp_literal, $._num_literal)),
+      choice($._dec_literal, $._hex_literal, $._exp_literal, $._num_literal)
+    ),
 
     time: $ => prec(PREC.constant,
-      seq('?', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, '?')),
+      seq('?', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, ':', /[0-9]{1,2}/, '?')
+    ),
 
     date: $ => prec(PREC.constant,
       choice(
       seq('!', /[0-9]{1,2}/, '-', /[0-9]{1,2}/, '-', /[0-9]{1,2}/, '!'),
       seq('!', /[0-9]{1,2}/, '/', /[0-9]{1,2}/, '/', /[0-9]{1,2}/, '!'),
-      seq('!', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '!'))),
+      seq('!', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '.', /[0-9]{1,2}/, '!'))
+    ),
 
     string: $ => prec(PREC.constant,
       token(seq('"',
-      repeat(choice('\\r', '\\n', '\\"', '\\t', '\\\\', /[^"]/)), '"'))),
+      repeat(choice('\\r', '\\n', '\\"', '\\t', '\\\\', /[^"]/)), '"'))
+    ),
 
     /* important to have default (0) prec. but not use 'word' */
 
     _name: $ => token(choice(
       /[A-Za-z_]/,
       seq(/[A-Za-z_]/, /[A-Za-z_0-9]/),
-      seq(/[A-Za-z_]/, /[A-Za-z_ 0-9]+/, /[A-Za-z_0-9]/)
-    )),
+      seq(/[A-Za-z_]/, /[A-Za-z_ 0-9]+/, /[A-Za-z_0-9]/))
+    ),
 
     _dereference: $ => prec(PREC.dereference, seq($.variable, '->')),
     _pointer: $ => prec.right(seq('->', $.variable,
-    repeat(seq(choice($.property, $.method))))),
+      repeat(seq(choice($.property, $.method))))
+    ),
 
     /* expose, to tokenise formula */
-    operator: $ => prec(PREC.operator,
+    _operator: $ => prec(PREC.operator,
       choice(
         '*', '/', '+', '-',
         '%', '\\', '&', '|',
@@ -221,7 +230,7 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     arguments: $ => seq('(', optional(choice($.argument, seq($.argument, repeat(seq(';', $.argument))))), ')'),
 
     /* higher than reference, function, value, command, constant, parameter */
-    formula: $ => prec(PREC.formula, prec.left(seq($.value, $.operator, $.value))),
+    formula: $ => prec(PREC.formula, prec.right(seq($.value, $._operator, $.value))),
 
     /* parameter is same as value */
     parameter: $ => prec(PREC.parameter, prec.right(seq('$', /[0-9]+/,
@@ -248,7 +257,9 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* constant */
     _constant_suffix: $ => /:(k|K)[0-9]+:[0-9]+/,
-    constant: $ => prec(PREC.constant, prec.right(seq($._name, $._constant_suffix))),
+    constant: $ => prec(PREC.constant, prec.right(
+      seq($._name, $._constant_suffix))
+    ),
 
     /* value (respect prec of each) */
     value: $ =>
@@ -278,19 +289,20 @@ case: $ => seq(':', $.arguments, repeat($._token)),
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
     process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
+
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
 
     variable: $ => prec(PREC.variable, prec.left(seq(choice(
       choice($._variable, $.parameter),
       /*seq(choice($._variable, $.parameter), '[', $.value, ']'),*/
-      seq(choice($._variable, $.parameter), '{', $.value, '}'),
-      seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))),
+      // seq(choice($._variable, $.parameter), '{', $.value, '}'),
+      // seq(choice($._variable, $.parameter), '[[', $.value, ']]', optional(seq('[[', $.value, ']]')))
+    ),
       repeat(seq(choice($.property, $.method)))))
     ),
 
     /* assignment should need no priorty */
-    assign: $ => prec(PREC.operator, ':='),
-    assignment: $ => seq($.value, $.assign, $.value),
+    assignment: $ => prec.right(seq($.value, ':=', $.value)),
 
     property: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']'))))),
     method: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']')), $.arguments))),
