@@ -270,10 +270,9 @@ case: $ => seq(':', $.arguments, repeat($._token)),
 
     /* variable */
     local_variable: $ => prec(PREC.variable, seq('$', $._name)),
-  process_variable: $ => prec(PREC.variable, 'seq($._name)'),
     // process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
-    _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
+    _variable: $ => choice($.local_variable, /*$.process_variable,*/ $.interprocess_variable),
 
     variable: $ => prec(PREC.variable, $.parameter),
 

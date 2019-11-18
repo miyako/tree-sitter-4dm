@@ -731,11 +731,6 @@
     }
   },
   {
-    "type": "process_variable",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "reference",
     "named": true,
     "fields": {},
@@ -1331,10 +1326,6 @@
   },
   {
     "type": "^|",
-    "named": false
-  },
-  {
-    "type": "seq($._name)",
     "named": false
   },
   {
