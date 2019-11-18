@@ -2038,7 +2038,7 @@
     },
     "property": {
       "type": "PREC",
-      "value": 8,
+      "value": 4,
       "content": {
         "type": "PREC_RIGHT",
         "value": 0,
@@ -2086,7 +2086,7 @@
     },
     "method": {
       "type": "PREC",
-      "value": 8,
+      "value": 4,
       "content": {
         "type": "PREC_RIGHT",
         "value": 0,

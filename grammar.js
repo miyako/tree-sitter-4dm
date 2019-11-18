@@ -6,11 +6,11 @@ const PREC = {
   formula: 1, assignment: 1,
   value: 2, parameter: 2,
 
-
+  path: 4,
   command: 5, constant: 5, structure: 5,
   function: 6,
 
-  path: 8,
+
   dereference: 9,
   variable: 10,
   identifier: 11
