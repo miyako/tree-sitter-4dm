@@ -175,8 +175,10 @@ module.exports = grammar({
     /* constants */
 
     _hex_literal: $ => token(seq(/[0][xX]/, /[0-9a-fA-F]+/)),
-    _dec_literal: $ => /[+-]?[0-9]+/,
-    _num_literal: $ => prec.right(token(seq(/[+-]?/, /[0-9]+/, '.', /[0-9]+/))),
+    // _dec_literal: $ => /[+-]?[0-9]+/,
+    _dec_literal: $ => /[0-9]+/,
+    // _num_literal: $ => prec.right(token(seq(/[+-]?/, /[0-9]+/, '.', /[0-9]+/))),
+    _num_literal: $ => prec.right(token(seq(/[0-9]+/, '.', /[0-9]+/))),
     _exp_literal: $ => prec.right(token(seq(/[0-9]+/, '.', /[0-9]+/, /[eE]/, /[+-]?/, /[0-9]+/))),
 
     number : $ => prec(PREC.constant,

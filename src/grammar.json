@@ -878,7 +878,7 @@
     },
     "_dec_literal": {
       "type": "PATTERN",
-      "value": "[+-]?[0-9]+"
+      "value": "[0-9]+"
     },
     "_num_literal": {
       "type": "PREC_RIGHT",
@@ -888,10 +888,6 @@
         "content": {
           "type": "SEQ",
           "members": [
-            {
-              "type": "PATTERN",
-              "value": "[+-]?"
-            },
             {
               "type": "PATTERN",
               "value": "[0-9]+"
