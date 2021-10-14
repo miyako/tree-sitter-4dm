@@ -1,25 +1,0 @@
-===
-Nested While 
-===
-
-While ()
-  If ()
-  End if
-  <>x:=""
-End while
-
-While ()
-  If ()
-  End if
-  $x:=""
-End while
-
-While ()
-  If ()
-  End if
-  x:=""
-End while
-
----
-
-(source   (while_block     (while )    (arguments )    (if_block       (if         (arguments ))      (end_if ))    (assignment       (reference         (variable           (interprocess_variable )))      (assign )      (value         (string )))    (end_while ))  (while_block     (while )    (arguments )    (if_block       (if         (arguments ))      (end_if ))    (assignment       (reference         (variable           (local_variable )))      (assign )      (value         (string )))    (end_while ))  (while_block     (while )    (arguments )    (if_block       (if         (arguments ))      (end_if ))    (assignment       (reference         (variable           (process_variable )))      (assign )      (value         (string )))    (end_while )))

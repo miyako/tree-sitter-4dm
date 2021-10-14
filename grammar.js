@@ -173,6 +173,9 @@ module.exports = grammar({
     _end_sql_f: $ => /(f|F)(i|I)(n|N) (s|S)(q|Q)(l|L)/,
     end_sql   : $ => prec(PREC.key, choice($._end_sql_e, $._end_sql_f)),
 
+    _var: $ => /(v|V)(a|A)(r|R)/,
+    var : $ => prec(PREC.key, $._var),
+
     /* constants */
 
     _hex_literal: $ => token(seq(/[0][xX]/, /[0-9a-fA-F]+/)),
@@ -317,10 +320,9 @@ module.exports = grammar({
     _class_store_ds: $ => /(d|D)(s|S)/,
     _class_store_cs: $ => /(c|C)(s|S)/,
     _class_store: $ => prec(PREC.command, choice($._class_store_4d, $._class_store_ds, $._class_store_cs)),
-    class: $ => prec(PREC.class, seq($._class_store, '.', $._name)),
+    _class: $ => prec(PREC.class, seq($._class_store, '.', $._name)),
 
     /* var */
-    var: $ => prec(PREC.key, /(v|V)(a|A)(r|R)/),
     _var_argument: $ => choice($.local_variable, $.process_variable),
     _var_arguments: $ => seq(choice($._var_argument, seq($._var_argument, repeat(seq(';', $._var_argument))))),
 
@@ -350,8 +352,8 @@ module.exports = grammar({
       $._basic_type_variant,
       $._basic_type_object
     ),
-    _var_class: $ => choice($._basic_type, $.class),
-    var_block: $ => seq($.var, $._var_arguments, ':', $._var_class),
+    class: $ => prec(PREC.key, choice($._basic_type, $._class)),
+    var_block: $ => prec.right(seq($.var, $._var_arguments, ':', $.class)),
 
     /*
     TODO:
