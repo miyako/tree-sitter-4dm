@@ -7,7 +7,7 @@ const PREC = {
   value: 2, parameter: 2,
   path: 3,
   function: 4,
-  command: 5, constant: 5,
+  command: 5, constant: 5, class: 5,
   structure: 6,
 
 
@@ -30,7 +30,8 @@ module.exports = grammar({
       $.for_block,
       $.use_block,
       $.sql_block,
-      $.case_block
+      $.case_block,
+      $.var_block
     ),
 
     comment: $ => choice(
@@ -310,6 +311,47 @@ module.exports = grammar({
 
     property: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']'))))),
     method: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']')), $.arguments))),
+
+    /* class */
+    _class_store_4d: $ => /[4](d|D)/,
+    _class_store_ds: $ => /(d|D)(s|S)/,
+    _class_store_cs: $ => /(c|C)(s|S)/,
+    _class_store: $ => prec(PREC.command, choice($._class_store_4d, $._class_store_ds, $._class_store_cs)),
+    class: $ => prec(PREC.class, seq($._class_store, '.', $._name)),
+
+    /* var */
+    var: $ => prec(PREC.key, /(v|V)(a|A)(r|R)/),
+    _var_argument: $ => choice($.local_variable, $.process_variable),
+    _var_arguments: $ => seq(choice($._var_argument, seq($._var_argument, repeat(seq(';', $._var_argument))))),
+
+    _basic_type_text: $ => /(t|T)(e|E)(x|X)(t|T)/,
+    _basic_type_date: $ => /(d|D)(a|A)(t|T)(e|E)/,
+    _basic_type_time: $ => /(t|T)(i|I)(m|M)(e|E)/,
+    _basic_type_boolean: $ => /(b|B)(o|O)(o|O)(l|L)(e|E)(a|A)(n|N)/,
+    _basic_type_integer: $ => /(i|I)(n|N)(t|T)(e|E)(g|G)(e|E)(r|R)/,
+    _basic_type_real: $ => /(r|R)(e|E)(a|A)(l|L)/,
+    _basic_type_pointer: $ => /(p|P)(o|O)(i|I)(n|N)(t|T)(e|E)(r|R)/,
+    _basic_type_picture: $ => /(p|P)(i|I)(c|C)(t|T)(u|U)(r|R)(e|E)/,
+    _basic_type_blob: $ => /(b|B)(l|L)(o|O)(b|B)/,
+    _basic_type_collection: $ => /(c|C)(o|O)(l|L)(l|L)(e|E)(c|C)(t|T)(i|I)(o|O)(n|N)/,
+    _basic_type_variant: $ => /(v|V)(a|A)(r|R)(i|I)(a|A)(n|N)(t|T)/,
+    _basic_type_object: $ => /(o|O)(b|B)(j|J)(e|E)(c|C)(t|T)/,
+    _basic_type: $ => choice(
+      $._basic_type_text,
+      $._basic_type_date,
+      $._basic_type_time,
+      $._basic_type_boolean,
+      $._basic_type_integer,
+      $._basic_type_real,
+      $._basic_type_pointer,
+      $._basic_type_picture,
+      $._basic_type_blob,
+      $._basic_type_collection,
+      $._basic_type_variant,
+      $._basic_type_object
+    ),
+    _var_class: $ => choice($._basic_type, $.class),
+    var_block: $ => seq($.var, $._var_arguments, ':', $._var_class),
 
     /*
     TODO:
