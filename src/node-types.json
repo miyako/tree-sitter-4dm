@@ -118,6 +118,10 @@
           "named": true
         },
         {
+          "type": "var_block",
+          "named": true
+        },
+        {
           "type": "while_block",
           "named": true
         }
@@ -145,6 +149,11 @@
   },
   {
     "type": "case_of",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "class",
     "named": true,
     "fields": {}
   },
@@ -248,6 +257,10 @@
           "named": true
         },
         {
+          "type": "var_block",
+          "named": true
+        },
+        {
           "type": "while_block",
           "named": true
         }
@@ -308,6 +321,10 @@
         },
         {
           "type": "value",
+          "named": true
+        },
+        {
+          "type": "var_block",
           "named": true
         },
         {
@@ -441,6 +458,10 @@
           "named": true
         },
         {
+          "type": "var_block",
+          "named": true
+        },
+        {
           "type": "while_block",
           "named": true
         }
@@ -514,6 +535,10 @@
         },
         {
           "type": "value",
+          "named": true
+        },
+        {
+          "type": "var_block",
           "named": true
         },
         {
@@ -632,6 +657,10 @@
         },
         {
           "type": "value",
+          "named": true
+        },
+        {
+          "type": "var_block",
           "named": true
         },
         {
@@ -780,6 +809,10 @@
           "named": true
         },
         {
+          "type": "var_block",
+          "named": true
+        },
+        {
           "type": "while_block",
           "named": true
         }
@@ -832,6 +865,10 @@
         },
         {
           "type": "value",
+          "named": true
+        },
+        {
+          "type": "var_block",
           "named": true
         },
         {
@@ -895,6 +932,10 @@
         },
         {
           "type": "value",
+          "named": true
+        },
+        {
+          "type": "var_block",
           "named": true
         },
         {
@@ -990,6 +1031,10 @@
           "named": true
         },
         {
+          "type": "var_block",
+          "named": true
+        },
+        {
           "type": "while_block",
           "named": true
         }
@@ -1050,6 +1095,38 @@
         },
         {
           "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "var",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "var_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "local_variable",
+          "named": true
+        },
+        {
+          "type": "process_variable",
+          "named": true
+        },
+        {
+          "type": "var",
           "named": true
         }
       ]
@@ -1153,6 +1230,10 @@
         },
         {
           "type": "value",
+          "named": true
+        },
+        {
+          "type": "var_block",
           "named": true
         },
         {
