@@ -616,10 +616,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "class",
+          "named": true
+        },
+        {
+          "type": "function_name",
           "named": true
         },
         {
@@ -628,6 +632,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "function_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "if",

@@ -177,11 +177,13 @@ module.exports = grammar({
     _var: $ => /(v|V)(a|A)(r|R)/,
     var : $ => prec(PREC.key, $._var),
 
-    _function: $ => /(f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N)/,
-    _local: $ => /(l|L)(o|O)(c|C)(a|A)(l|L)/,
-    _exposed: $ => /(e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)/,
-    _get: $ => /(g|G)(e|E)(t|T)/,
-    _set: $ => /(s|S)(e|E)(t|T)/,
+    // _function: $ => /(f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N)/,
+    // _local: $ => /(l|L)(o|O)(c|C)(a|A)(l|L)/,
+    // _exposed: $ => /(e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)/,
+    // _get: $ => /(g|G)(e|E)(t|T)/,
+    // _set: $ => /(s|S)(e|E)(t|T)/,
+
+    _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(g|G|s|S)(e|E)(t|T))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
 
     /* constants */
 
@@ -366,22 +368,18 @@ module.exports = grammar({
     _function_argument: $ => seq($.local_variable, ':', $.class),
     _function_arguments: $ => seq('(', choice($._function_argument, seq($._function_argument, repeat(seq(';', $._function_argument)))), ')'),
     _function_result: $ => seq('->', $._function_argument),
-
-    function_declaration: $ => prec(PREC.key, $._name),
+    function_name: $ => prec(PREC.key, $._class_function),
 
     function_block: $ => prec(PREC.class_function, prec.right(seq(
-      optional(choice($._local, $._exposed)),
-      optional($._function
-      optional(choice($._get, $._set)),
-      $._name,
+      $.function_name,
       optional($._function_arguments),
       optional($._function_result)
-      ))
+    ))
     ),
-
-    function_keywords : $ => prec(PREC.key,
-      choice($._function, $._local, $._exposed, $._get, $._set)
-    ),
+    //
+    // function_keywords : $ => prec(PREC.key,
+    //   choice($._function, $.local, $.exposed, $._get, $._set)
+    // ),
 
 
     /*

@@ -880,25 +880,9 @@
         "name": "_var"
       }
     },
-    "_function": {
+    "_class_function": {
       "type": "PATTERN",
-      "value": "(f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N)"
-    },
-    "_local": {
-      "type": "PATTERN",
-      "value": "(l|L)(o|O)(c|C)(a|A)(l|L)"
-    },
-    "_exposed": {
-      "type": "PATTERN",
-      "value": "(e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)"
-    },
-    "_get": {
-      "type": "PATTERN",
-      "value": "(g|G)(e|E)(t|T)"
-    },
-    "_set": {
-      "type": "PATTERN",
-      "value": "(s|S)(e|E)(t|T)"
+      "value": "((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\\s+(g|G|s|S)(e|E)(t|T))?(\\s+[A-Za-z_][A-Za-z_0-9]+)"
     },
     "_hex_literal": {
       "type": "TOKEN",
@@ -2518,12 +2502,12 @@
         }
       ]
     },
-    "function_declaration": {
+    "function_name": {
       "type": "PREC",
       "value": -3,
       "content": {
         "type": "SYMBOL",
-        "name": "_name"
+        "name": "_class_function"
       }
     },
     "function_block": {
@@ -2536,41 +2520,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_local"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_exposed"
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_function"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
               "type": "SYMBOL",
-              "name": "_name"
+              "name": "function_name"
             },
             {
               "type": "CHOICE",
@@ -2598,35 +2549,6 @@
             }
           ]
         }
-      }
-    },
-    "function_keywords": {
-      "type": "PREC",
-      "value": -3,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_function"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_local"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_exposed"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_get"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_set"
-          }
-        ]
       }
     }
   },
