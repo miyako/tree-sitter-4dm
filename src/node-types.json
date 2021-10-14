@@ -78,7 +78,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -200,6 +208,34 @@
     "fields": {}
   },
   {
+    "type": "declare",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "declare_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "declare",
+          "named": true
+        },
+        {
+          "type": "local_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "else",
     "named": true,
     "fields": {}
@@ -221,7 +257,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -292,7 +336,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -430,7 +482,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -510,7 +570,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -664,7 +732,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -821,7 +897,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -892,7 +976,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -959,7 +1051,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -1055,7 +1155,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -1265,7 +1373,15 @@
           "named": true
         },
         {
+          "type": "class_extends",
+          "named": true
+        },
+        {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declare_block",
           "named": true
         },
         {
@@ -1466,6 +1582,10 @@
   {
     "type": "^|",
     "named": false
+  },
+  {
+    "type": "class_extends",
+    "named": true
   },
   {
     "type": "{",

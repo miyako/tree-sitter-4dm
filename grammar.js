@@ -2,15 +2,12 @@ const PREC = {
   comment: -4,
   key: -3,
   operator: -2,
-
-  formula: 1, assignment: 1, class_function: 1,
+  formula: 1, assignment: 1, class_function: 1, method_declare: 1,
   value: 2, parameter: 2,
   path: 3,
   function: 4,
   command: 5, constant: 5, class: 5,
   structure: 6,
-
-
   dereference: 9,
   variable: 10,
   identifier: 11
@@ -32,7 +29,9 @@ module.exports = grammar({
       $.sql_block,
       $.case_block,
       $.var_block,
-      $.function_block
+      $.function_block,
+      $.class_extends,
+      $.declare_block
     ),
 
     comment: $ => choice(
@@ -177,13 +176,11 @@ module.exports = grammar({
     _var: $ => /(v|V)(a|A)(r|R)/,
     var : $ => prec(PREC.key, $._var),
 
-    // _function: $ => /(f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N)/,
-    // _local: $ => /(l|L)(o|O)(c|C)(a|A)(l|L)/,
-    // _exposed: $ => /(e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)/,
-    // _get: $ => /(g|G)(e|E)(t|T)/,
-    // _set: $ => /(s|S)(e|E)(t|T)/,
-
     _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(g|G|s|S)(e|E)(t|T))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
+    class_extends: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\s+[A-Za-z_][A-Za-z_0-9]+)/,
+
+    _declare: $ => /#(d|D)(e|E)(c|C)(l|L)(a|A)(r|R)(e|E)/,
+    declare : $ => prec(PREC.key, $._declare),
 
     /* constants */
 
@@ -376,6 +373,14 @@ module.exports = grammar({
       optional($._function_result)
     ))
     ),
+
+    declare_block: $ => prec(PREC.method_declare, prec.right(seq(
+      $.declare,
+      optional($._function_arguments),
+      optional($._function_result)
+    ))
+    ),
+
     //
     // function_keywords : $ => prec(PREC.key,
     //   choice($._function, $.local, $.exposed, $._get, $._set)

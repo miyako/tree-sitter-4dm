@@ -62,6 +62,14 @@
         {
           "type": "SYMBOL",
           "name": "function_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "class_extends"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "declare_block"
         }
       ]
     },
@@ -883,6 +891,22 @@
     "_class_function": {
       "type": "PATTERN",
       "value": "((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\\s+(g|G|s|S)(e|E)(t|T))?(\\s+[A-Za-z_][A-Za-z_0-9]+)"
+    },
+    "class_extends": {
+      "type": "PATTERN",
+      "value": "((c|C)(l|L)(a|A)(s|S)(s|S))(\\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\\s+[A-Za-z_][A-Za-z_0-9]+)"
+    },
+    "_declare": {
+      "type": "PATTERN",
+      "value": "#(d|D)(e|E)(c|C)(l|L)(a|A)(r|R)(e|E)"
+    },
+    "declare": {
+      "type": "PREC",
+      "value": -3,
+      "content": {
+        "type": "SYMBOL",
+        "name": "_declare"
+      }
     },
     "_hex_literal": {
       "type": "TOKEN",
@@ -2522,6 +2546,47 @@
             {
               "type": "SYMBOL",
               "name": "function_name"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_function_arguments"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_function_result"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "declare_block": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "PREC_RIGHT",
+        "value": 0,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "declare"
             },
             {
               "type": "CHOICE",
