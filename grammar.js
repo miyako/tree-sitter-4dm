@@ -3,7 +3,7 @@ const PREC = {
   key: -3,
   operator: -2,
 
-  formula: 1, assignment: 1,
+  formula: 1, assignment: 1, class_function: 1,
   value: 2, parameter: 2,
   path: 3,
   function: 4,
@@ -31,7 +31,8 @@ module.exports = grammar({
       $.use_block,
       $.sql_block,
       $.case_block,
-      $.var_block
+      $.var_block,
+      $.function_block
     ),
 
     comment: $ => choice(
@@ -176,6 +177,12 @@ module.exports = grammar({
     _var: $ => /(v|V)(a|A)(r|R)/,
     var : $ => prec(PREC.key, $._var),
 
+    _function: $ => /(f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N)/,
+    _local: $ => /(l|L)(o|O)(c|C)(a|A)(l|L)/,
+    _exposed: $ => /(e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)/,
+    _get: $ => /(g|G)(e|E)(t|T)/,
+    _set: $ => /(s|S)(e|E)(t|T)/,
+
     /* constants */
 
     _hex_literal: $ => token(seq(/[0][xX]/, /[0-9a-fA-F]+/)),
@@ -207,11 +214,12 @@ module.exports = grammar({
 
     /* important to have default (0) prec. but not use 'word' */
 
-    _name: $ => token(choice(
+    _name: $ => prec(0,
+      token(choice(
       /[A-Za-z_]/,
       seq(/[A-Za-z_]/, /[A-Za-z_0-9]/),
       seq(/[A-Za-z_]/, /[A-Za-z_ 0-9]+/, /[A-Za-z_0-9]/))
-    ),
+    )),
 
     _dereference: $ => prec(PREC.dereference, seq($.variable, '->')),
     _pointer: $ => prec.right(seq('->', $.variable,
@@ -354,6 +362,27 @@ module.exports = grammar({
     ),
     class: $ => prec(PREC.key, choice($._basic_type, $._class)),
     var_block: $ => prec.right(seq($.var, $._var_arguments, ':', $.class)),
+
+    _function_argument: $ => seq($.local_variable, ':', $.class),
+    _function_arguments: $ => seq('(', choice($._function_argument, seq($._function_argument, repeat(seq(';', $._function_argument)))), ')'),
+    _function_result: $ => seq('->', $._function_argument),
+
+    function_declaration: $ => prec(PREC.key, $._name),
+
+    function_block: $ => prec(PREC.class_function, prec.right(seq(
+      optional(choice($._local, $._exposed)),
+      optional($._function
+      optional(choice($._get, $._set)),
+      $._name,
+      optional($._function_arguments),
+      optional($._function_result)
+      ))
+    ),
+
+    function_keywords : $ => prec(PREC.key,
+      choice($._function, $._local, $._exposed, $._get, $._set)
+    ),
+
 
     /*
     TODO:
