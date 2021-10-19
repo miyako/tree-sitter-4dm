@@ -1,5 +1,5 @@
 const PREC = {
-  comment: -4,
+  comment: -4, super: -4, this: -4,
   key: -3,
   operator: -2,
   formula: 1, assignment: 1, class_function: 1, method_declare: 1,
@@ -31,7 +31,8 @@ module.exports = grammar({
       $.var_block,
       $.function_block,
       $.class_extends,
-      $.declare_block
+      $.declare_block,
+      $.constructor_block
     ),
 
     comment: $ => choice(
@@ -107,7 +108,7 @@ module.exports = grammar({
 
     _if_e: $ => /(i|I)(f|F)/,
     _if_f: $ => /(s|S)(i|I)/,
-    if   : $ => prec(PREC.key, seq(choice($._if_e, $._if_f))),
+    if   : $ => prec(PREC.key, choice($._if_e, $._if_f)),
 
     _else_e: $ => /(e|E)(l|L)(s|S)(e|E)/,
     _else_f: $ => /(s|S)(i|I)(n|N)(o|O)(n|N)/,
@@ -176,8 +177,14 @@ module.exports = grammar({
     _var: $ => /(v|V)(a|A)(r|R)/,
     var : $ => prec(PREC.key, $._var),
 
-    _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(g|G|s|S)(e|E)(t|T))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
+    _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(((g|G|s|S)(e|E)(t|T))|((o|O)(r|R)(d|D)(e|E)(r|R)(b|B)(y|Y))|((q|Q)(u|U)(e|E)(r|R)(y|Y))))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     class_extends: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\s+[A-Za-z_][A-Za-z_0-9]+)/,
+    _class_constructor: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+((c|C)(o|O)(n|N)(s|S)(t|T)(r|R)(u|U)(c|C)(t|T)(o|O)(r|R)))/,
+
+    _super: $ => /(s|S)(u|U)(p|P)(e|E)(r|R)/,
+    _this: $ => /(t|T)(h|H)(i|I)(s|S)/,
+    super : $ => prec(PREC.super, $._super),
+    this : $ => prec(PREC.this, $._this),
 
     _declare: $ => /#(d|D)(e|E)(c|C)(l|L)(a|A)(r|R)(e|E)/,
     declare : $ => prec(PREC.key, $._declare),
@@ -251,6 +258,12 @@ module.exports = grammar({
     parameter: $ => prec(PREC.parameter, prec.right(seq('$', /[0-9]+/,
     prec.right(repeat(seq(choice($.property, $.method))))))),
 
+    __super : $ => prec(PREC.super, prec.right(seq($.super,
+    prec.right(repeat(seq(choice($.property, $.method))))))),
+
+    __this : $ => prec(PREC.this, prec.right(seq($.this,
+    prec.right(repeat(seq(choice($.property, $.method))))))),
+
     /* structure */
     _storage_suffix: $ => /:[0-9]+/,
     table: $ => prec(PREC.structure,
@@ -290,7 +303,9 @@ module.exports = grammar({
       $.field,
       $._dereference,
       $._pointer,
-      $.constant
+      $.constant,
+      $.__super,
+      $.__this
     ),
 
     /* function */
@@ -363,14 +378,21 @@ module.exports = grammar({
     var_block: $ => prec.right(seq($.var, $._var_arguments, ':', $.class)),
 
     _function_argument: $ => seq($.local_variable, ':', $.class),
-    _function_arguments: $ => seq('(', choice($._function_argument, seq($._function_argument, repeat(seq(';', $._function_argument)))), ')'),
+    _function_arguments: $ => seq('(', optional(choice($._function_argument, seq($._function_argument, repeat(seq(';', $._function_argument))))), ')'),
     _function_result: $ => seq('->', $._function_argument),
     function_name: $ => prec(PREC.key, $._class_function),
+    constructor_name: $ => prec(PREC.key, $._class_constructor),
 
     function_block: $ => prec(PREC.class_function, prec.right(seq(
       $.function_name,
       optional($._function_arguments),
       optional($._function_result)
+    ))
+    ),
+
+    constructor_block: $ => prec(PREC.class_function, prec.right(seq(
+      $.constructor_name,
+      optional($._function_arguments)
     ))
     ),
 

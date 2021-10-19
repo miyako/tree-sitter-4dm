@@ -1,5 +1,11 @@
-exposed Function getXliffs($resnames : Object)->$labels : Object
-	$labels:=New object:C1471()
-	For each ($attribut; $resnames)
-		$labels[$attribut]:=This:C1470.readXliff($resnames[$attribut]; $attribut)
-	End for each 
+Function get fullName() -> $fullName : Text
+
+Function set fullName( $fullName : Text )
+
+Function query fullName( $fullName : Text )
+
+Function orderBy fullName( $fullName : Text )
+
+Function fullName() -> $fullName : Text
+
+Function fullName( $fullName : Text )
