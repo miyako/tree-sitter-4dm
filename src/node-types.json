@@ -1179,17 +1179,7 @@
     "fields": {}
   },
   {
-    "type": "super",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "table",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "this",
     "named": true,
     "fields": {}
   },
@@ -1341,14 +1331,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "super",
-          "named": true
-        },
-        {
-          "type": "this",
           "named": true
         },
         {

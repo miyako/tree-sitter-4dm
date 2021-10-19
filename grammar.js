@@ -181,11 +181,6 @@ module.exports = grammar({
     class_extends: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     _class_constructor: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+((c|C)(o|O)(n|N)(s|S)(t|T)(r|R)(u|U)(c|C)(t|T)(o|O)(r|R)))/,
 
-    _super: $ => /(s|S)(u|U)(p|P)(e|E)(r|R)/,
-    _this: $ => /(t|T)(h|H)(i|I)(s|S)/,
-    super : $ => prec(PREC.super, $._super),
-    this : $ => prec(PREC.this, $._this),
-
     _declare: $ => /#(d|D)(e|E)(c|C)(l|L)(a|A)(r|R)(e|E)/,
     declare : $ => prec(PREC.key, $._declare),
 
@@ -258,12 +253,6 @@ module.exports = grammar({
     parameter: $ => prec(PREC.parameter, prec.right(seq('$', /[0-9]+/,
     prec.right(repeat(seq(choice($.property, $.method))))))),
 
-    __super : $ => prec(PREC.super, prec.right(seq($.super,
-    prec.right(repeat(seq(choice($.property, $.method))))))),
-
-    __this : $ => prec(PREC.this, prec.right(seq($.this,
-    prec.right(repeat(seq(choice($.property, $.method))))))),
-
     /* structure */
     _storage_suffix: $ => /:[0-9]+/,
     table: $ => prec(PREC.structure,
@@ -303,9 +292,7 @@ module.exports = grammar({
       $.field,
       $._dereference,
       $._pointer,
-      $.constant,
-      $.__super,
-      $.__this
+      $.constant
     ),
 
     /* function */
