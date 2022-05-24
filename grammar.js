@@ -32,7 +32,10 @@ module.exports = grammar({
       $.function_block,
       $.class_extends,
       $.declare_block,
-      $.constructor_block
+      $.constructor_block,
+      $.break_statement,
+      $.continue_statement,
+      $.return_statement
     ),
 
     comment: $ => choice(
@@ -193,6 +196,17 @@ module.exports = grammar({
     _var: $ => /(v|V)(a|A)(r|R)/,
     var : $ => prec(PREC.key, $._var),
 
+    __return: $ => /(r|R)(e|E)(t|T)(u|U)(r|R)(n|N)/,
+    _return : $ => prec(PREC.key, $.__return),
+
+    _break: $ => /(b|B)(r|R)(e|E)(a|A)(k|K)/,
+    break_statement : $ => prec(PREC.key, $._break),
+
+    _continue: $ => /(b|B)(r|R)(e|E)(a|A)(k|K)/,
+    continue_statement : $ => prec(PREC.key, $._continue),
+
+    return_statement: $ => prec.right(choice($._return, seq($._return, $.value))),
+
     _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(((g|G|s|S)(e|E)(t|T))|((o|O)(r|R)(d|D)(e|E)(r|R)(b|B)(y|Y))|((q|Q)(u|U)(e|E)(r|R)(y|Y))))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     class_extends: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     _class_constructor: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+((c|C)(o|O)(n|N)(s|S)(t|T)(r|R)(u|U)(c|C)(t|T)(o|O)(r|R)))/,
@@ -252,7 +266,9 @@ module.exports = grammar({
           '^', '^|',
           '<<', '>>',
           '<', '>', '<=', '>=', '=', '#',
-          '??', '?-', '?+'
+          '??', '?-', '?+',
+          's+=', 's-=', '/=', '*=',
+          '&&', '||'
         )
       )
     ),
@@ -349,7 +365,7 @@ module.exports = grammar({
 
     /* var */
     _var_argument: $ => choice($.local_variable, $.process_variable),
-    _var_arguments: $ => seq(choice($._var_argument, seq($._var_argument, repeat(seq(';', $._var_argument))))),
+    _var_arguments: $ => prec.right(seq(choice($._var_argument, seq($._var_argument, repeat(seq(';', $._var_argument)))))),
 
     _basic_type_text: $ => /(t|T)(e|E)(x|X)(t|T)/,
     _basic_type_date: $ => /(d|D)(a|A)(t|T)(e|E)/,
@@ -406,19 +422,7 @@ module.exports = grammar({
     ))
     ),
 
-    //
-    // function_keywords : $ => prec(PREC.key,
-    //   choice($._function, $.local, $.exposed, $._get, $._set)
-    // ),
 
-
-    /*
-    TODO:
-    else block folding
-    wrapping (anti-slash)
-    sql block
-    injection
-    */
 
   }
 });
