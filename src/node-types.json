@@ -54,7 +54,34 @@
     "fields": {}
   },
   {
-    "type": "case",
+    "type": "case_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "case_colon_block",
+          "named": true
+        },
+        {
+          "type": "case_of",
+          "named": true
+        },
+        {
+          "type": "else_case_block",
+          "named": true
+        },
+        {
+          "type": "end_case",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "case_colon_block",
     "named": true,
     "fields": {},
     "children": {
@@ -67,10 +94,6 @@
         },
         {
           "type": "assignment",
-          "named": true
-        },
-        {
-          "type": "case",
           "named": true
         },
         {
@@ -91,14 +114,6 @@
         },
         {
           "type": "declare_block",
-          "named": true
-        },
-        {
-          "type": "else_case_block",
-          "named": true
-        },
-        {
-          "type": "end_case",
           "named": true
         },
         {
@@ -139,25 +154,6 @@
         },
         {
           "type": "while_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "case_block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "case",
-          "named": true
-        },
-        {
-          "type": "case_of",
           "named": true
         }
       ]
