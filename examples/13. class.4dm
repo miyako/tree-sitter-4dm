@@ -13,6 +13,6 @@ Class constructor ($side : Integer)
     // can use 'This'
     This.name:="Square"
 
-    Function getArea()
-        C_LONGINT($0)
-        $0:=This.height*This.width
+Function getArea()
+    C_LONGINT($0)
+    $0:=This.height*This.width
