@@ -202,7 +202,7 @@ module.exports = grammar({
     _break: $ => /(b|B)(r|R)(e|E)(a|A)(k|K)/,
     break_statement : $ => prec(PREC.key, $._break),
 
-    _continue: $ => /(b|B)(r|R)(e|E)(a|A)(k|K)/,
+    _continue: $ => /(c|C)(o|O)(n|N)(t|T)(i|I)(n|N)(u|U)(e|E)/,
     continue_statement : $ => prec(PREC.key, $._continue),
 
     return_statement: $ => prec.right(choice($._return, seq($._return, $.value))),
