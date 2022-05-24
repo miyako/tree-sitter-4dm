@@ -61,6 +61,18 @@
         },
         {
           "type": "SYMBOL",
+          "name": "break_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "continue_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "return_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "function_block"
         },
         {
@@ -74,18 +86,6 @@
         {
           "type": "SYMBOL",
           "name": "constructor_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "break_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "continue_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "return_statement"
         }
       ]
     },
@@ -891,18 +891,6 @@
         "name": "_var"
       }
     },
-    "__return": {
-      "type": "PATTERN",
-      "value": "(r|R)(e|E)(t|T)(u|U)(r|R)(n|N)"
-    },
-    "_return": {
-      "type": "PREC",
-      "value": -3,
-      "content": {
-        "type": "SYMBOL",
-        "name": "__return"
-      }
-    },
     "_break": {
       "type": "PATTERN",
       "value": "(b|B)(r|R)(e|E)(a|A)(k|K)"
@@ -927,30 +915,50 @@
         "name": "_continue"
       }
     },
-    "return_statement": {
-      "type": "PREC_RIGHT",
+    "_return": {
+      "type": "PATTERN",
+      "value": "(r|R)(e|E)(t|T)(u|U)(r|R)(n|N)"
+    },
+    "_return_statement": {
+      "type": "PREC_LEFT",
       "value": 0,
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_return"
           },
           {
-            "type": "SEQ",
+            "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_return"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_return"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "value"
+                  }
+                ]
               },
               {
-                "type": "SYMBOL",
-                "name": "value"
+                "type": "BLANK"
               }
             ]
           }
         ]
+      }
+    },
+    "return_statement": {
+      "type": "PREC",
+      "value": -3,
+      "content": {
+        "type": "SYMBOL",
+        "name": "_return_statement"
       }
     },
     "_class_function": {

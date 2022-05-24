@@ -29,13 +29,14 @@ module.exports = grammar({
       $.sql_block,
       $.case_block,
       $.var_block,
+      $.break_statement,
+      $.continue_statement,
+      $.return_statement,
       $.function_block,
       $.class_extends,
       $.declare_block,
-      $.constructor_block,
-      $.break_statement,
-      $.continue_statement,
-      $.return_statement
+      $.constructor_block
+
     ),
 
     comment: $ => choice(
@@ -114,17 +115,6 @@ module.exports = grammar({
       choice($.else_case_block, $.end_case)
     ),
 
-    /*
-    case_block: $ => prec.right(seq(
-      $.case_of,
-      repeat1($.case))
-    ),
-    */
-
-    //case: $ => seq(':', $.arguments, repeat($._token), choice($.case, $.else_case_block, $.end_case)),
-
-
-
     _if_e: $ => /(i|I)(f|F)/,
     _if_f: $ => /(s|S)(i|I)/,
     if   : $ => prec(PREC.key, choice($._if_e, $._if_f)),
@@ -196,16 +186,15 @@ module.exports = grammar({
     _var: $ => /(v|V)(a|A)(r|R)/,
     var : $ => prec(PREC.key, $._var),
 
-    __return: $ => /(r|R)(e|E)(t|T)(u|U)(r|R)(n|N)/,
-    _return : $ => prec(PREC.key, $.__return),
-
     _break: $ => /(b|B)(r|R)(e|E)(a|A)(k|K)/,
     break_statement : $ => prec(PREC.key, $._break),
 
     _continue: $ => /(c|C)(o|O)(n|N)(t|T)(i|I)(n|N)(u|U)(e|E)/,
     continue_statement : $ => prec(PREC.key, $._continue),
 
-    return_statement: $ => prec.right(choice($._return, seq($._return, $.value))),
+    _return: $ => /(r|R)(e|E)(t|T)(u|U)(r|R)(n|N)/,
+    _return_statement: $ => prec.left(seq($._return, optional(seq($._return, $.value)))),
+    return_statement : $ => prec(PREC.key, $._return_statement),
 
     _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(((g|G|s|S)(e|E)(t|T))|((o|O)(r|R)(d|D)(e|E)(r|R)(b|B)(y|Y))|((q|Q)(u|U)(e|E)(r|R)(y|Y))))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     class_extends: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\s+[A-Za-z_][A-Za-z_0-9]+)/,
