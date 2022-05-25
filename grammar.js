@@ -2,7 +2,8 @@ const PREC = {
   comment: -4, super: -4, this: -4,
   key: -3,
   operator: -2,
-  formula: 1, terminate: 1, assignment: 1, class_function: 1, method_declare: 1,
+  formula: 1, terminate: 1, assignment: 1,
+  class_function: 1, method_declare: 1, ternary: 1,
   value: 2, parameter: 2,
   path: 3,
   function: 4,
@@ -301,7 +302,9 @@ module.exports = grammar({
       $.field,
       $._dereference,
       $._pointer,
-      $.constant
+      $.constant,
+      $.ternary,
+      $.parenthesized_value
     ),
 
     /* function */
@@ -403,6 +406,21 @@ module.exports = grammar({
       choice($.return, $.break, $.continue),
       optional($.value)
     ))
+    ),
+        
+    ternary: $ => prec(PREC.ternary, prec.right(seq(
+      $.value,
+      '?',
+      $.value,
+      ':',
+      $.value
+    ))
+    ),
+        
+    parenthesized_value: $ => seq(
+      '(',
+      $.value,
+      ')'
     ),
 
   }

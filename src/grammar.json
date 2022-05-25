@@ -53,10 +53,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "case_block"
-        },
-        {
-          "type": "SYMBOL",
           "name": "var_block"
         },
         {
@@ -377,26 +373,6 @@
         }
       ]
     },
-    "case_colon_block": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "arguments"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_token"
-          }
-        }
-      ]
-    },
     "else_case_block": {
       "type": "SEQ",
       "members": [
@@ -414,35 +390,6 @@
         {
           "type": "SYMBOL",
           "name": "end_case"
-        }
-      ]
-    },
-    "case_block": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "case_of"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "case_colon_block"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "else_case_block"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "end_case"
-            }
-          ]
         }
       ]
     },
@@ -1441,11 +1388,11 @@
             },
             {
               "type": "STRING",
-              "value": "s+="
+              "value": "+="
             },
             {
               "type": "STRING",
-              "value": "s-="
+              "value": "-="
             },
             {
               "type": "STRING",
@@ -1846,6 +1793,14 @@
         {
           "type": "SYMBOL",
           "name": "constant"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ternary"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parenthesized_value"
         }
       ]
     },
@@ -2765,6 +2720,56 @@
           ]
         }
       }
+    },
+    "ternary": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "PREC_RIGHT",
+        "value": 0,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "value"
+            },
+            {
+              "type": "STRING",
+              "value": "?"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "value"
+            },
+            {
+              "type": "STRING",
+              "value": ":"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "value"
+            }
+          ]
+        }
+      }
+    },
+    "parenthesized_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "value"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     }
   },
   "extras": [
