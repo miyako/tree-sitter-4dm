@@ -90,11 +90,11 @@ module.exports = grammar({
       $.end_sql
     ),
 
-    _case_condition: $ => seq(
+    case_condition: $ => seq(
         ':', $.argument
     ),
 
-    condition: $ => choice($._case_condition, $.else),
+    condition: $ => choice($.case_condition, $.else),
       
     _case_block: $ => seq(
         $.condition,

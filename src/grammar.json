@@ -348,7 +348,7 @@
         }
       ]
     },
-    "_case_condition": {
+    "case_condition": {
       "type": "SEQ",
       "members": [
         {
@@ -366,7 +366,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_case_condition"
+          "name": "case_condition"
         },
         {
           "type": "SYMBOL",

@@ -150,6 +150,21 @@
     }
   },
   {
+    "type": "case_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "case_of",
     "named": true,
     "fields": {}
@@ -196,7 +211,7 @@
       "required": true,
       "types": [
         {
-          "type": "argument",
+          "type": "case_condition",
           "named": true
         },
         {
