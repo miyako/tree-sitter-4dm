@@ -12,16 +12,6 @@ else
 
 end if
 
-si ($condition)
-
-fin de si
-
-si ($condition)
-
-sinon
-
-fin de si
-
 ---
 
-(source   (if_block     (if )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable ))))))    (end_if ))  (if_block     (if )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable ))))))    (value       (variable         (process_variable )))    (end_if ))  (if_block     (if )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable ))))))    (end_if ))  (if_block     (if )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable ))))))    (value       (variable         (process_variable )))    (end_if )))
+(source   (if_block     (if )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable ))))))    (end_if ))  (if_block     (if )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable ))))))    (value       (variable         (process_variable )))    (end_if )))

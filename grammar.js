@@ -1,5 +1,5 @@
 const PREC = {
-  comment: -4, super: -4, this: -4,
+  comment: -4,
   key: -3,
   operator: -2,
   formula: 1, terminate: 1, assignment: 1,
@@ -15,6 +15,7 @@ const PREC = {
 }
 module.exports = grammar({
   name: 'fourd',
+  //word: $ => $._nbname,
   rules: {
     source: $ => repeat($._token),
     _token: $ => choice(
@@ -28,8 +29,8 @@ module.exports = grammar({
       $.for_block,
       $.use_block,
       $.sql_block,
-      $.case_block,
       $.var_block,
+      $.case_block,
       $.function_block,
       $.class_extends,
       $.declare_block,
@@ -37,7 +38,22 @@ module.exports = grammar({
       $.constructor_block
 
     ),
-
+      
+    keywords: $ => prec.left(-4, choice(
+        $.return,
+        $.break,
+        $.continue,
+        $.if, $.else, $.end_if,
+        $.for_each, $.end_for_each,
+        $.for, $.end_for,
+        $.while, $.end_while,
+        $.repeat, $.until,
+        $.case_of, $.end_case,
+        $.use, $.end_use,
+        $.begin_sql, $.end_sql,
+        $.var
+    )),
+      
     comment: $ => choice(
         prec(PREC.comment,seq('//', /.*/)),
         prec(PREC.comment,seq(
@@ -46,13 +62,7 @@ module.exports = grammar({
           '/'
         ))
     ),
-          
-    if_block: $ => seq(
-        seq($.if, $.argument),
-        repeat($._token),
-        $.end_if
-    ),
-      
+                
     for_each_block: $ => seq(
         seq($.for_each, $.arguments),
         optional(seq(choice($.until, $.while), $.argument)),
@@ -93,20 +103,23 @@ module.exports = grammar({
     case_condition: $ => seq(
         ':', $.argument
     ),
-
-    condition: $ => choice($.case_condition, $.else),
+     
+    _if: $ => prec.left(seq(
+        seq($.if, $.argument)
+    )),
       
-    _case_block: $ => seq(
-        $.condition,
-        repeat($._token)
-    ),
-       
-    case_block: $ => seq(
+    if_block: $ => prec.right(-1, seq(
+        $._if,
+        repeat(seq($._token, optional($.else))),
+        $.end_if
+    )),
+      
+    case_block: $ => prec.right(-1, seq(
         $.case_of,
-        repeat($._case_block),
+        repeat(seq($.case_condition, repeat(seq($._token, optional($.else))))),
         $.end_case
-    ),
-
+    )),
+            
     _if_e: $ => /(i|I)(f|F)/,
     _if_f: $ => /(s|S)(i|I)/,
     if   : $ => prec(PREC.key, choice($._if_e, $._if_f)),
@@ -223,6 +236,8 @@ module.exports = grammar({
       repeat(choice('\\r', '\\n', '\\"', '\\t', '\\\\', /[^"]/)), '"'))
     ),
 
+    //_nbname: $ => /[A-Za-z]+/,
+        
     /*
      old:
      important to have default (0) prec. but not use 'word'
@@ -232,8 +247,8 @@ module.exports = grammar({
     _name: $ => prec(3,
       token(choice(
       /[A-Za-z_]/,
-      seq(/[A-Za-z_]/, /[A-Za-z_0-9]/),
-      seq(/[A-Za-z_]/, /[A-Za-z_ 0-9]+/, /[A-Za-z_0-9]/))
+      seq(/[A-Za-z_]/, /[A-Za-z_0-9]+/),
+      seq(/[A-Za-z_]/, /[A-Za-z_ 0-9]+/, /[A-Za-z_]/))
     )),
 
     _dereference: $ => prec(PREC.dereference, seq($.variable, '->')),
@@ -295,7 +310,7 @@ module.exports = grammar({
     ),
 
     /* value (respect prec of each) */
-    value: $ =>
+    value: $ => prec(PREC.value,
       choice(
       $.number,
       $.time,
@@ -312,7 +327,7 @@ module.exports = grammar({
       $.ternary,
       $.parenthesized_value,
       $.project_method
-    ),
+    )),
 
     /* function */
     function: $ => prec(PREC.function, prec.right(seq(

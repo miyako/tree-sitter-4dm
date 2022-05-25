@@ -75,6 +75,10 @@
           "named": true
         },
         {
+          "type": "case_condition",
+          "named": true
+        },
+        {
           "type": "case_of",
           "named": true
         },
@@ -87,15 +91,15 @@
           "named": true
         },
         {
-          "type": "condition",
-          "named": true
-        },
-        {
           "type": "constructor_block",
           "named": true
         },
         {
           "type": "declare_block",
+          "named": true
+        },
+        {
+          "type": "else",
           "named": true
         },
         {
@@ -201,25 +205,6 @@
     "type": "comment",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "condition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "case_condition",
-          "named": true
-        },
-        {
-          "type": "else",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "constant",
@@ -664,6 +649,10 @@
         },
         {
           "type": "declare_block",
+          "named": true
+        },
+        {
+          "type": "else",
           "named": true
         },
         {
