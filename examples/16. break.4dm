@@ -1,7 +1,7 @@
-function factorial ( $n : Integer)
+function factorial ( $n : Integer) : Integer
 
 If ($n<1)
-  return 0x1
+  return 1
 Else
   return $n*factorial($n-1)
-End if
+End if 

@@ -2,7 +2,7 @@ const PREC = {
   comment: -4, super: -4, this: -4,
   key: -3,
   operator: -2,
-  formula: 1, assignment: 1, class_function: 1, method_declare: 1,
+  formula: 1, terminate: 1, assignment: 1, class_function: 1, method_declare: 1,
   value: 2, parameter: 2,
   path: 3,
   function: 4,
@@ -32,6 +32,7 @@ module.exports = grammar({
       $.function_block,
       $.class_extends,
       $.declare_block,
+      $.terminate_block,
       $.constructor_block
 
     ),
@@ -228,9 +229,13 @@ module.exports = grammar({
       repeat(choice('\\r', '\\n', '\\"', '\\t', '\\\\', /[^"]/)), '"'))
     ),
 
-    /* important to have default (0) prec. but not use 'word' */
+    /*
+     old:
+     important to have default (0) prec. but not use 'word'
+     elevate to 3
+     */
 
-    _name: $ => prec(0,
+    _name: $ => prec(3,
       token(choice(
       /[A-Za-z_]/,
       seq(/[A-Za-z_]/, /[A-Za-z_0-9]/),
@@ -407,7 +412,11 @@ module.exports = grammar({
     ))
     ),
 
-
+    terminate_block: $ => prec(PREC.terminate, prec.right(seq(
+      choice($.return, $.break, $.continue),
+      optional($.value)
+    ))
+    ),
 
   }
 });

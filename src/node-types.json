@@ -54,7 +54,7 @@
     "fields": {}
   },
   {
-    "type": "break_statement",
+    "type": "break",
     "named": true,
     "fields": {}
   },
@@ -102,10 +102,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -119,10 +115,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -150,11 +142,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -248,7 +240,7 @@
     "fields": {}
   },
   {
-    "type": "continue_statement",
+    "type": "continue",
     "named": true,
     "fields": {}
   },
@@ -303,10 +295,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -320,10 +308,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -359,11 +343,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -398,10 +382,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -415,10 +395,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -454,11 +430,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -560,10 +536,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -577,10 +549,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -616,11 +584,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -664,10 +632,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -681,10 +645,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -720,11 +680,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -842,10 +802,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -859,10 +815,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -902,11 +854,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -1023,10 +975,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -1040,10 +988,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -1075,11 +1019,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -1106,19 +1050,9 @@
     }
   },
   {
-    "type": "return_statement",
+    "type": "return",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "source",
@@ -1130,10 +1064,6 @@
       "types": [
         {
           "type": "assignment",
-          "named": true
-        },
-        {
-          "type": "break_statement",
           "named": true
         },
         {
@@ -1150,10 +1080,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -1181,11 +1107,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -1224,10 +1150,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -1241,10 +1163,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -1276,11 +1194,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -1311,6 +1229,33 @@
     "type": "table",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "terminate_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "break",
+          "named": true
+        },
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "return",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "time",
@@ -1344,10 +1289,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -1361,10 +1302,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -1396,11 +1333,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
@@ -1578,10 +1515,6 @@
           "named": true
         },
         {
-          "type": "break_statement",
-          "named": true
-        },
-        {
           "type": "case_block",
           "named": true
         },
@@ -1595,10 +1528,6 @@
         },
         {
           "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
           "named": true
         },
         {
@@ -1630,11 +1559,11 @@
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "sql_block",
           "named": true
         },
         {
-          "type": "sql_block",
+          "type": "terminate_block",
           "named": true
         },
         {
