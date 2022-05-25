@@ -27,7 +27,6 @@ module.exports = grammar({
       $.for_block,
       $.use_block,
       $.sql_block,
-      $.case_block,
       $.var_block,
       $.function_block,
       $.class_extends,
@@ -95,22 +94,10 @@ module.exports = grammar({
       $.end_sql
     ),
 
-    case_colon_block: $ => seq(
-      ':',
-      $.arguments,
-      repeat($._token)
-    ),
-
     else_case_block: $ => seq(
       $.else,
       repeat($._token),
       $.end_case
-    ),
-
-    case_block: $ => seq(
-      $.case_of,
-      repeat($.case_colon_block),
-      choice($.else_case_block, $.end_case)
     ),
 
     _if_e: $ => /(i|I)(f|F)/,
