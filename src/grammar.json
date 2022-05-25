@@ -348,30 +348,38 @@
         }
       ]
     },
+    "_case_condition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "argument"
+        }
+      ]
+    },
+    "condition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_case_condition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "else"
+        }
+      ]
+    },
     "_case_block": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ":"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "argument"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "else"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "condition"
         },
         {
           "type": "REPEAT",
