@@ -59,6 +59,106 @@
     "fields": {}
   },
   {
+    "type": "case_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument",
+          "named": true
+        },
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
+          "named": true
+        },
+        {
+          "type": "case_of",
+          "named": true
+        },
+        {
+          "type": "class_extends",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "constructor_block",
+          "named": true
+        },
+        {
+          "type": "declare_block",
+          "named": true
+        },
+        {
+          "type": "else",
+          "named": true
+        },
+        {
+          "type": "end_case",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "for_each_block",
+          "named": true
+        },
+        {
+          "type": "function_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "sql_block",
+          "named": true
+        },
+        {
+          "type": "terminate_block",
+          "named": true
+        },
+        {
+          "type": "use_block",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        },
+        {
+          "type": "var_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "case_of",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "class",
     "named": true,
     "fields": {}
@@ -168,89 +268,6 @@
     "fields": {}
   },
   {
-    "type": "else_if_block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "assignment",
-          "named": true
-        },
-        {
-          "type": "class_extends",
-          "named": true
-        },
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "constructor_block",
-          "named": true
-        },
-        {
-          "type": "declare_block",
-          "named": true
-        },
-        {
-          "type": "else",
-          "named": true
-        },
-        {
-          "type": "end_if",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "for_each_block",
-          "named": true
-        },
-        {
-          "type": "function_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "repeat_block",
-          "named": true
-        },
-        {
-          "type": "sql_block",
-          "named": true
-        },
-        {
-          "type": "terminate_block",
-          "named": true
-        },
-        {
-          "type": "use_block",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        },
-        {
-          "type": "var_block",
-          "named": true
-        },
-        {
-          "type": "while_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "end_case",
     "named": true,
     "fields": {}
@@ -327,6 +344,10 @@
         },
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
@@ -414,11 +435,19 @@
       "required": true,
       "types": [
         {
+          "type": "argument",
+          "named": true
+        },
+        {
           "type": "arguments",
           "named": true
         },
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
@@ -580,11 +609,15 @@
       "required": true,
       "types": [
         {
-          "type": "arguments",
+          "type": "argument",
           "named": true
         },
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
@@ -601,10 +634,6 @@
         },
         {
           "type": "declare_block",
-          "named": true
-        },
-        {
-          "type": "else_if_block",
           "named": true
         },
         {
@@ -736,6 +765,25 @@
     "fields": {}
   },
   {
+    "type": "project_method",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arguments",
+          "named": true
+        },
+        {
+          "type": "process_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "property",
     "named": true,
     "fields": {},
@@ -764,11 +812,15 @@
       "required": true,
       "types": [
         {
-          "type": "arguments",
+          "type": "argument",
           "named": true
         },
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
@@ -860,6 +912,10 @@
           "named": true
         },
         {
+          "type": "case_block",
+          "named": true
+        },
+        {
           "type": "class_extends",
           "named": true
         },
@@ -936,6 +992,10 @@
         },
         {
           "type": "begin_sql",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
@@ -1081,11 +1141,15 @@
       "required": true,
       "types": [
         {
-          "type": "arguments",
+          "type": "argument",
           "named": true
         },
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {
@@ -1204,6 +1268,10 @@
           "named": true
         },
         {
+          "type": "project_method",
+          "named": true
+        },
+        {
           "type": "property",
           "named": true
         },
@@ -1311,11 +1379,15 @@
       "required": true,
       "types": [
         {
-          "type": "arguments",
+          "type": "argument",
           "named": true
         },
         {
           "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "case_block",
           "named": true
         },
         {

@@ -7,7 +7,7 @@ const PREC = {
   value: 2, parameter: 2,
   path: 3,
   function: 4,
-  command: 5, constant: 5, class: 5,
+  command: 5, constant: 5, class: 5, project_method:5,
   structure: 6,
   dereference: 9,
   variable: 10,
@@ -28,6 +28,7 @@ module.exports = grammar({
       $.for_block,
       $.use_block,
       $.sql_block,
+      $.case_block,
       $.var_block,
       $.function_block,
       $.class_extends,
@@ -45,28 +46,22 @@ module.exports = grammar({
           '/'
         ))
     ),
-
+          
     if_block: $ => seq(
-      seq($.if, $.arguments),
-      repeat($._token),
-      choice($.else_if_block, $.end_if)
+        seq($.if, $.argument),
+        repeat($._token),
+        $.end_if
     ),
-
-    else_if_block: $ => seq(
-      $.else,
-      repeat($._token),
-      $.end_if
-    ),
-
+      
     for_each_block: $ => seq(
         seq($.for_each, $.arguments),
-        optional(seq(choice($.until, $.while), $.arguments)),
+        optional(seq(choice($.until, $.while), $.argument)),
         repeat($._token),
         $.end_for_each
       ),
 
     while_block: $ => seq(
-        seq($.while, $.arguments),
+        seq($.while, $.argument),
         repeat($._token),
         $.end_while
       ),
@@ -74,7 +69,7 @@ module.exports = grammar({
     repeat_block: $ => seq(
         $.repeat,
         repeat($._token),
-        seq($.until, $.arguments)
+        seq($.until, $.argument)
       ),
 
     for_block: $ => seq(
@@ -84,7 +79,7 @@ module.exports = grammar({
       ),
 
     use_block: $ => seq(
-      seq($.use, $.arguments),
+      seq($.use, $.argument),
       repeat($._token),
       $.end_use
     ),
@@ -94,11 +89,16 @@ module.exports = grammar({
       repeat($._token),
       $.end_sql
     ),
-
-    else_case_block: $ => seq(
-      $.else,
-      repeat($._token),
-      $.end_case
+    
+    _case_block: $ => seq(
+        choice(seq(':', $.argument), $.else),
+        repeat($._token)
+    ),
+      
+    case_block: $ => seq(
+        $.case_of,
+        repeat($._case_block),
+        $.end_case
     ),
 
     _if_e: $ => /(i|I)(f|F)/,
@@ -304,7 +304,8 @@ module.exports = grammar({
       $._pointer,
       $.constant,
       $.ternary,
-      $.parenthesized_value
+      $.parenthesized_value,
+      $.project_method
     ),
 
     /* function */
@@ -319,6 +320,8 @@ module.exports = grammar({
     process_variable: $ => prec(PREC.variable, seq($._name)),
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
 
+    project_method: $ => prec(PREC.project_method, seq($.process_variable, $.arguments)),
+        
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
 
     variable: $ => prec(PREC.variable, prec.right(seq(choice(
@@ -376,8 +379,10 @@ module.exports = grammar({
     class: $ => prec(PREC.key, choice($._basic_type, $._class)),
     var_block: $ => prec.right(seq($.var, $._var_arguments, ':', $.class)),
 
-    _function_argument: $ => seq($.local_variable, ':', $.class),
+    _function_argument: $ => seq($.local_variable, optional(repeat(seq(';', $.local_variable))), ':', $.class),
+        
     _function_arguments: $ => seq('(', optional(choice($._function_argument, seq($._function_argument, repeat(seq(';', $._function_argument))))), ')'),
+         
     _function_result: $ => seq('->', $._function_argument),
     function_name: $ => prec(PREC.key, $._class_function),
     constructor_name: $ => prec(PREC.key, $._class_constructor),

@@ -12,4 +12,4 @@ Jusque ($condition)
 
 ---
 
-(source   (repeat_block     (repeat )    (until )    (arguments       (argument         (value           (variable             (local_variable ))))))  (repeat_block     (repeat )    (until )    (arguments       (argument         (value           (variable             (local_variable )))))))
+(source   (repeat_block     (repeat )    (until )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable )))))))  (repeat_block     (repeat )    (until )    (argument       (value         (parenthesized_value           (value             (variable               (local_variable ))))))))

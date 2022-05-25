@@ -1,0 +1,9 @@
+==================
+Ternary
+==================
+
+$label:=($size > 0) ? "big" : "small" 
+
+---
+
+(source   (assignment     (value       (variable         (local_variable )))    (value       (ternary         (value           (parenthesized_value             (value               (formula                 (value                   (variable                     (local_variable )))                (value                   (number ))))))        (value           (string ))        (value           (string ))))))

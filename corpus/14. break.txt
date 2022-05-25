@@ -2,14 +2,14 @@
 Break
 ==================
 
-function factorial ( $n : Integer) : Integer
-  
+function factorial ( $n : Integer) -> $return : Integer
+
 If ($n<1)
   return 1
-Else 
+Else
   return $n*factorial($n-1)
-End if 
+End if
 
 ---
 
-(source   (function_block     (function_name )    (local_variable )    (class ))  (ERROR )  (value     (variable       (process_variable )))  (if_block     (if )    (arguments       (argument         (value           (formula             (value               (variable                 (local_variable )))            (value               (number ))))))    (value       (variable         (process_variable )))    (else_if_block       (else )      (terminate_block         (return )        (value           (formula             (value               (variable                 (local_variable )))            (value               (function                 (arguments                   (argument                     (value                       (formula                         (value                           (variable                             (local_variable )))                        (value                           (number )))))))))))      (end_if ))))
+(source   (function_block     (function_name )    (local_variable )    (class )    (local_variable )    (class ))  (if_block     (if )    (argument       (value         (parenthesized_value           (value             (formula               (value                 (variable                   (local_variable )))              (value                 (number )))))))    (value       (variable         (process_variable )))    (value       (variable         (process_variable )))    (terminate_block       (return )      (value         (formula           (value             (variable               (local_variable )))          (value             (project_method               (process_variable )              (arguments                 (argument                   (value                     (formula                       (value                         (variable                           (local_variable )))                      (value                         (number )))))))))))    (end_if )))
