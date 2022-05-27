@@ -1,0 +1,11 @@
+==================
+Alias
+==================
+
+//Companies Class
+Class extends Entity
+Alias companyEmployees employees
+
+---
+
+(source   (comment )  (class_extends )  (alias ))

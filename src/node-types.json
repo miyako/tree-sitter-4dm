@@ -67,6 +67,10 @@
       "required": true,
       "types": [
         {
+          "type": "alias",
+          "named": true
+        },
+        {
           "type": "assignment",
           "named": true
         },
@@ -354,6 +358,10 @@
       "required": true,
       "types": [
         {
+          "type": "alias",
+          "named": true
+        },
+        {
           "type": "arguments",
           "named": true
         },
@@ -449,6 +457,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alias",
+          "named": true
+        },
         {
           "type": "argument",
           "named": true
@@ -623,6 +635,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alias",
+          "named": true
+        },
         {
           "type": "argument",
           "named": true
@@ -831,6 +847,10 @@
       "required": true,
       "types": [
         {
+          "type": "alias",
+          "named": true
+        },
+        {
           "type": "argument",
           "named": true
         },
@@ -927,6 +947,10 @@
       "required": false,
       "types": [
         {
+          "type": "alias",
+          "named": true
+        },
+        {
           "type": "assignment",
           "named": true
         },
@@ -1005,6 +1029,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alias",
+          "named": true
+        },
         {
           "type": "assignment",
           "named": true
@@ -1159,6 +1187,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alias",
+          "named": true
+        },
         {
           "type": "argument",
           "named": true
@@ -1397,6 +1429,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alias",
+          "named": true
+        },
         {
           "type": "argument",
           "named": true
@@ -1647,6 +1683,10 @@
   {
     "type": "^|",
     "named": false
+  },
+  {
+    "type": "alias",
+    "named": true
   },
   {
     "type": "class_extends",

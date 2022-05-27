@@ -1,0 +1,9 @@
+==================
+Declare
+==================
+
+#DECLARE($level : Integer; $options : Object)
+
+---
+
+(source   (declare_block     (declare )    (local_variable )    (class )    (local_variable )    (class )))

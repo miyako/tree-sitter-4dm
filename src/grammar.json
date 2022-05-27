@@ -69,6 +69,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "alias"
+        },
+        {
+          "type": "SYMBOL",
           "name": "declare_block"
         },
         {
@@ -1025,6 +1029,10 @@
     "_class_constructor": {
       "type": "PATTERN",
       "value": "((c|C)(l|L)(a|A)(s|S)(s|S))(\\s+((c|C)(o|O)(n|N)(s|S)(t|T)(r|R)(u|U)(c|C)(t|T)(o|O)(r|R)))"
+    },
+    "alias": {
+      "type": "PATTERN",
+      "value": "(a|A)(l|L)(i|I)(a|A)(s|S)(\\s+[A-Za-z_][A-Za-z_0-9]+)(\\s+[A-Za-z_][A-Za-z_0-9]+)"
     },
     "_declare": {
       "type": "PATTERN",

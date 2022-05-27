@@ -1,0 +1,15 @@
+==================
+Break
+==================
+
+function factorial ( $n : Integer) -> $return : Integer
+
+If ($n<1)
+  return 1
+Else
+  return $n*factorial($n-1)
+End if
+
+---
+
+(source   (function_block     (function_name )    (local_variable )    (class )    (local_variable )    (class ))  (if_block     (if )    (argument       (value         (parenthesized_value           (value             (formula               (value                 (variable                   (local_variable )))              (value                 (number )))))))    (terminate_block       (return )      (value         (number           )))    (else )    (terminate_block       (return )      (value         (formula           (value             (variable               (local_variable )))          (value             (project_method               (process_variable )              (arguments                 (argument                   (value                     (formula                       (value                         (variable                           (local_variable )))                      (value                         (number )))))))))))    (end_if )))

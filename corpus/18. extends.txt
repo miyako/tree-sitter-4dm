@@ -1,0 +1,9 @@
+==================
+Extends
+==================
+
+Class extends EntitySelection
+
+---
+
+(source   (class_extends ))

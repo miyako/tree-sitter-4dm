@@ -7,7 +7,7 @@ const PREC = {
   value: 2, parameter: 2,
   path: 3,
   function: 4,
-  command: 5, constant: 5, class: 5, project_method:5,
+  command: 5, constant: 5, class: 5, project_method:5, alias: 5,
   structure: 6,
   dereference: 9,
   variable: 10,
@@ -33,6 +33,7 @@ module.exports = grammar({
       $.case_block,
       $.function_block,
       $.class_extends,
+      $.alias,
       $.declare_block,
       $.terminate_block,
       $.constructor_block
@@ -203,6 +204,8 @@ module.exports = grammar({
     _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(((g|G|s|S)(e|E)(t|T))|((o|O)(r|R)(d|D)(e|E)(r|R)(b|B)(y|Y))|((q|Q)(u|U)(e|E)(r|R)(y|Y))))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     class_extends: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     _class_constructor: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+((c|C)(o|O)(n|N)(s|S)(t|T)(r|R)(u|U)(c|C)(t|T)(o|O)(r|R)))/,
+        
+    alias: $ => /(a|A)(l|L)(i|I)(a|A)(s|S)(\s+[A-Za-z_][A-Za-z_0-9]+)(\s+[A-Za-z_][A-Za-z_0-9]+)/,
 
     _declare: $ => /#(d|D)(e|E)(c|C)(l|L)(a|A)(r|R)(e|E)/,
     declare : $ => prec(PREC.key, $._declare),
