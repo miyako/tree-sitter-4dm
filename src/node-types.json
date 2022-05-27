@@ -180,17 +180,7 @@
   {
     "type": "class",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "function_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "command",
@@ -587,7 +577,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "arguments",

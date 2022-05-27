@@ -334,7 +334,7 @@ module.exports = grammar({
 
     /* function */
     function: $ => prec(PREC.function, prec.right(seq(
-      choice($.function_name, $._class_store),
+      $.function_name,
       optional($.arguments),
       prec.right(repeat(seq(choice($.property, $.method))))))
     ),
@@ -368,7 +368,7 @@ module.exports = grammar({
     _class_store_ds: $ => /(d|D)(s|S)/,
     _class_store_cs: $ => /(c|C)(s|S)/,
     _class_store: $ => prec(PREC.key, choice($._class_store_4d, $._class_store_ds, $._class_store_cs)),
-    _class: $ => prec(PREC.key, seq($._class_store, '.', $.function_name)),
+    _class: $ => prec(PREC.key, seq($._class_store, '.', $._name)),
 
     /* var */
     _var_argument: $ => choice($.local_variable, $.process_variable),
@@ -400,7 +400,7 @@ module.exports = grammar({
       $._basic_type_variant,
       $._basic_type_object
     ),
-    class: $ => prec(PREC.key, choice($._basic_type, $._class)),
+    class: $ => prec.right(PREC.key, choice($._basic_type, $._class)),
     var_block: $ => prec.right(seq($.var, $._var_arguments, ':', $.class)),
 
     _function_argument: $ => prec(-1, seq($.local_variable, optional(repeat(seq(';', $.local_variable))), ':', $.class)),

@@ -1978,17 +1978,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "function_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_class_store"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "function_name"
             },
             {
               "type": "CHOICE",
@@ -2453,7 +2444,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "function_name"
+            "name": "_name"
           }
         ]
       }
@@ -2616,7 +2607,7 @@
       ]
     },
     "class": {
-      "type": "PREC",
+      "type": "PREC_RIGHT",
       "value": -3,
       "content": {
         "type": "CHOICE",
