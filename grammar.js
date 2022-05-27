@@ -39,7 +39,7 @@ module.exports = grammar({
       $.constructor_block
 
     ),
-      
+
     keywords: $ => prec.left(-4, choice(
         $.return,
         $.break,
@@ -54,7 +54,7 @@ module.exports = grammar({
         $.begin_sql, $.end_sql,
         $.var
     )),
-      
+
     comment: $ => choice(
         prec(PREC.comment,seq('//', /.*/)),
         prec(PREC.comment,seq(
@@ -63,7 +63,7 @@ module.exports = grammar({
           '/'
         ))
     ),
-                
+
     for_each_block: $ => seq(
         seq($.for_each, $.arguments),
         optional(seq(choice($.until, $.while), $.argument)),
@@ -104,23 +104,23 @@ module.exports = grammar({
     case_condition: $ => seq(
         ':', $.argument
     ),
-     
+
     _if: $ => prec.left(seq(
         seq($.if, $.argument)
     )),
-      
+
     if_block: $ => prec.right(-1, seq(
         $._if,
         repeat(seq($._token, optional($.else))),
         $.end_if
     )),
-      
+
     case_block: $ => prec.right(-1, seq(
         $.case_of,
         repeat(seq($.case_condition, repeat(seq($._token, optional($.else))))),
         $.end_case
     )),
-            
+
     _if_e: $ => /(i|I)(f|F)/,
     _if_f: $ => /(s|S)(i|I)/,
     if   : $ => prec(PREC.key, choice($._if_e, $._if_f)),
@@ -204,7 +204,7 @@ module.exports = grammar({
     _class_function: $ => /((((l|L)(o|O)(c|C)(a|A)(l|L))|((e|E)(x|X)(p|P)(o|O)(s|S)(e|E)(d|D)))\s+)?((f|F)(u|U)(n|N)(c|C)(t|T)(i|I)(o|O)(n|N))(\s+(((g|G|s|S)(e|E)(t|T))|((o|O)(r|R)(d|D)(e|E)(r|R)(b|B)(y|Y))|((q|Q)(u|U)(e|E)(r|R)(y|Y))))?(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     class_extends: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+(e|E)(x|X)(t|T)(e|E)(n|N)(d|D)(s|S))(\s+[A-Za-z_][A-Za-z_0-9]+)/,
     _class_constructor: $ => /((c|C)(l|L)(a|A)(s|S)(s|S))(\s+((c|C)(o|O)(n|N)(s|S)(t|T)(r|R)(u|U)(c|C)(t|T)(o|O)(r|R)))/,
-        
+
     alias: $ => /(a|A)(l|L)(i|I)(a|A)(s|S)(\s+[A-Za-z_][A-Za-z_0-9]+)(\s+[A-Za-z_][A-Za-z_0-9]+)/,
 
     _declare: $ => /#(d|D)(e|E)(c|C)(l|L)(a|A)(r|R)(e|E)/,
@@ -240,7 +240,7 @@ module.exports = grammar({
     ),
 
     //_nbname: $ => /[A-Za-z]+/,
-        
+
     /*
      old:
      important to have default (0) prec. but not use 'word'
@@ -334,7 +334,7 @@ module.exports = grammar({
 
     /* function */
     function: $ => prec(PREC.function, prec.right(seq(
-      $._name,
+      choice($.function_name, $._class_store),
       optional($.arguments),
       prec.right(repeat(seq(choice($.property, $.method))))))
     ),
@@ -345,7 +345,7 @@ module.exports = grammar({
     interprocess_variable: $ => prec(PREC.variable, seq('<>', $._name)),
 
     project_method: $ => prec(PREC.project_method, seq($.process_variable, $.arguments)),
-        
+
     _variable: $ => choice($.local_variable, $.process_variable, $.interprocess_variable),
 
     variable: $ => prec(PREC.variable, prec.right(seq(choice(
@@ -360,15 +360,15 @@ module.exports = grammar({
     /* assignment should need no priorty */
     assignment: $ => prec.right(seq($.value, ':=', $.value)),
 
-    property: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']'))))),
-    method: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $._name), seq('[', $.value, ']')), $.arguments))),
+    property: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $.function_name), seq('[', $.value, ']'))))),
+    method: $ => prec(PREC.path, prec.right(seq(choice(seq('.', $.function_name), seq('[', $.value, ']')), $.arguments))),
 
     /* class */
     _class_store_4d: $ => /[4](d|D)/,
     _class_store_ds: $ => /(d|D)(s|S)/,
     _class_store_cs: $ => /(c|C)(s|S)/,
-    _class_store: $ => prec(PREC.command, choice($._class_store_4d, $._class_store_ds, $._class_store_cs)),
-    _class: $ => prec(PREC.class, seq($._class_store, '.', $._name)),
+    _class_store: $ => prec(PREC.key, choice($._class_store_4d, $._class_store_ds, $._class_store_cs)),
+    _class: $ => prec(PREC.key, seq($._class_store, '.', $.function_name)),
 
     /* var */
     _var_argument: $ => choice($.local_variable, $.process_variable),
@@ -403,10 +403,10 @@ module.exports = grammar({
     class: $ => prec(PREC.key, choice($._basic_type, $._class)),
     var_block: $ => prec.right(seq($.var, $._var_arguments, ':', $.class)),
 
-    _function_argument: $ => seq($.local_variable, optional(repeat(seq(';', $.local_variable))), ':', $.class),
-        
-    _function_arguments: $ => seq('(', optional(choice($._function_argument, seq($._function_argument, repeat(seq(';', $._function_argument))))), ')'),
-         
+    _function_argument: $ => prec(-1, seq($.local_variable, optional(repeat(seq(';', $.local_variable))), ':', $.class)),
+
+    _function_arguments: $ => prec(-1, seq('(', optional(choice($._function_argument, seq($._function_argument, repeat(seq(';', $._function_argument))))), ')')),
+
     _function_result: $ => seq('->', $._function_argument),
     function_name: $ => prec(PREC.key, $._class_function),
     constructor_name: $ => prec(PREC.key, $._class_constructor),
@@ -436,7 +436,7 @@ module.exports = grammar({
       optional($.value)
     ))
     ),
-        
+
     ternary: $ => prec(PREC.ternary, prec.right(seq(
       $.value,
       '?',
@@ -445,7 +445,7 @@ module.exports = grammar({
       $.value
     ))
     ),
-        
+
     parenthesized_value: $ => seq(
       '(',
       $.value,

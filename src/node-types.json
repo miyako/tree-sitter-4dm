@@ -180,7 +180,17 @@
   {
     "type": "class",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "function_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "command",
@@ -584,6 +594,10 @@
           "named": true
         },
         {
+          "type": "function_name",
+          "named": true
+        },
+        {
           "type": "method",
           "named": true
         },
@@ -749,6 +763,10 @@
           "named": true
         },
         {
+          "type": "function_name",
+          "named": true
+        },
+        {
           "type": "value",
           "named": true
         }
@@ -824,8 +842,12 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "function_name",
+          "named": true
+        },
         {
           "type": "value",
           "named": true
