@@ -20,4 +20,6 @@ apm publish patch
 npm publish
 ```
 
+see https://github.com/atom/apm/issues/572
+
 https://www.netwoven.com/2017/03/21/how-to-update-node-js-modules-to-latest-versions/
